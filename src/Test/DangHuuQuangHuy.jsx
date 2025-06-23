@@ -1,7 +1,7 @@
 import React from "react";
 
 const DangHuuQuangHuy = () => {
-  return <div>DangHuuQuangHuy</div>;
+  return <div>DangHuuQuangHuyUpdate</div>;
 };
 
 export default DangHuuQuangHuy;
