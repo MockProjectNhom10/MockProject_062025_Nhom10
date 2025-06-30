@@ -1,34 +1,32 @@
-import React, { Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 //Lazy loading of routes
-const FinancialAnalystRoutes = React.lazy(() =>
-  import("@financial-analyst/routes/FinancialAnalystRoutes")
+const FinancialAnalystRoutes = lazy(
+  () => import("@financial-analyst/routes/FinancialAnalystRoutes"),
 );
-const ChiefPoliceRoutes = React.lazy(() =>
-  import("@chief-police/routes/ChiefPoliceRoutes")
+const ChiefPoliceRoutes = lazy(
+  () => import("@chief-police/routes/ChiefPoliceRoutes"),
 );
-const InvestigatorRoutes = React.lazy(() =>
-  import("@investigator/routes/InvestigatorRoutes")
+const InvestigatorRoutes = lazy(
+  () => import("@investigator/routes/InvestigatorRoutes"),
 );
-const ForensicRoutes = React.lazy(() =>
-  import("@forensic/routes/ForensicRoutes")
+const ForensicRoutes = lazy(() => import("@forensic/routes/ForensicRoutes"));
+const PatrolPoliceRoutes = lazy(
+  () => import("@patrol-police/routes/PatrolPoliceRoutes"),
 );
-const PatrolPoliceRoutes = React.lazy(() =>
-  import("@patrol-police/routes/PatrolPoliceRoutes")
+const PublicReporterRoutes = lazy(
+  () => import("@public-reporter/routes/PublicReporterRoutes"),
 );
-const PublicReporterRoutes = React.lazy(() =>
-  import("@public-reporter/routes/PublicReporterRoutes")
+const ReviewPoliceRoutes = lazy(
+  () => import("@review-police/routes/ReviewPoliceRoutes"),
 );
-const ReviewPoliceRoutes = React.lazy(() =>
-  import("@review-police/routes/ReviewPoliceRoutes")
-);
-const AdminRoutes = React.lazy(() => import("@admin/routes/AdminRoutes"));
+const AdminRoutes = lazy(() => import("@admin/routes/AdminRoutes"));
 
 //Loading fallback
 const Loading = () => (
-  <div className="flex items-center justify-center min-h-screen">
-    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+  <div className="flex min-h-screen items-center justify-center">
+    <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-blue-500"></div>
   </div>
 );
 
