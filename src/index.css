@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+@theme {
+  --color-reporter: #546fff;
+  --color-police: #00c9a7;
+  --color-specialist: #ffb800;
+  --color-admin: #ff6b6b;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
