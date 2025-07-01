@@ -21,14 +21,15 @@ export default defineConfig({
       "@forensic": path.resolve(__dirname, "src/modules/forensic"),
       "@financial-analyst": path.resolve(
         __dirname,
-        "src/modules/financial-analyst"
+        "src/modules/financial-analyst",
       ),
       "@patrol-police": path.resolve(__dirname, "src/modules/patrol-police"),
       "@public-reporter": path.resolve(
         __dirname,
-        "src/modules/public-reporter"
+        "src/modules/public-reporter",
       ),
       "@review-police": path.resolve(__dirname, "src/modules/review-police"),
+      "@assets": path.resolve(__dirname, "src/assets"),
     },
   },
   server: {

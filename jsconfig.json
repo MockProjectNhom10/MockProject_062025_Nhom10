@@ -11,7 +11,8 @@
       "@financial-analyst/*": ["src/modules/financial-analyst/*"],
       "@patrol-police/*": ["src/modules/patrol-police/*"],
       "@public-reporter/*": ["src/modules/public-reporter/*"],
-      "@review-police/*": ["src/modules/review-police/*"]
+      "@review-police/*": ["src/modules/review-police/*"],
+      "@assets/*": ["src/assets"]
     }
   },
   "include": ["src"]

@@ -1,12 +1,14 @@
 import ConfigToaster from "@core/config/ConfigToaster";
 import AppRouter from "@core/router/AppRouter";
 import React from "react";
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
-      <AppRouter />
-      <ConfigToaster />
+      <Header />
+      {/* <AppRouter />
+      <ConfigToaster /> */}
     </>
   );
 }
