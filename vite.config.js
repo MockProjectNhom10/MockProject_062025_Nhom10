@@ -14,7 +14,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@core": path.resolve(__dirname, "src/core"),
-
+      '@layout': path.resolve(__dirname, 'src/layout'),
+      '@component': path.resolve(__dirname, 'src/component'),
       "@admin": path.resolve(__dirname, "src/modules/admin"),
       "@chief-police": path.resolve(__dirname, "src/modules/chief-police"),
       "@investigator": path.resolve(__dirname, "src/modules/investigator"),

@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@core/*": ["src/core/*"],
-
+      "@layout/*": ["src/layout/*"],
       "@admin/*": ["src/modules/admin/*"],
       "@chief-police/*": ["src/modules/chief-police/*"],
       "@investigator/*": ["src/modules/investigator/*"],
