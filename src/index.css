@@ -15,6 +15,11 @@
   --color-police: #00c9a7;
   --color-specialist: #ffb800;
   --color-admin: #ff6b6b;
+
+  /*Breakpoint customize*/
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1280px;
 }
 
 body {
