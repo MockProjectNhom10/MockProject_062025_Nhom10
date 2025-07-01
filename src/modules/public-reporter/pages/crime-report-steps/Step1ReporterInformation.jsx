@@ -3,7 +3,7 @@ import React from "react";
 
 const Step1ReporterInfo = () => {
   return (
-    <div className="mx-auto my-10 w-full max-w-[700px] min-w-[300px] px-4">
+    <div className="mx-auto mb-10 w-full max-w-[700px] min-w-[300px] px-4">
       {/* header/title */}
       <div className="my-6 flex items-center">
         <div className="flex-grow border-t border-gray-300"></div>
