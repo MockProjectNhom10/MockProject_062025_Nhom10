@@ -26,9 +26,9 @@ const HightLight = () => {
               <img
                 src={highLight1}
                 alt="Slide 1"
-                className="tablet:mx-auto tablet:my-4 w-3xl"
+                className="tablet:mx-auto tablet:my-4 w-xl"
               />
-              <h2 className="text-reporter text-center font-bold">
+              <h2 className="text-reporter text-center text-xl font-bold">
                 CompStat & Crime Stats
               </h2>
               <p className="text-center">
@@ -43,9 +43,9 @@ const HightLight = () => {
               <img
                 src={highLight2}
                 alt="Slide 2"
-                className="tablet:mx-auto tablet:my-4 w-3xl"
+                className="tablet:mx-auto tablet:my-4 w-xl"
               />
-              <h2 className="text-reporter text-center font-bold">
+              <h2 className="text-reporter text-center text-xl font-bold">
                 Body-worn Cameras
               </h2>
               <p className="text-center">
@@ -58,9 +58,9 @@ const HightLight = () => {
               <img
                 src={highLight3}
                 alt="Slide 3"
-                className="tablet:mx-auto tablet:my-4 w-3xl"
+                className="tablet:mx-auto tablet:my-4 w-xl"
               />
-              <h2 className="text-reporter text-center font-bold">
+              <h2 className="text-reporter text-center text-xl font-bold">
                 Help Is Available
               </h2>
               <p className="text-center">

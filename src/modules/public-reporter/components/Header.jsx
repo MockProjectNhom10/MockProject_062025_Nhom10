@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ChevronDown, Search, Menu, X } from "lucide-react";
-import { logo, logoHeader } from "../assets/index";
+import { logo } from "@public-reporter/assets/index";
+import { logoHeader } from "@public-reporter/assets/index";
 import Content from "./Content";
 
 const Header = () => {

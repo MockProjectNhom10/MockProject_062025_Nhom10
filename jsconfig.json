@@ -12,7 +12,7 @@
       "@patrol-police/*": ["src/modules/patrol-police/*"],
       "@public-reporter/*": ["src/modules/public-reporter/*"],
       "@review-police/*": ["src/modules/review-police/*"],
-      "@assets/*": ["src/assets"]
+      "@assets/*": ["src/modules/public-reporter/assets"]
     }
   },
   "include": ["src"]
