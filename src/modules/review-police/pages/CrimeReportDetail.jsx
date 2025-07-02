@@ -11,24 +11,33 @@ import {
   SquareActivity,
   Globe,
 } from "lucide-react";
-import { formData } from "@review-police/utils/review-police-constants";
+import { fullReports } from "@review-police/utils/review-police-constants";
 import PersonTable from "@review-police/components/PersonTable";
 import EvidenceTable from "@review-police/components/EvidenceTable";
 import UploadedFiles from "@review-police/components/UploadedFiles";
 import { InfoItem } from "@review-police/components/InfoItem";
+import { useParams } from "react-router-dom";
 
 export default function CrimeReportDetail() {
+
+  const { reportId } = useParams();
+  const formData = fullReports.find((r) => r.reportId === reportId);
+
+  if (!formData) {
+    return <div className="p-8 text-center text-red-500">Report not found</div>;
+  }
+  
   return (
-    <div className="mobile:px-6 desktop:px-8 mb-16 min-h-screen bg-gray-50 px-4 py-4">
-      <div className="mx-auto max-w-4xl">
+    <div className="min-h-screen px-4 py-4 mb-16 mobile:px-6 desktop:px-8 bg-gray-50">
+      <div className="max-w-4xl mx-auto">
         {/* Report Header */}
-        <div className="mobile:p-6 mb-6 rounded-md border bg-white p-4 shadow-sm">
-          <div className="mobile:flex-row mobile:items-center mobile:justify-between flex flex-col gap-4">
-            <div className="mobile:grid-cols-2 mobile:gap-8 grid grid-cols-1 gap-4">
+        <div className="p-4 mb-6 bg-white border rounded-md shadow-sm mobile:p-6">
+          <div className="flex flex-col gap-4 mobile:flex-row mobile:items-center mobile:justify-between">
+            <div className="grid grid-cols-1 gap-4 mobile:grid-cols-2 mobile:gap-8">
               <InfoItem label="Report ID" value={formData.reportId} />
               <InfoItem label="Status" value={formData.status} />
             </div>
-            <div className="mobile:grid-cols-2 mobile:gap-8 grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 gap-4 mobile:grid-cols-2 mobile:gap-8">
               <InfoItem label="Date" value={formData.date} />
               <InfoItem label="Time" value={formData.time} />
             </div>
@@ -36,17 +45,17 @@ export default function CrimeReportDetail() {
         </div>
 
         {/* Report Details */}
-        <div className="mobile:p-6 rounded-lg border bg-white p-4 shadow-sm">
-          <h1 className="text-police mobile:text-2xl mb-8 text-center text-xl font-bold">
+        <div className="p-4 bg-white border rounded-lg shadow-sm mobile:p-6">
+          <h1 className="mb-8 text-xl font-bold text-center text-police mobile:text-2xl">
             REPORT DETAIL
           </h1>
 
           {/* My Information */}
           <section className="mb-8">
-            <h2 className="text-police mb-6 text-lg font-semibold">
+            <h2 className="mb-6 text-lg font-semibold text-police">
               MY INFORMATION
             </h2>
-            <div className="tablet:grid-cols-2 grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-6 tablet:grid-cols-2">
               <InfoItem
                 label="Full name"
                 value={formData.fullName}
@@ -71,10 +80,10 @@ export default function CrimeReportDetail() {
 
           {/* Incident Information */}
           <section className="mb-8">
-            <h2 className="text-police mb-6 text-lg font-semibold">
+            <h2 className="mb-6 text-lg font-semibold text-police">
               INCIDENT INFORMATION
             </h2>
-            <div className="tablet:grid-cols-2 grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-6 tablet:grid-cols-2">
               <InfoItem
                 label="Type of Crime"
                 value={formData.crimeType}
@@ -106,11 +115,11 @@ export default function CrimeReportDetail() {
 
           {/* Relevant Information */}
           <section className="mb-8">
-            <h2 className="text-police mb-6 text-lg font-semibold">
+            <h2 className="mb-6 text-lg font-semibold text-police">
               RELEVANT INFORMATION
             </h2>
             <div className="mb-8">
-              <h3 className="text-police mb-6 text-base font-bold">
+              <h3 className="mb-6 text-base font-bold text-police">
                 I. Relevant Parties
               </h3>
               <PersonTable
@@ -131,7 +140,7 @@ export default function CrimeReportDetail() {
               />
             </div>
             <div className="mb-8">
-              <h3 className="text-police mb-6 text-base font-bold">
+              <h3 className="mb-6 text-base font-bold text-police">
                 II. Initial Evidence
               </h3>
               <EvidenceTable data={formData.evidence} />
