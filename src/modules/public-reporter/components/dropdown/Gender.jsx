@@ -9,7 +9,7 @@ export default function DropdownForm() {
 
   const handleChange = (value) => {
     setSelectedOption(value);
-    setIsOpen(false);
+    setIsOpen(false); 
   };
 
   const handleFocus = () => {
