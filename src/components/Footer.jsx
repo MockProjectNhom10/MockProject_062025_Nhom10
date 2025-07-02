@@ -29,13 +29,13 @@ export default function Footer() {
         {/* Column 4: Logo, Search, Footer Text */}
         <div className="flex flex-col gap-4">
           {/* Logo and Search */}
-          <div className="mobile:flex-nowrap flex flex-wrap items-center gap-4">
+          <div className="mobile:flex-nowrap flex flex-wrap items-center gap-2">
             <img src={logo} alt="logo" className="h-6" />
             <div className="tablet:w-full relative min-w-[200px] rounded-full bg-[#C2C6E8]">
               <input
                 type="text"
                 placeholder="Search"
-                className="rounded-full py-1 pr-10 pl-4 text-black outline-none"
+                className="tablet:px-0 tablet:max-w-full tablet:p-2 rounded-full px-4 py-1 text-black outline-none"
               />
               <span className="absolute top-1/2 right-2 -translate-y-1/2 text-gray-500">
                 🔍
