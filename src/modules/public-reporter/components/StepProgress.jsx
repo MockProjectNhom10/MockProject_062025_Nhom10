@@ -8,34 +8,33 @@ const StepProgress = ({ currentStep = 1 }) => {
   ];
 
   return (
-    <div className="flex w-full max-w-[650px] h-[80px] sm:h-[96px] md:h-[110px] xl:h-[120px] mx-auto">
+    <div className="mx-auto flex h-[80px] w-full max-w-[650px] sm:h-[96px] md:h-[110px] xl:h-[120px]">
       {steps.map((step, index) => (
-        <div key={step.number} className="flex-1 flex flex-col items-center relative">
+        <div
+          key={step.number}
+          className="relative flex flex-1 flex-col items-center"
+        >
           {/* Line before (chỉ hiện nếu không phải bước đầu) */}
           {index !== 0 && (
-            <div className="absolute top-4 left-0 w-1/2 h-0.5 bg-gray-300 z-0" />
+            <div className="absolute top-4 left-0 z-0 h-0.5 w-1/2 bg-gray-300" />
           )}
 
           {/* Line after (chỉ hiện nếu không phải bước cuối) */}
           {index !== steps.length - 1 && (
-            <div className="absolute top-4 right-0 w-1/2 h-0.5 bg-gray-300 z-0" />
+            <div className="absolute top-4 right-0 z-0 h-0.5 w-1/2 bg-gray-300" />
           )}
 
           {/* Circle number */}
           <div
-            className={`flex items-center justify-center 
-              w-7 h-7 text-xs
-              sm:w-8 sm:h-8 sm:text-sm
-              md:w-9 md:h-9 md:text-base
-              rounded-full z-10 font-medium
-              ${currentStep === step.number ? "bg-black text-white" : "bg-gray-200 text-black"}
-            `}
+            className={`z-10 flex h-7 w-7 items-center justify-center rounded-full text-xs font-medium sm:h-8 sm:w-8 sm:text-sm md:h-9 md:w-9 md:text-base ${currentStep === step.number ? "bg-black text-white" : "bg-gray-200 text-black"} `}
           >
             {step.number}
           </div>
 
           {/* Label */}
-          <div className="text-[10px] sm:text-sm md:text-base mt-1 sm:mt-2 text-center">{step.label}</div>
+          <div className="mt-1 text-center text-[10px] sm:mt-2 sm:text-sm md:text-base">
+            {step.label}
+          </div>
         </div>
       ))}
     </div>

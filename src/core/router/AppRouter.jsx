@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import Login from "@core/auth/pages/Login";
 
 //Lazy loading of routes
 const FinancialAnalystRoutes = lazy(
@@ -34,6 +35,7 @@ const AppRouter = () => {
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
+        <Route path="/login" element={<Login />} />
         {/* Public routes - Don't need login */}
         <Route path="/public-reporter/*" element={<PublicReporterRoutes />} />
 
