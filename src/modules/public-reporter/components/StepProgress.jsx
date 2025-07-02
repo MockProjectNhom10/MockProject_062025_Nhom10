@@ -26,7 +26,7 @@ const StepProgress = ({ currentStep = 1 }) => {
 
           {/* Circle number */}
           <div
-            className={`z-10 flex h-7 w-7 items-center justify-center rounded-full text-xs font-medium sm:h-8 sm:w-8 sm:text-sm md:h-9 md:w-9 md:text-base ${currentStep === step.number ? "bg-black text-white" : "bg-gray-200 text-black"} `}
+            className={`z-10 flex h-7 w-7 items-center justify-center rounded-full text-xs font-medium sm:h-8 sm:w-8 sm:text-sm md:h-9 md:w-9 md:text-base ${currentStep === step.number ? " bg-reporter text-white" : "bg-gray-200 text-black"} `}
           >
             {step.number}
           </div>

@@ -27,7 +27,7 @@ const FormInput = ({
         onChange={onChange}
         onBlur={onBlur}
         value={value}
-        className={`focus:ring-reporter rounded-md bg-[#eee] p-2 focus:ring-1 focus:outline-none ${error ? "border border-red-500" : "border border-gray-300"} ${className}`}
+        className={`focus:ring-reporter rounded-md bg-[#eee] p-2 focus:ring-1 focus:outline-none ${error ? "border border-red-500" : " border-gray-300 border"} ${className}`}
       />
       {error && <span className="mt-1 text-sm text-red-500">{error}</span>}
     </div>
