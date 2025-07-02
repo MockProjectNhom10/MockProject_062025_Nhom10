@@ -10,7 +10,7 @@ import RelevantPartiesTable from "@public-reporter/components/DisplayTable";
 
 function Step2ReporterInfo() {
   return (
-    <section className="mx-auto w-[90%]">
+    <section className="mx-auto w-[95%] tablet:w-full">
       {/* Section Heading */}
       <div className="my-6 flex items-center">
         <div className="flex-grow border-t border-gray-300"></div>
