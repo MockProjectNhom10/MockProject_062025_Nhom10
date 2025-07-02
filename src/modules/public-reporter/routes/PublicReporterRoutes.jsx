@@ -1,5 +1,5 @@
 import Dashboard from "@public-reporter/pages/Dashboard";
-import SC_001_FormReportDetail from "@public-reporter/pages/SC_001_FormReportDetail";
+import SC_008_FormReportDetail from "@public-reporter/pages/SC_008_FormReportDetail";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
@@ -8,7 +8,7 @@ const PublicReporterRoutes = () => {
     <Routes>
       <Route path="/" element={<Dashboard />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/form-report-detail" element={<SC_001_FormReportDetail />} />
+      <Route path="/form-report-detail" element={<SC_008_FormReportDetail />} />
     </Routes>
   );
 };

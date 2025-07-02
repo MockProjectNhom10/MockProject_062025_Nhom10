@@ -1,6 +1,6 @@
 import React from "react";
 
-export const RelevantInformationTable = ({ header, data }) => {
+const RelevantInformationTable = ({ header, data }) => {
     return (
         <div className="border rounded">
             <div className="block divide-y
@@ -45,3 +45,5 @@ export const RelevantInformationTable = ({ header, data }) => {
         </div>
     );
 };
+
+export default RelevantInformationTable;
