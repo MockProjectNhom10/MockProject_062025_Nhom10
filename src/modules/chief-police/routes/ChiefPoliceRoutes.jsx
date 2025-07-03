@@ -1,7 +1,8 @@
+import AddPatrol from "@chief-police/pages/AddPatrol";
 import React from "react";
 
 const ChiefPoliceRoutes = () => {
-  return <div>ChiefPoliceRoutes</div>;
+  return <AddPatrol/>;
 };
 
 export default ChiefPoliceRoutes;
