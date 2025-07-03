@@ -12,7 +12,7 @@ const CrimeReportPage = () => {
   }, [location.pathname]);
 
   return (
-    <div className="mx-auto w-full max-w-[700px] px-10 sm:px-0">
+    <div className="mx-auto w-full max-w-[1000px] px-10 sm:px-0">
       <h1 className="mb-10 text-center text-2xl font-bold">CRIME REPORT</h1>
       {/* stepper */}
       <StepProgress currentStep={currentStep} />
