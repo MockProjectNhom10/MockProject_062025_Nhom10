@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { ChevronDown, Search, Menu, X } from "lucide-react";
 import { logo } from "@public-reporter/assets/index";
 import { logoHeader } from "@public-reporter/assets/index";
-import Content from "./Content";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -30,7 +29,8 @@ const Header = () => {
         <img src={logoHeader} alt="NYPD Shield" className="flex items-center" />
       </div>
 
-      <Content>
+      {/*Update */}
+      <div className="tablet:px-0 tablet:py-4 mx-auto max-w-screen-lg px-0">
         <div className="tablet:hidden flex w-full items-center justify-between gap-2 p-2">
           <button
             className="tablet:hidden order-1 text-gray-700 focus:outline-none"
@@ -186,7 +186,7 @@ const Header = () => {
             />
           </div>
         </div>
-      </Content>
+      </div>
     </header>
   );
 };
