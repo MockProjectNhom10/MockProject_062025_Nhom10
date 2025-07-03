@@ -1,9 +1,12 @@
+import ConfigToaster from "@core/config/ConfigToaster";
+import AppRouter from "@core/router/AppRouter";
 import React from "react";
 
 function App() {
   return (
     <>
-      <h1 className="text-center text-red-500 font-bold">Hi</h1>
+      <AppRouter />
+      <ConfigToaster />
     </>
   );
 }

@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@core/*": ["src/core/*"],
+
+      "@admin/*": ["src/modules/admin/*"],
+      "@chief-police/*": ["src/modules/chief-police/*"],
+      "@investigator/*": ["src/modules/investigator/*"],
+      "@forensic/*": ["src/modules/forensic/*"],
+      "@financial-analyst/*": ["src/modules/financial-analyst/*"],
+      "@patrol-police/*": ["src/modules/patrol-police/*"],
+      "@public-reporter/*": ["src/modules/public-reporter/*"],
+      "@review-police/*": ["src/modules/review-police/*"]
+    }
+  },
+  "include": ["src"]
+}

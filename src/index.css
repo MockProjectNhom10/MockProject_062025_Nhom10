@@ -1,1 +1,49 @@
 @import "tailwindcss";
+
+@theme {
+
+  /* login */
+  --color-background-first: #111c2d;
+  --color-background-second: #566680;
+  --color-background-third: #15263a;
+  --color-orange-light: #fb977d;
+  --color-blue-light: #0065bb;
+  --color-blue-lighter: #0085ec;
+  --color-blue-lightest: #4da6e3;
+
+  /* Theme main */
+  --color-reporter: #546fff;
+  --color-police: #00c9a7;
+  --color-specialist: #ffb800;
+  --color-admin: #ff6b6b;
+
+  /*Breakpoint customize*/
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1280px;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+/* ripple cho login*/
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
