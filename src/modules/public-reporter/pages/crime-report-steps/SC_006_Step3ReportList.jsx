@@ -1,5 +1,5 @@
 import React from "react";
-import { reportedSuccess } from "../../assets/index";
+import { reportedSuccess } from "@public-reporter/assets/index";
 import { Eye, Printer } from "lucide-react";
 
 const SC_006_ReportList = () => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { MessageSquareText, Users, Shield } from "lucide-react";
-import Content from "./Content";
 import { useNavigate } from "react-router-dom";
+import Button from "@public-reporter/components/common/Button";
 
 const Help = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Help = () => {
             size={40}
             className="tablet:h-14 tablet:w-14 desktop:h-16 desktop:w-16 text-reporter mr-4"
           />
-          <span className="tablet:text-lg desktop:text-xl text-base font-medium">
+          <span className="tablet:text-md desktop:text-lg text-base font-medium">
             Tell us what happened.
           </span>
         </div>
@@ -30,7 +30,7 @@ const Help = () => {
             size={40}
             className="tablet:h-14 tablet:w-14 desktop:h-16 desktop:w-16 text-reporter mr-4"
           />
-          <span className="tablet:text-lg desktop:text-xl text-base font-medium">
+          <span className="tablet:text-md desktop:text-lg text-base font-medium">
             Your contribution & our mission.
           </span>
         </div>
@@ -39,17 +39,17 @@ const Help = () => {
             size={40}
             className="tablet:h-14 tablet:w-14 desktop:h-16 desktop:w-16 text-reporter mr-4"
           />
-          <span className="tablet:text-lg desktop:text-xl text-base font-medium">
+          <span className="tablet:text-md desktop:text-lg text-base font-medium">
             Protect yourself and others.
           </span>
         </div>
       </div>
-      <button
-        className="tablet:text-xl tablet:my-4 tablet:w-sm desktop:text-2xl bg-reporter w-full cursor-pointer rounded-lg py-3 text-lg font-bold text-white"
+      <Button
         onClick={handleNavigateReport}
+        className="tablet:text-lg tablet:my-4 tablet:w-sm desktop:text-xl bg-reporter w-full cursor-pointer rounded-lg py-3 text-lg font-bold text-white"
       >
         File A Report
-      </button>
+      </Button>
     </div>
   );
 };

@@ -1,4 +1,5 @@
-import FormInput from "@public-reporter/components/FormInput";
+import FormInput from "@public-reporter/components/common/FormInput";
+import Button from "@public-reporter/components/common/Button";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -57,12 +58,9 @@ const Step1ReporterInfo = () => {
 
         {/* next button */}
         <div className="mt-10 flex items-center justify-end">
-          <button
-            className="bg-reporter cursor-pointer rounded-lg border px-8 py-1 text-white hover:brightness-90"
-            onClick={handleNavigateStep2}
-          >
+          <Button variant="reporter" onClick={handleNavigateStep2}>
             Next
-          </button>
+          </Button>
         </div>
       </div>
     </div>

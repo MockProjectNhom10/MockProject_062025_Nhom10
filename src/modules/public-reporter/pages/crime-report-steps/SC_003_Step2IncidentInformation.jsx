@@ -1,17 +1,13 @@
-import React, { useState, Fragment } from "react";
-import DropdownForm from "../../components/dropdown/Severity";
-import StateDropdown from "@public-reporter/components/dropdown/State";
-import CrimeDropdown from "@public-reporter/components/dropdown/CrimeTypes";
-import FormInput from "@public-reporter/components/FormInput";
-import TextArea from "@public-reporter/components/TextArea";
-import { Pencil, Trash2 } from "lucide-react";
-import DatePicker from "@public-reporter/components/DatePicker";
-import RelevantPartiesTable from "@public-reporter/components/DisplayTable";
+import React, { useState } from "react";
+import FormInput from "@public-reporter/components/common/FormInput";
+import TextArea from "@public-reporter/components/common/TextArea";
+import DatePicker from "@public-reporter/components/common/DatePicker";
+import RelevantPartiesTable from "@public-reporter/components/table/DisplayTable";
 import { useNavigate } from "react-router-dom";
 import SC_004 from "./SC_004_RelevantParties";
 import SC_005 from "./SC_005_InitialEvidence";
-import Modal from "../../components/Modal";
-import { Menu, Transition } from "@headlessui/react";
+import Modal from "@public-reporter/components/common/Modal";
+import Button from "@public-reporter/components/common/Button";
 
 function SC_003_Step2IncidentInformation() {
   const navigate = useNavigate();
@@ -85,46 +81,32 @@ function SC_003_Step2IncidentInformation() {
       </form>
       <div className="mb-4">
         <RelevantPartiesTable label={"Relevant Parties"} />
-        <div className="flex justify-end mt-2">
-          <button
-            type="button"
-            className="rounded-lg bg-gray-200 px-8 py-2 font-semibold text-gray-700"
-            onClick={() => setOpenModal('SC_004')}
-          >
+        <div className="mt-2 flex justify-end">
+          <Button variant="secondary" onClick={() => setOpenModal("SC_004")}>
             ADD
-          </button>
+          </Button>
         </div>
       </div>
       <div className="mb-4">
         <RelevantPartiesTable label={"Initial Evidence"} />
-        <div className="flex justify-end mt-2">
-          <button
-            type="button"
-            className="rounded-lg bg-gray-200 px-8 py-2 font-semibold text-gray-700"
-            onClick={() => setOpenModal('SC_005')}
-          >
+        <div className="mt-2 flex justify-end">
+          <Button variant="secondary" onClick={() => setOpenModal("SC_005")}>
             ADD
-          </button>
+          </Button>
         </div>
       </div>
       <div className="my-10 flex items-center justify-end gap-5">
-        <button
-          className="cursor-pointer rounded-lg border border-[#9E9E9E] bg-[#E7EDF6] px-10 py-3 text-gray-700 transition hover:bg-[#d9e4f0]"
-          onClick={handleNavigateStep1}
-        >
+        <Button variant="secondary" onClick={handleNavigateStep1}>
           Back
-        </button>
-        <button
-          className="bg-reporter cursor-pointer rounded-lg border px-10 py-3 text-white hover:brightness-90"
-          onClick={handleNavigateStep3}
-        >
+        </Button>
+        <Button variant="reporter" onClick={handleNavigateStep3}>
           Submit
-        </button>
+        </Button>
       </div>
-      <Modal isOpen={openModal === 'SC_004'} onClose={() => setOpenModal(null)}>
+      <Modal isOpen={openModal === "SC_004"} onClose={() => setOpenModal(null)}>
         <SC_004 onClose={() => setOpenModal(null)} />
       </Modal>
-      <Modal isOpen={openModal === 'SC_005'} onClose={() => setOpenModal(null)}>
+      <Modal isOpen={openModal === "SC_005"} onClose={() => setOpenModal(null)}>
         <SC_005 onClose={() => setOpenModal(null)} />
       </Modal>
     </section>
