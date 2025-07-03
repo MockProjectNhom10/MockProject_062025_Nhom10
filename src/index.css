@@ -47,3 +47,8 @@ body {
     opacity: 0;
   }
 }
+
+/* Luôn giữ thanh cuộn dọc để tránh nhảy layout khi mở modal/dropdown */
+html, body {
+  overflow-y: scroll;
+}

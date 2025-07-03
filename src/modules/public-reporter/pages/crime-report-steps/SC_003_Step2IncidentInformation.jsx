@@ -1,5 +1,5 @@
-import React from "react";
-import DropdownForm from "@public-reporter/components/dropdown/Severity";
+import React, { useState, Fragment } from "react";
+import DropdownForm from "../../components/dropdown/Severity";
 import StateDropdown from "@public-reporter/components/dropdown/State";
 import CrimeDropdown from "@public-reporter/components/dropdown/CrimeTypes";
 import FormInput from "@public-reporter/components/FormInput";
@@ -8,9 +8,14 @@ import { Pencil, Trash2 } from "lucide-react";
 import DatePicker from "@public-reporter/components/DatePicker";
 import RelevantPartiesTable from "@public-reporter/components/DisplayTable";
 import { useNavigate } from "react-router-dom";
+import SC_004 from "./SC_004_RelevantParties";
+import SC_005 from "./SC_005_InitialEvidence";
+import Modal from "../../components/Modal";
+import { Menu, Transition } from "@headlessui/react";
 
 function SC_003_Step2IncidentInformation() {
   const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(null); // null | 'SC_004' | 'SC_005'
 
   const handleNavigateStep1 = () => {
     navigate("/public-reporter/report/step1");
@@ -78,9 +83,30 @@ function SC_003_Step2IncidentInformation() {
           />
         </div>
       </form>
-      <RelevantPartiesTable label={"Relevant Parties"} />
-      <RelevantPartiesTable label={"Initial Evidence"} />
-
+      <div className="mb-4">
+        <RelevantPartiesTable label={"Relevant Parties"} />
+        <div className="flex justify-end mt-2">
+          <button
+            type="button"
+            className="rounded-lg bg-gray-200 px-8 py-2 font-semibold text-gray-700"
+            onClick={() => setOpenModal('SC_004')}
+          >
+            ADD
+          </button>
+        </div>
+      </div>
+      <div className="mb-4">
+        <RelevantPartiesTable label={"Initial Evidence"} />
+        <div className="flex justify-end mt-2">
+          <button
+            type="button"
+            className="rounded-lg bg-gray-200 px-8 py-2 font-semibold text-gray-700"
+            onClick={() => setOpenModal('SC_005')}
+          >
+            ADD
+          </button>
+        </div>
+      </div>
       <div className="my-10 flex items-center justify-end gap-5">
         <button
           className="cursor-pointer rounded-lg border border-[#9E9E9E] bg-[#E7EDF6] px-10 py-3 text-gray-700 transition hover:bg-[#d9e4f0]"
@@ -95,6 +121,12 @@ function SC_003_Step2IncidentInformation() {
           Submit
         </button>
       </div>
+      <Modal isOpen={openModal === 'SC_004'} onClose={() => setOpenModal(null)}>
+        <SC_004 onClose={() => setOpenModal(null)} />
+      </Modal>
+      <Modal isOpen={openModal === 'SC_005'} onClose={() => setOpenModal(null)}>
+        <SC_005 onClose={() => setOpenModal(null)} />
+      </Modal>
     </section>
   );
 }
