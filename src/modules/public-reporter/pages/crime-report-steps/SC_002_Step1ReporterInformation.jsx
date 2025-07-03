@@ -1,7 +1,13 @@
 import FormInput from "@public-reporter/components/FormInput";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Step1ReporterInfo = () => {
+  const navigate = useNavigate();
+
+  const handleNavigateStep2 = () => {
+    navigate("/public-reporter/report/step2");
+  };
   return (
     <div className="mx-auto mb-10 w-full max-w-[700px] min-w-[300px] px-4">
       {/* header/title */}
@@ -51,7 +57,10 @@ const Step1ReporterInfo = () => {
 
         {/* next button */}
         <div className="mt-10 flex items-center justify-end">
-          <button className="bg-reporter cursor-pointer rounded-lg border px-8 py-1 text-white hover:brightness-90">
+          <button
+            className="bg-reporter cursor-pointer rounded-lg border px-8 py-1 text-white hover:brightness-90"
+            onClick={handleNavigateStep2}
+          >
             Next
           </button>
         </div>
