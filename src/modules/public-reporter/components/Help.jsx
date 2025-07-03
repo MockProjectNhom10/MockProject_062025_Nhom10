@@ -1,6 +1,5 @@
 import React from "react";
 import { MessageSquareText, Users, Shield } from "lucide-react";
-import Content from "./Content";
 
 const Help = () => {
   return (
