@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/Logo-NYC.png";
+import logo from "@public-reporter/assets/Logo-NYC.png";
 
 export default function Footer() {
   return (
@@ -29,9 +29,9 @@ export default function Footer() {
         {/* Column 4: Logo, Search, Footer Text */}
         <div className="flex flex-col gap-4">
           {/* Logo and Search */}
-          <div className="flex flex-col gap-4 desktop:flex-row items-start">
+          <div className="desktop:flex-row flex flex-col items-start gap-4">
             <img src={logo} alt="logo" className="h-6" />
-            <div className=" relative w-[90%] mobile:w-full overflow-hidden  rounded-full bg-[#C2C6E8] ">
+            <div className="mobile:w-full relative w-[90%] overflow-hidden rounded-full bg-[#C2C6E8]">
               <input
                 type="text"
                 placeholder="Search"

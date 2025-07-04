@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "@public-reporter/layout/MainLayout";
-import Dashboard from "@public-reporter/pages/Dashboard";
 import HomePage from "@public-reporter/pages/HomePage";
 import CrimeReportPage from "@public-reporter/pages/CrimeReportPage";
 import SC_002_Step1ReporterInformation from "@public-reporter/pages/crime-report-steps/SC_002_Step1ReporterInformation";
@@ -14,7 +13,6 @@ const PublicReporterRoutes = () => {
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route
           path="/form-report-detail"
           element={<SC_008_FormReportDetail />}
