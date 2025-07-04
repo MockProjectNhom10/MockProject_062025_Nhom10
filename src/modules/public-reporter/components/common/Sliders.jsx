@@ -1,23 +1,34 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
-import { slider } from "../../assets/index";
+import "swiper/css/navigation";
 
-const Sliders = () => {
+const Sliders = ({
+  slides = [],
+  slidesPerView = 1,
+  loop = true,
+  pagination = { clickable: true },
+  navigation = false,
+  spaceBetween = 30,
+  className = "",
+  breakpoints = null,
+}) => {
   return (
     <Swiper
-      className="tablet:rounded-lg"
-      modules={[Pagination]}
-      spaceBetween={30}
-      slidesPerView={1}
-      loop={true}
-      pagination={{ clickable: true }}
+      className={className}
+      modules={[Pagination, Navigation]}
+      spaceBetween={spaceBetween}
+      slidesPerView={slidesPerView}
+      loop={loop}
+      pagination={pagination}
+      navigation={navigation}
+      breakpoints={breakpoints}
     >
-      <SwiperSlide>
-        <img src={slider} alt="Slide 1" className="h-full w-full" />
-      </SwiperSlide>
+      {slides.map((slideContent, index) => (
+        <SwiperSlide key={index}>{slideContent}</SwiperSlide>
+      ))}
     </Swiper>
   );
 };

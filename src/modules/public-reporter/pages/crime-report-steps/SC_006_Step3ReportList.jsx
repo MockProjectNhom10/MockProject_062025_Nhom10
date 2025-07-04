@@ -1,5 +1,5 @@
 import React from "react";
-import { reportedSuccess } from "../../assets/index";
+import { reportedSuccess } from "@public-reporter/assets/index";
 import { Eye, Printer } from "lucide-react";
 
 const SC_006_ReportList = () => {
@@ -9,19 +9,19 @@ const SC_006_ReportList = () => {
       <img
         src={reportedSuccess}
         alt="Report Success"
-        className="mb-12 h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32"
+        className="mb-12 h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24"
       />
 
       {/* Message */}
-      <p className="mb-10 max-w-md text-center text-sm text-gray-700 sm:text-base">
-        Your report will be reviewed within 5–10 working days. <br />
+      <p className="mb-10 max-w-md text-center text-sm text-gray-700 sm:text-balance">
+        Your report will be reviewed within 5-10 working days. <br />
         Please check the status regularly for updates. <br />
         Thank you for your submission.
       </p>
 
       {/* Report Table */}
-      <div className="mb-12 w-full max-w-full overflow-x-auto sm:max-w-3xl md:max-w-4xl">
-        <table className="min-w-[600px] divide-y divide-gray-200 rounded-lg border border-gray-400 text-sm">
+      <div className="mb-12 w-full max-w-full overflow-x-auto sm:max-w-3xl md:max-w-5xl">
+        <table className="mx-auto min-w-[900px] divide-y divide-gray-200 rounded-lg border border-gray-400 text-sm">
           <thead className="bg-gray-100">
             <tr className="text-left font-semibold text-gray-700">
               <th className="px-4 py-2">ReportID</th>

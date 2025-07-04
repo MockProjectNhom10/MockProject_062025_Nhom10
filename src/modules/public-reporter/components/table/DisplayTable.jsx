@@ -1,13 +1,7 @@
 import React from "react";
 import { Pencil, Trash2 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 const RelevantPartiesTable = ({ label }) => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate("relevantParties");
-  };
   return (
     <section className="my-10">
       {/* Title */}
@@ -57,14 +51,11 @@ const RelevantPartiesTable = ({ label }) => {
       </div>
 
       {/* Add Button */}
-      <div className="mt-4 flex justify-end">
-        <button
-          onClick={handleClick}
-          className="cursor-pointer rounded border border-[#9E9E9E] bg-[#E7EDF6] px-10 py-1 text-gray-700 transition hover:bg-[#d9e4f0]"
-        >
+      {/* <div className="mt-4 flex justify-end">
+        <button className="cursor-pointer rounded border border-[#9E9E9E] bg-[#E7EDF6] px-10 py-1 text-gray-700 transition hover:bg-[#d9e4f0]">
           ADD
         </button>
-      </div>
+      </div> */}
     </section>
   );
 };
