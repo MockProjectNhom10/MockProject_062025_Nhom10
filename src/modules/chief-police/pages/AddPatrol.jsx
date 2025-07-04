@@ -31,7 +31,7 @@ export default function AddPatrolOfficer() {
   return (
     <div className="mx-auto w-full max-w-6xl overflow-hidden rounded-md border border-blue-300 shadow-md">
       {/* Card Title Header */}
-      <div className="border-b border-gray-300 bg-blue-100 px-4 py-3 text-center">
+      <div className="border-b border-gray-300 bg-chief px-4 py-3 text-center">
         <h2 className="text-2xl font-bold uppercase">
           Add Patrol Official to Sence
         </h2>
