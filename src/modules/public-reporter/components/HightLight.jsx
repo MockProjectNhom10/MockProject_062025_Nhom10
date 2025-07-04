@@ -1,5 +1,5 @@
 import React from "react";
-import Sliders from "./Sliders";
+import Sliders from "@public-reporter/components/common/Sliders";
 import {
   highLight1,
   highLight2,

@@ -1,7 +1,15 @@
 import React from "react";
 import { MessageSquareText, Users, Shield } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import Button from "@public-reporter/components/common/Button";
 
 const Help = () => {
+  const navigate = useNavigate();
+
+  const handleNavigateReport = () => {
+    navigate("report/step1");
+  };
+
   return (
     <div className="tablet:max-w-tablet max-w-mobile tablet:my-4 tablet:p-8 desktop:max-w-lg desktop:p-10 mx-auto flex flex-col items-center justify-center border-b-1 p-4">
       <h2 className="tablet:text-3xl desktop:text-4xl my-6 text-center text-2xl font-bold">
