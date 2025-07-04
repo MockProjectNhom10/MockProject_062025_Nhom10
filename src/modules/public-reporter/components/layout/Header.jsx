@@ -2,6 +2,56 @@ import React, { useState } from "react";
 import { ChevronDown, Search, Menu, X } from "lucide-react";
 import { logo, logoHeader } from "@public-reporter/assets/index";
 
+const navLinks = [
+  { label: "Home", className: "text-reporter font-bold" },
+  { label: "About", className: "font-semibold" },
+  { label: "Bureaus", className: "font-semibold" },
+  { label: "Services", className: "font-semibold" },
+  { label: "Stats", className: "font-semibold" },
+  { label: "Policies", className: "font-semibold" },
+];
+
+const NavigationList = ({ onClick, isMobile }) => (
+  <ul
+    className={
+      isMobile
+        ? "flex flex-col space-y-2 p-4"
+        : "tablet:space-x-2 mobile:text-sm tablet:text-base flex flex-wrap text-xs"
+    }
+  >
+    {navLinks.map((link, idx) => (
+      <li
+        key={link.label}
+        className={
+          !isMobile && idx !== navLinks.length - 1
+            ? "tablet:space-x-2 flex items-center space-x-0"
+            : "flex items-center"
+        }
+      >
+        <a href="#" className={link.className} onClick={onClick}>
+          {link.label}
+        </a>
+        {!isMobile && idx !== navLinks.length - 1 && (
+          <span className="m-2 text-gray-300">|</span>
+        )}
+      </li>
+    ))}
+  </ul>
+);
+
+const SearchInput = ({ id, className = "" }) => (
+  <div className={`relative ${className}`}>
+    <Search className="pointer-events-none absolute top-1/2 left-2 h-4 w-4 -translate-y-1/2 transform" />
+    <input
+      type="search"
+      placeholder="Search"
+      className="w-full rounded border bg-gray-200 py-1 pr-2 pl-8 text-xs"
+      required
+      id={id}
+    />
+  </div>
+);
+
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -28,7 +78,7 @@ const Header = () => {
         <img src={logoHeader} alt="NYPD Shield" className="flex items-center" />
       </div>
 
-      <div className="tablet:hidden flex w-full items-center justify-between gap-2 p-2">
+      <div className="tablet:hidden flex w-full items-center justify-between gap-2 px-2 py-4">
         <button
           className="tablet:hidden order-1 text-gray-700 focus:outline-none"
           onClick={() => setMenuOpen(true)}
@@ -36,17 +86,7 @@ const Header = () => {
         >
           <Menu size={28} />
         </button>
-
-        <div className="relative order-2 w-3/5 flex-1">
-          <Search className="pointer-events-none absolute top-1/2 left-2 h-4 w-4 -translate-y-1/2 transform" />
-          <input
-            type="search"
-            placeholder="Search"
-            className="w-full rounded border bg-gray-200 py-1 pr-2 pl-8 text-xs"
-            required
-            id="default-search"
-          />
-        </div>
+        <SearchInput id="default-search" className="order-2 w-3/5 flex-1" />
       </div>
 
       {/* Sliding mobile menu overlay */}
@@ -71,96 +111,17 @@ const Header = () => {
                 <X size={28} />
               </button>
             </div>
-            <ul className="flex flex-col space-y-2 p-4">
-              <li>
-                <a
-                  href="#"
-                  className="text-reporter font-bold"
-                  onClick={handleNavClick}
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" className="font-semibold" onClick={handleNavClick}>
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#" className="font-semibold" onClick={handleNavClick}>
-                  Bureaus
-                </a>
-              </li>
-              <li>
-                <a href="#" className="font-semibold" onClick={handleNavClick}>
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href="#" className="font-semibold" onClick={handleNavClick}>
-                  Stats
-                </a>
-              </li>
-              <li>
-                <a href="#" className="font-semibold" onClick={handleNavClick}>
-                  Policies
-                </a>
-              </li>
-            </ul>
+            <NavigationList onClick={handleNavClick} isMobile />
           </nav>
         </>
       )}
 
-      <div className="flex items-center justify-between">
+      <div className="max-w-screen-tablet tablet:px-4 tablet:py-8 mx-auto flex items-center justify-between">
         <nav className="tablet:flex-nowrap tablet:justify-center tablet:flex hidden flex-wrap items-center justify-center overflow-x-auto p-2">
-          <ul className="tablet:space-x-2 mobile:text-sm tablet:text-base flex flex-wrap text-xs">
-            <li className="tablet:space-x-2 flex items-center">
-              <a href="#" className="text-reporter font-bold">
-                Home
-              </a>
-              <span className="m-2 text-gray-300">|</span>
-            </li>
-            <li className="tablet:space-x-2 flex items-center space-x-0">
-              <a href="#" className="font-semibold">
-                About
-              </a>
-              <span className="m-2 text-gray-300">|</span>
-            </li>
-            <li className="tablet:space-x-2 flex items-center space-x-0">
-              <a href="#" className="font-semibold">
-                Bureaus
-              </a>
-              <span className="m-2 text-gray-300">|</span>
-            </li>
-            <li className="tablet:space-x-2 flex items-center space-x-0">
-              <a href="#" className="font-semibold">
-                Services
-              </a>
-              <span className="m-2 text-gray-300">|</span>
-            </li>
-            <li className="tablet:space-x-2 flex items-center space-x-0">
-              <a href="#" className="font-semibold">
-                Stats
-              </a>
-              <span className="m-2 text-gray-300">|</span>
-            </li>
-            <li className="flex items-center">
-              <a href="#" className="font-semibold">
-                Policies
-              </a>
-            </li>
-          </ul>
+          <NavigationList isMobile={false} />
         </nav>
-
         <div className="tablet:w-48 tablet:flex-1 tablet:ml-4 tablet:mt-0 tablet:mr-2 tablet:block relative mt-2 hidden w-full">
-          <Search className="pointer-events-none absolute top-1/2 left-2 h-4 w-4 -translate-y-1/2 transform" />
-          <input
-            type="search"
-            placeholder="Search"
-            className="tablet:text-sm w-full rounded border bg-gray-200 py-1 pr-2 pl-8 text-xs"
-            required
-            id="default-search-desktop"
-          />
+          <SearchInput id="default-search-desktop" className="tablet:text-sm" />
         </div>
       </div>
     </header>
