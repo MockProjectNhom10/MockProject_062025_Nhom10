@@ -10,17 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.4",
     "@reduxjs/toolkit": "^2.8.2",
     "@tailwindcss/vite": "^4.1.10",
     "axios": "^1.10.0",
     "lucide-react": "^0.520.0",
     "react": "18.2.0",
+    "react-datepicker": "^8.4.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.50.1",
     "react-hot-toast": "^2.4.1",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.6.2",
-    "swiper": "^11.2.10"
+    "swiper": "^11.2.10",
+     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
