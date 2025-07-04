@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-
   /* login */
   --color-background-first: #111c2d;
   --color-background-second: #566680;
