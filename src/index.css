@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-
   /* login */
   --color-background-first: #111c2d;
   --color-background-second: #566680;
@@ -12,8 +11,9 @@
   --color-blue-lightest: #4da6e3;
 
   /* Theme main */
-  --color-reporter: #546fff;
-  --color-police: #00c9a7;
+  --color-reporter: #111111;
+  --color-police: #00c9a7; /* #police review */
+  --color-chief: #c8e3ff;
   --color-specialist: #ffb800;
   --color-admin: #ff6b6b;
 
@@ -49,6 +49,7 @@ body {
 }
 
 /* Luôn giữ thanh cuộn dọc để tránh nhảy layout khi mở modal/dropdown */
+
 html, body {
   overflow-y: scroll;
 }
