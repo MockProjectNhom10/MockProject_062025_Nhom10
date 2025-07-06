@@ -49,7 +49,7 @@ body {
 }
 
 /* Luôn giữ thanh cuộn dọc để tránh nhảy layout khi mở modal/dropdown */
-html,
-body {
+
+html, body {
   overflow-y: scroll;
 }

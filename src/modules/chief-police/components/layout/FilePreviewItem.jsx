@@ -31,7 +31,7 @@ const FilePreviewItem = ({
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [onClose]);
 
   if (!show || !currentFile) return null;
 
@@ -49,7 +49,7 @@ const FilePreviewItem = ({
           src={URL.createObjectURL(currentFile)}
           alt={currentFile.name}
           style={commonStyle}
-          className="max-h-[60vh] max-w-full object-contain mx-auto"
+          className="mx-auto max-h-[60vh] max-w-full object-contain"
         />
       );
     }
@@ -59,7 +59,7 @@ const FilePreviewItem = ({
         <video
           controls
           src={URL.createObjectURL(currentFile)}
-          className="max-h-[60vh] max-w-full mx-auto"
+          className="mx-auto max-h-[60vh] max-w-full"
         />
       );
     }
@@ -69,12 +69,12 @@ const FilePreviewItem = ({
         <iframe
           src={URL.createObjectURL(currentFile)}
           title="PDF Preview"
-          className="w-full h-[60vh] border rounded"
+          className="h-[60vh] w-full rounded border"
         />
       );
     }
 
-    return <p className="text-gray-600 text-center">Không thể preview</p>;
+    return <p className="text-center text-gray-600">Không thể preview</p>;
   };
 
   return (
@@ -85,44 +85,44 @@ const FilePreviewItem = ({
       {/* Modal nổi */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative z-50 w-full max-w-3xl mx-4 bg-white rounded-xl shadow-lg border p-6"
+        className="relative z-50 mx-4 w-full max-w-3xl rounded-xl border bg-white p-6 shadow-lg"
       >
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="mb-4 flex items-center justify-between">
           <div className="flex flex-row space-x-2">
             <p className="font-semibold">Preview file:</p>
             <p>{currentFile.name}</p>
           </div>
           <button
-            className="p-2 hover:bg-gray-200 rounded-full"
+            className="rounded-full p-2 hover:bg-gray-200"
             onClick={onClose}
           >
-            <X className="w-5 h-5" />
+            <X className="h-5 w-5" />
           </button>
         </div>
 
         {/* Nội dung file */}
-        <div className="flex items-center justify-center overflow-hidden max-h-[60vh] mb-4 bg-gray-100 rounded p-2">
+        <div className="mb-4 flex max-h-[60vh] items-center justify-center overflow-hidden rounded bg-gray-100 p-2">
           {getPreview()}
         </div>
 
         {/* Footer */}
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <div className="flex gap-2">
             <button
-              className="p-2 hover:bg-gray-200 rounded-full"
+              className="rounded-full p-2 hover:bg-gray-200"
               onClick={() => setZoom(zoom + 0.2)}
             >
               <ZoomIn />
             </button>
             <button
-              className="p-2 hover:bg-gray-200 rounded-full"
+              className="rounded-full p-2 hover:bg-gray-200"
               onClick={() => setZoom(Math.max(1, zoom - 0.2))}
             >
               <ZoomOut />
             </button>
             <button
-              className="p-2 hover:bg-gray-200 rounded-full"
+              className="rounded-full p-2 hover:bg-gray-200"
               onClick={() => setRotate(rotate + 90)}
             >
               <RotateCw />
@@ -131,7 +131,7 @@ const FilePreviewItem = ({
 
           <div className="flex gap-2">
             <button
-              className="p-2 text-blue-500 hover:bg-gray-200 rounded-full"
+              className="rounded-full p-2 text-blue-500 hover:bg-gray-200"
               onClick={() => {
                 const a = document.createElement("a");
                 a.href = URL.createObjectURL(currentFile);
@@ -142,7 +142,7 @@ const FilePreviewItem = ({
               <Download />
             </button>
             <button
-              className="p-2 text-red-500 hover:bg-red-200 rounded-full"
+              className="rounded-full p-2 text-red-500 hover:bg-red-200"
               onClick={() => onDelete(currentIndex)}
             >
               <Trash />
