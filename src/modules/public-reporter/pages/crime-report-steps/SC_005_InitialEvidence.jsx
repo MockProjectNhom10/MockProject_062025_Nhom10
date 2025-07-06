@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FileUpload from "@public-reporter/components/common/FileUpload";
 import { Listbox } from "@headlessui/react";
 import { Fragment } from "react";
+// import Button from "@public-reporter/components/common/Button";
 import Button from "@public-reporter/components/common/Button";
 
 const evidenceTypes = [
@@ -38,7 +39,7 @@ const SC_005 = ({ onClose }) => {
             onChange={setSelectedEvidenceType}
           >
             <div className="relative">
-              <Listbox.Button className="flex w-full items-center justify-between rounded-lg border border-gray-300 bg-white px-4 py-2 text-left text-gray-600 focus:ring-2 focus:ring-blue-100 focus:outline-none">
+              <ListboxButton className="flex w-full items-center justify-between rounded-lg border border-gray-300 bg-white px-4 py-2 text-left text-gray-600 focus:ring-2 focus:ring-blue-100 focus:outline-none">
                 <span>{selectedEvidenceType || "Select an option"}</span>
                 <svg
                   className="ml-2 h-4 w-4 text-gray-400"
@@ -54,10 +55,10 @@ const SC_005 = ({ onClose }) => {
                     d="M19 9l-7 7-7-7"
                   />
                 </svg>
-              </Listbox.Button>
-              <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-lg bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none">
+              </ListboxButton>
+              <ListboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-lg bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none">
                 {evidenceTypes.map((item) => (
-                  <Listbox.Option key={item} value={item} as={Fragment}>
+                  <ListboxOption key={item} value={item} as={Fragment}>
                     {({ active, selected }) => (
                       <li
                         className={`cursor-pointer list-none px-4 py-2 select-none ${active ? "bg-blue-100 text-blue-900" : "text-gray-900"} ${selected ? "font-semibold" : ""}`}
@@ -65,9 +66,9 @@ const SC_005 = ({ onClose }) => {
                         {item}
                       </li>
                     )}
-                  </Listbox.Option>
+                  </ListboxOption>
                 ))}
-              </Listbox.Options>
+              </ListboxOptions>
             </div>
           </Listbox>
         </div>

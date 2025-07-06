@@ -71,15 +71,15 @@ const ReportActions = () => {
   const handleApprove = () => console.log("Approve clicked");
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 px-4 py-3 bg-gray-100 border-t border-gray-200 shadow-lg">
-      <div className="flex items-center justify-between mx-auto max-w-screen-desktop">
+    <div className="fixed right-0 bottom-0 left-0 z-50 border-t border-gray-200 bg-gray-100 px-4 py-3 shadow-lg">
+      <div className="max-w-screen-desktop mx-auto flex items-center justify-between">
         <Button
           content="Print"
           color="bg-gray-500"
           onClick={handlePrint}
           className="mobile:px-3 mobile:py-1 mobile:text-xs tablet:px-4 tablet:py-2 tablet:text-sm desktop:px-4 desktop:py-2 desktop:text-sm"
         />
-        <div className="flex gap-1 ml-1">
+        <div className="ml-1 flex gap-1">
           <Button
             content="Decline"
             color="bg-red-500"
