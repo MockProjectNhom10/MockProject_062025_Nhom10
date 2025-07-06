@@ -1,10 +1,10 @@
 import React from "react";
-import logo from "../assets/Logo-NYC.png";
+import logo from "@public-reporter/assets/Logo-NYC.png";
 
 export default function Footer() {
   return (
     <footer className="bg-reporter px-6 py-8 text-white">
-      <div className="mobile:grid-cols-2 tablet:grid-cols-4 mx-auto grid max-w-6xl grid-cols-1 gap-8">
+      <div className="mobile:grid-cols-2 tablet:grid-cols-4 mx-auto grid grid-cols-1 gap-8">
         {/* Column 1 */}
         <div className="space-y-2">
           <p className="font-semibold">Directory Of City Agencies</p>
@@ -29,9 +29,9 @@ export default function Footer() {
         {/* Column 4: Logo, Search, Footer Text */}
         <div className="flex flex-col gap-4">
           {/* Logo and Search */}
-          <div className="mobile:flex-nowrap flex flex-wrap items-center gap-4">
+          <div className="desktop:flex-row flex flex-col items-start gap-4">
             <img src={logo} alt="logo" className="h-6" />
-            <div className="tablet:w-full relative min-w-[200px] rounded-full bg-[#C2C6E8]">
+            <div className="mobile:w-full relative w-[90%] overflow-hidden rounded-full bg-[#C2C6E8]">
               <input
                 type="text"
                 placeholder="Search"

@@ -11,8 +11,8 @@ import {
   Globe,
   FileText,
 } from "lucide-react";
-import RelevantInformationTable from "@public-reporter/components/RelevantInformationTable";
-import FooterNav from "@public-reporter/components/FooterNav";
+import RelevantInformationTable from "@public-reporter/components/table/RelevantInformationTable";
+import FooterNav from "@public-reporter/components/common/FooterNav";
 
 const SC_008_FormReportDetail = () => {
   return (
@@ -185,8 +185,6 @@ const SC_008_FormReportDetail = () => {
           </div>
         </div>
       </div>
-
-      <FooterNav />
     </div>
   );
 };
