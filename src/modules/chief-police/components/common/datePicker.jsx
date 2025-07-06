@@ -7,12 +7,12 @@ import "react-datepicker/dist/react-datepicker.css";
 export default function CustomDatePicker() {
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const CustomInput = React.forwardRef(({ value, onClick }, ref) => (
+  const CustomInput = React.forwardRef(({ onClick }, ref) => (
     <button
       type="button"
       onClick={onClick}
       ref={ref}
-      className="flex items-center space-x-2 rounded-lg bg-emerald-400 px-6 py-2 text-black hover:bg-emerald-500 transition"
+      className="flex items-center space-x-2 rounded-lg bg-emerald-400 px-6 py-2 text-black transition hover:bg-emerald-500"
     >
       <span>Choose</span>
       <Calendar className="h-5 w-5" />
