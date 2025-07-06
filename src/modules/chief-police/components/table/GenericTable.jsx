@@ -1,5 +1,4 @@
 import React from "react";
-
 const GenericTable = ({ title, columns, data }) => {
   return (
     <div className="mb-8">

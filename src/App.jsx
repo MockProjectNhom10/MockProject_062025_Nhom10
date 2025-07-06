@@ -1,3 +1,4 @@
+import DragAndDropUpload from "@chief-police/components/common/DragAndDropUpload";
 import ConfigToaster from "@core/config/ConfigToaster";
 import AppRouter from "@core/router/AppRouter";
 import React from "react";
@@ -12,3 +13,17 @@ function App() {
 }
 
 export default App;
+
+// const allowedTypes = [
+//   "image/jpeg",
+//   "image/png",
+//   "image/gif",
+//   "video/mp4",
+//   "application/pdf",
+//   "image/vnd.adobe.photoshop",
+//   "application/postscript",
+//   "application/msword",
+//   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+//   "application/vnd.ms-powerpoint",
+//   "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+// ];

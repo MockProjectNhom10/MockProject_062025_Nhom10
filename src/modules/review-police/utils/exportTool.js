@@ -18,9 +18,12 @@ export const handlePrint = () => {
               font-family: Arial, sans-serif;
               margin: 20px;
             }
-            h1, h2, h3 {
+            h1 {
               color: #00c9a7; 
               text-align: center;
+            }
+            h2, h3{
+              color: #00c9a7; 
             }
             .mobile\\:p-6, .p-4 {
               padding: 16px;
