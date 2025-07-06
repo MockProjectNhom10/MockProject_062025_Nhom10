@@ -1,9 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function TimePicker() {
-  const [hour, setHour] = useState("09");
-  const [minute, setMinute] = useState("32");
-  const [period, setPeriod] = useState("AM");
+export default function TimePicker({
+  value,
+  onChange,
+  defaultHour = "09",
+  defaultMinute = "00",
+  defaultPeriod = "AM",
+}) {
+  const [hour, setHour] = useState(defaultHour);
+  const [minute, setMinute] = useState(defaultMinute);
+  const [period, setPeriod] = useState(defaultPeriod);
+
+  useEffect(() => {
+    if (onChange) {
+      onChange({ hour, minute, period });
+    }
+  }, [hour, minute, period]);
 
   const hours = Array.from({ length: 12 }, (_, i) =>
     String(i + 1).padStart(2, "0")

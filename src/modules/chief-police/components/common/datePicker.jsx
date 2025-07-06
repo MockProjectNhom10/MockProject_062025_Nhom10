@@ -1,20 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import DatePicker from "react-datepicker";
 import { Calendar } from "lucide-react";
 import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default function CustomDatePicker() {
-  const [selectedDate, setSelectedDate] = useState(null);
+export default function CustomDatePicker({
+  value = null,
+  onChange,
+  minDate,
+  maxDate,
+  placeholder = "Choose",
+  isClearable = false,
+}) {
+  const [selectedDate, setSelectedDate] = useState(value);
 
-  const CustomInput = React.forwardRef(({ value, onClick }, ref) => (
+  const CustomInput = forwardRef(({ value, onClick }, ref) => (
     <button
       type="button"
       onClick={onClick}
       ref={ref}
       className="flex items-center space-x-2 rounded-lg bg-emerald-400 px-6 py-2 text-black hover:bg-emerald-500 transition"
     >
-      <span>Choose</span>
+      <span>{placeholder}</span>
       <Calendar className="h-5 w-5" />
     </button>
   ));
@@ -31,10 +38,17 @@ export default function CustomDatePicker() {
         selected={selectedDate}
         onChange={(date) => {
           setSelectedDate(date);
-          console.log("Selected date:", date);
+          if (onChange) onChange(date);
         }}
         customInput={<CustomInput />}
         dateFormat="PP"
+        placeholderText={placeholder}
+        isClearable={isClearable}
+        minDate={minDate}
+        maxDate={maxDate}
+        todayButton="Today"
+        showPopperArrow={false}
+        popperPlacement="bottom-start"
       />
     </div>
   );
