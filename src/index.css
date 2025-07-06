@@ -50,6 +50,10 @@ body {
 
 /* Luôn giữ thanh cuộn dọc để tránh nhảy layout khi mở modal/dropdown */
 
-html, body {
+* html,
+body {
   overflow-y: scroll;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }

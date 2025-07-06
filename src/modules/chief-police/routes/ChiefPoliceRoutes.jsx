@@ -1,10 +1,13 @@
-import CustomDatePicker from "@chief-police/components/common/datePicker";
-import TimePicker from "@chief-police/components/common/TimePicker";
-import AddPatrol from "@chief-police/pages/AddPatrol";
+
+import FormSection from "@chief-police/components/sections/FormSection";
 import React from "react";
 
 const ChiefPoliceRoutes = () => {
-  return  <TimePicker/>;
+  return (
+    <div>
+      <FormSection />
+    </div>
+  );
 };
 
 export default ChiefPoliceRoutes;
