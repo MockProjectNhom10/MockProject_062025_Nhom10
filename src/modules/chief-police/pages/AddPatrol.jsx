@@ -1,4 +1,4 @@
-import Pagination from "@chief-police/components/addPatrol/Pagination";
+import PaginationControls from "@chief-police/component/table/PaginationControls";
 import TableBody from "@chief-police/components/addPatrol/TableBody";
 import TableHeader from "@chief-police/components/addPatrol/TableHeader";
 import {
@@ -85,7 +85,8 @@ export default function AddPatrolOfficer() {
             <TableBody page={page} itemsPerpage={itemsPerpage} users={items}/>
           </table>
         </div>
-        <Pagination itemsPerpage={itemsPerpage} totalPage={totalPage} page={page} setPage={setPage} />
+        {/* <Pagination itemsPerpage={itemsPerpage} totalPage={totalPage} page={page} setPage={setPage} /> */}
+        <PaginationControls/>
       </div>
     </div>
   );
