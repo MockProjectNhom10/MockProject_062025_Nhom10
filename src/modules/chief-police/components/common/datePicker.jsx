@@ -14,12 +14,12 @@ export default function CustomDatePicker({
 }) {
   const [selectedDate, setSelectedDate] = useState(value);
 
-  const CustomInput = forwardRef(({ value, onClick }, ref) => (
+  const CustomInput = React.forwardRef(({ onClick }, ref) => (
     <button
       type="button"
       onClick={onClick}
       ref={ref}
-      className="flex items-center space-x-2 rounded-lg bg-emerald-400 px-6 py-2 text-black hover:bg-emerald-500 transition"
+      className="flex items-center space-x-2 rounded-lg bg-emerald-400 px-6 py-2 text-black transition hover:bg-emerald-500"
     >
       <span>{placeholder}</span>
       <Calendar className="h-5 w-5" />

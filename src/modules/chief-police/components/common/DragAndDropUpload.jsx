@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Eye, Trash, UploadCloud } from "lucide-react";
-import FilePreviewItem from "@chief-police/components/layout/FilePreviewItem";
+import FilePreviewItem from "@chief-police/components/common/FilePreviewItem";
 import { useToast } from "@core/hooks/useToast";
 
 const DragAndDropUpload = ({
