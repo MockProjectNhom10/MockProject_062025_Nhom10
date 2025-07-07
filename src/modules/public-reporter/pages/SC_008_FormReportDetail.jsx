@@ -185,8 +185,6 @@ const SC_008_FormReportDetail = () => {
           </div>
         </div>
       </div>
-
-      <FooterNav />
     </div>
   );
 };
