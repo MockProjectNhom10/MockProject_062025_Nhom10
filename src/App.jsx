@@ -1,16 +1,14 @@
-import ActionButtons from "@chief-police/components/common/Action";
-import DragAndDropUpload from "@chief-police/components/common/DragAndDropUpload";
+import ActionButtons from "@chief-police/components/common/button/Action";
+import DragAndDropUpload from "@chief-police/components/common/upload/DragAndDropUpload";
 import ConfigToaster from "@core/config/ConfigToaster";
 import AppRouter from "@core/router/AppRouter";
 import React, { useEffect, useState } from "react";
-
 
 function App() {
   return (
     <>
       <AppRouter />
       <ConfigToaster />
-      
     </>
   );
 }
