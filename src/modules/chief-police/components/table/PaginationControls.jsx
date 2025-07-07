@@ -1,3 +1,4 @@
+
 const PaginationControls = ({
     currentPage,
     totalPages,
@@ -107,3 +108,4 @@ export default PaginationControls;
 //     )
 
 // }
+
