@@ -29,14 +29,15 @@ const sections = [
 
 const MainLayout = () => {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="max-tablet:pt-6 flex min-h-screen flex-col bg-white pt-12">
       {/* Main area: sidebar + content */}
       <div className="flex flex-1 flex-col md:flex-row">
         {/* Sidebar: block above content on mobile, left on desktop */}
         <SideBar sections={sections} />
+
         {/* Main content */}
         <div className="flex min-h-0 flex-1 flex-col">
-          <div className="flex-1 overflow-auto p-2 sm:p-4 md:p-6">
+          <div className="mx-8 flex-1 overflow-auto">
             <Outlet />
           </div>
         </div>
