@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "@chief-police/components/common/Button";
+import Button from "@chief-police/components/common/button/Button";
 
 const Footer = () => {
   return (
