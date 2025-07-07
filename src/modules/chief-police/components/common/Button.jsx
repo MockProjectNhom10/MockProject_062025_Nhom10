@@ -28,6 +28,7 @@ const Button = ({
       break;
     case "chief":
       variantClass = "bg-chief text-white hover:brightness-90";
+      break;
     case "reporter":
       variantClass = "bg-reporter text-white hover:brightness-90";
       break;
