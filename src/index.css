@@ -59,7 +59,7 @@ body {
   box-sizing: border-box;
 }
 .react-datepicker__header--custom {
-  background: oklch(69.6% 0.17 162.48) !important; /* emerald-green blend */
+  background: #00C9A7 !important; /* emerald-green blend */
  
 }
 
@@ -78,7 +78,7 @@ body {
 }
 
 .react-datepicker__today-button {
-   background: oklch(69.6% 0.17 162.48)!important;
+   background: #00C9A7!important;
 }
 
 
