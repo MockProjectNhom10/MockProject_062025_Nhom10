@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import MainLayout from "@chief-police/components/layout/MainLayout";
 import ChiefDashboard from "@chief-police/pages/ChiefDashboard";
 import SceneManagementForm from "@chief-police/pages/SC_015_SceneManagementForm";
+import SceneInformation from "@chief-police/pages/SC_017_SceneInformation";
 
 const ChiefPoliceRoutes = () => {
   return (
@@ -10,6 +11,7 @@ const ChiefPoliceRoutes = () => {
       <Route element={<MainLayout />}>
         <Route path="/" element={<ChiefDashboard />} />
         <Route path="/scene-management" element={<SceneManagementForm />} />
+        <Route path="/scene-information" element={<SceneInformation/>} />
       </Route>
     </Routes>
   );
@@ -18,7 +20,7 @@ const ChiefPoliceRoutes = () => {
 export default ChiefPoliceRoutes;
 
 /* <TimePicker />
-      <div className="h-1/3 w-1/3">a</div>
+      <div className="w-1/3 h-1/3">a</div>
       <DatePicker /> */
 /* <DragAndDropUpload /> */
 /* <FormSection /> */

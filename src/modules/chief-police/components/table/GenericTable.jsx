@@ -5,7 +5,7 @@ const GenericTable = ({ title, columns, data, variant = "default" }) => {
   const styles = tableStyles[variant] || tableStyles.default;
 
   return (
-    <div className="mb-8">
+    <div className="mb-8 ">
       {title && (
         <h4 className="mb-3 text-sm font-bold text-gray-700">{title}</h4>
       )}
@@ -39,7 +39,7 @@ const GenericTable = ({ title, columns, data, variant = "default" }) => {
               <tr>
                 <td
                   colSpan={columns.length}
-                  className="p-4 text-center text-sm text-gray-700"
+                  className="p-4 text-sm text-center text-gray-700"
                 >
                   No {title ? title.split("(")[0].trim().toLowerCase() : "data"}{" "}
                   information available.
