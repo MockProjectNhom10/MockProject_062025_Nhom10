@@ -1,5 +1,5 @@
 import { CircleChevronRight, Edit, Trash2 } from "lucide-react";
-
+//Style
 export const tableStyles = {
   default: {
     table: "min-w-full  border bg-gray-50",
