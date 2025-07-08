@@ -9,7 +9,7 @@ const ChiefPoliceRoutes = () => {
   return (
     <Routes>
       <Route element={<MainLayout />}>
-        <Route path="/" element={<SC_018_InformationProtectionField />} />
+        <Route path="/" element={<SC_016_InitialResponse />} />
       </Route>
     </Routes>
   );
