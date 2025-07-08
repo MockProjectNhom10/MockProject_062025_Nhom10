@@ -6,6 +6,8 @@ import ViewInitialStatement from "@chief-police/pages/SC_022_ViewIntinalStatemen
 
 import SC_016_InitialResponse from "@chief-police/pages/SC_016_InitialResponse";
 import SC_018_InformationProtectionField from "@chief-police/pages/SC_018_InformationProtectionField";
+import SC_013_PreliminaryInvestigation from "@chief-police/pages/SC_013_PreliminaryInvestigation";
+
 import SC_023 from "@chief-police/pages/SC_023";
 
 
@@ -26,6 +28,7 @@ const ChiefPoliceRoutes = () => {
 
         <Route path="/ViewInitialStatement" element={<ViewInitialStatement />} />
 
+        <Route path="/" element={<SC_013_PreliminaryInvestigation />} />
 
         <Route
           path="/preliminary-evidence"
