@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "@chief-police/components/layout/MainLayout";
 import ChiefDashboard from "@chief-police/pages/ChiefDashboard";
+import ViewInitialStatement from "@chief-police/pages/SC_022_ViewIntinalStatement";
 
 import SC_016_InitialResponse from "@chief-police/pages/SC_016_InitialResponse";
 import SC_018_InformationProtectionField from "@chief-police/pages/SC_018_InformationProtectionField";
@@ -22,6 +23,9 @@ const ChiefPoliceRoutes = () => {
         <Route path="/" element={<SC_023 />} />
 
         <Route path="/" element={<ChiefDashboard />} />
+
+        <Route path="/ViewInitialStatement" element={<ViewInitialStatement />} />
+
 
         <Route
           path="/preliminary-evidence"
