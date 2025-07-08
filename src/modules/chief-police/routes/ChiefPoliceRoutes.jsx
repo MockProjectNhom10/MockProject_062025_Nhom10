@@ -2,14 +2,14 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "@chief-police/components/layout/MainLayout";
 import ChiefDashboard from "@chief-police/pages/ChiefDashboard";
-import SC_016_InitialResponse from "@chief-police/pages/SC_016_InitialResponse";
-import SC_018_InformationProtectionField from "@chief-police/pages/SC_018_InformationProtectionField";
+import SceneManagementForm from "@chief-police/pages/SC_015_SceneManagementForm";
 
 const ChiefPoliceRoutes = () => {
   return (
     <Routes>
       <Route element={<MainLayout />}>
-        <Route path="/" element={<SC_016_InitialResponse />} />
+        <Route path="/" element={<ChiefDashboard />} />
+        <Route path="/scene-management" element={<SceneManagementForm />} />
       </Route>
     </Routes>
   );
