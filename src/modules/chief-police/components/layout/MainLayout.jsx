@@ -7,6 +7,10 @@ import Footer from "@chief-police/components/layout/Footer";
 // Define the sections data outside the component
 const sections = [
   {
+    label: "Preliminary Investigation",
+    subItems: [],
+  },
+  {
     label: "Initial Response",
     subItems: [
       "Time of dispatching forces to the scene",
@@ -26,6 +30,7 @@ const sections = [
       "Preliminary Physical Evidence Information",
       "Scene Sketch"
     ],
+
   },
   {
     label: "Initial Investigation Report",
