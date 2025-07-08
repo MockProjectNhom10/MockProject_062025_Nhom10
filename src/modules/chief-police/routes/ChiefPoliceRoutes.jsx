@@ -2,12 +2,14 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "@chief-police/components/layout/MainLayout";
 import ChiefDashboard from "@chief-police/pages/ChiefDashboard";
+import ViewInitialStatement from "@chief-police/pages/SC_022_ViewIntinalStatement";
 
 const ChiefPoliceRoutes = () => {
   return (
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<ChiefDashboard />} />
+        <Route path="/ViewInitialStatement" element={<ViewInitialStatement />} />
       </Route>
     </Routes>
   );
