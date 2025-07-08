@@ -5,14 +5,14 @@ const GenericTable = ({ title, columns, data }) => {
       {title && (
         <h4 className="mb-3 text-sm font-bold text-gray-700">{title}</h4>
       )}
-      <div className="overflow-x-auto">
-        <table className="min-w-full rounded-md border bg-gray-50">
-          <thead className="rounded-t-lg bg-gray-100">
+      <div className="shadow-md">
+        <table className="min-w-full border-1 border-gray-300 bg-gray-50">
+          <thead className="bg-gray-100">
             <tr>
               {columns.map((column, index) => (
                 <th
                   key={index}
-                  className="p-4 text-left text-sm font-medium text-gray-600"
+                  className="border-b-1 border-gray-300 p-4 text-left text-sm font-semibold text-gray-600"
                 >
                   {column.header}
                 </th>
@@ -23,7 +23,7 @@ const GenericTable = ({ title, columns, data }) => {
             {data?.length > 0 ? (
               data.map((item, rowIndex) => (
                 <tr
-                  className="border-b bg-gray-200 last:border-b-0"
+                  className="border-b border-gray-300 bg-gray-200 last:border-b-0"
                   key={item.id || rowIndex}
                 >
                   {columns.map((column, colIndex) => (

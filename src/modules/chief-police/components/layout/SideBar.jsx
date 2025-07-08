@@ -62,7 +62,7 @@ function SideBar({
       {!isDesktop && (
         <div className="m-4 md:hidden">
           <button
-            className="flex h-10 w-10 items-center justify-center rounded bg-teal-600 text-white"
+            className="bg-police flex h-10 w-10 items-center justify-center rounded text-white"
             onClick={() => setSidebarOpen((open) => !open)}
           >
             {sidebarOpen ? (
@@ -76,17 +76,17 @@ function SideBar({
 
       {/* Sidebar: always on desktop, toggled on mobile */}
       {(isDesktop || sidebarOpen) && (
-        <aside className="max-desktop:max-w-xs max-tablet:mb-4 max-tablet:max-w-full max-tablet:ml-0 relative ml-8 flex w-full max-w-md flex-col rounded-lg border-1 border-gray-200 bg-white p-4 pt-10 shadow-md">
+        <aside className="max-desktop:max-w-xs max-tablet:mb-4 max-tablet:max-w-full max-tablet:mx-0 max-mobile:w-full relative ml-8 flex w-xs max-w-md flex-col rounded-lg border-1 border-gray-200 bg-white shadow-md">
           <nav className="flex flex-col gap-3">
             {sidebarData.map((section, idx) => {
               const isActive = activeSection === idx;
               return (
-                <div key={section.label}>
+                <div key={section.label} className="">
                   <button
-                    className={`flex w-full items-center justify-between rounded px-4 py-2 text-left font-semibold ${isActive ? "bg-teal-500 text-white" : "bg-gray-400 text-white"} transition-colors`}
+                    className={`flex w-full items-center justify-between rounded-xl px-4 py-2 text-left font-semibold ${isActive ? "bg-police text-white" : "bg-gray-400 text-white"} transition-colors`}
                     onClick={() => handleSectionClick(idx)}
                   >
-                    <span className="flex items-center gap-2">
+                    <span className="text-md flex items-center gap-2">
                       {isActive ? (
                         <ChevronDown className="h-5 w-5" />
                       ) : (
@@ -102,7 +102,7 @@ function SideBar({
                         {section.subItems.map((sub, subIdx) => (
                           <li key={sub}>
                             <button
-                              className={`w-full rounded px-3 py-1 text-left text-sm ${activeSubItem === subIdx ? "font-bold" : "font-normal"} text-gray-800 hover:bg-gray-100`}
+                              className={`w-full rounded-xl px-3 py-2 text-left text-sm ${activeSubItem === subIdx ? "font-bold" : "font-normal"} text-gray-800 hover:bg-gray-100`}
                               onClick={() => handleSubItemClick(idx, subIdx)}
                             >
                               {sub}

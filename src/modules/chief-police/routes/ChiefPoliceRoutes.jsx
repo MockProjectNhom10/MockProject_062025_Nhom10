@@ -2,12 +2,13 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "@chief-police/components/layout/MainLayout";
 import ChiefDashboard from "@chief-police/pages/ChiefDashboard";
+import SC_016_InitialResponse from "@chief-police/pages/SC_016_InitialResponse";
 
 const ChiefPoliceRoutes = () => {
   return (
     <Routes>
       <Route element={<MainLayout />}>
-        <Route path="/" element={<ChiefDashboard />} />
+        <Route path="/" element={<SC_016_InitialResponse />} />
       </Route>
     </Routes>
   );
