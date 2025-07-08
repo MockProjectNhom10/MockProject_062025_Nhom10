@@ -2,14 +2,25 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "@chief-police/components/layout/MainLayout";
 import ChiefDashboard from "@chief-police/pages/ChiefDashboard";
+
+import SC_020_PreliminaryEvidence from "@chief-police/pages/SC_020_PreliminaryEvidence";
+
 import SceneManagementForm from "@chief-police/pages/SC_015_SceneManagementForm";
+
 
 const ChiefPoliceRoutes = () => {
   return (
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<ChiefDashboard />} />
+
+        <Route
+          path="/preliminary-evidence"
+          element={<SC_020_PreliminaryEvidence />}
+        />
+
         <Route path="/scene-management" element={<SceneManagementForm />} />
+
       </Route>
     </Routes>
   );
