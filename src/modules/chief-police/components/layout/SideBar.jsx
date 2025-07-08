@@ -76,7 +76,7 @@ function SideBar({
 
       {/* Sidebar: always on desktop, toggled on mobile */}
       {(isDesktop || sidebarOpen) && (
-        <aside className="max-desktop:max-w-xs max-tablet:mb-4 max-tablet:max-w-full max-tablet:ml-0 relative ml-8 flex w-full max-w-md flex-col rounded-lg border-1 border-gray-200 bg-white p-4 pt-10 shadow-md">
+        <aside className="max-desktop:max-w-xs max-tablet:mb-4 max-tablet:max-w-full max-tablet:ml-0 relative flex w-full max-w-md flex-col rounded-lg border-1 border-gray-200 bg-white p-4 pt-10 shadow-md">
           <nav className="flex flex-col gap-3">
             {sidebarData.map((section, idx) => {
               const isActive = activeSection === idx;
