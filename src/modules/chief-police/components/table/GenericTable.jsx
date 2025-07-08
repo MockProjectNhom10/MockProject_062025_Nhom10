@@ -1,19 +1,21 @@
+import { tableStyles } from "@chief-police/constants/tableStyles";
 import React from "react";
-const GenericTable = ({ title, columns, data }) => {
+
+const GenericTable = ({ title, columns, data, variant = "default" }) => {
+  const styles = tableStyles[variant] || tableStyles.default;
+
   return (
     <div className="mb-8">
       {title && (
         <h4 className="mb-3 text-sm font-bold text-gray-700">{title}</h4>
       )}
-      <div className="shadow-md">
-        <table className="min-w-full border-1 border-gray-300 bg-gray-50">
-          <thead className="bg-gray-100">
+      <div className="overflow-x-auto">
+        <table className={styles.table}>
+          <thead className={styles.thead}>
             <tr>
               {columns.map((column, index) => (
-                <th
-                  key={index}
-                  className="border-b-1 border-gray-300 p-4 text-left text-sm font-semibold text-gray-600"
-                >
+                <th key={index} className={styles.th}>
+
                   {column.header}
                 </th>
               ))}
@@ -22,18 +24,15 @@ const GenericTable = ({ title, columns, data }) => {
           <tbody>
             {data?.length > 0 ? (
               data.map((item, rowIndex) => (
-                <tr
-                  className="border-b border-gray-300 bg-gray-200 last:border-b-0"
-                  key={item.id || rowIndex}
-                >
+
+                <tr className={styles.tr} key={item.id || rowIndex}>
+
                   {columns.map((column, colIndex) => (
-                    <td className="p-4 text-sm" key={colIndex}>
+                    <td className={styles.td} key={colIndex}>
                       {column.render ? (
                         column.render(item)
                       ) : (
-                        <span className="text-gray-700">
-                          {item[column.accessor] || "-"}
-                        </span>
+                        <span>{item[column.accessor] || "-"}</span>
                       )}
                     </td>
                   ))}
