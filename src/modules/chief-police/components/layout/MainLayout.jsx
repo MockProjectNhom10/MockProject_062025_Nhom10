@@ -23,7 +23,11 @@ const sections = [
   },
   {
     label: "Scene Information",
-    subItems: [],
+    subItems: ["Initial Statements",
+      "Scene Description",
+      "Images and Videos",
+      "Preliminary Physical Evidence Information",
+      "Scene Sketch"],
   },
   {
     label: "Initial Investigation Report",

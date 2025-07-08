@@ -14,7 +14,9 @@ const FormCard = ({
     >
       {(title || button) && (
         <div
-          className={`flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between ${classNameHeader}`}
+
+          className={`mb-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between ${classNameHeader}`}
+
         >
           {title && (
             <h3 className="text-xs font-semibold text-gray-600">{title}</h3>
