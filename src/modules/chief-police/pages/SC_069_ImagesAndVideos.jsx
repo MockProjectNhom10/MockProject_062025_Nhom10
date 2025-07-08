@@ -3,10 +3,10 @@ import TextArea from "@chief-police/components/common/input/TextArea";
 import DragAndDropUpload from "@chief-police/components/common/upload/DragAndDropUpload";
 import FormCard from "@chief-police/components/sections/FormCard";
 import FormSection from "@chief-police/components/sections/FormSection";
-import { DraftingCompassIcon, UploadIcon } from "lucide-react";
+import {UploadIcon } from "lucide-react";
 import React, { useState } from "react";
 
-function SC_069_Upload() {
+function SC_069_ImagesAndVideos() {
   const [time, setTime] = useState(null);
 
   return (
@@ -45,4 +45,4 @@ function SC_069_Upload() {
   );
 }
 
-export default SC_069_Upload;
+export default SC_069_ImagesAndVideos;

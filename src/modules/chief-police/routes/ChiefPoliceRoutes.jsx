@@ -3,8 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import MainLayout from "@chief-police/components/layout/MainLayout";
 import ChiefDashboard from "@chief-police/pages/ChiefDashboard";
 import SceneManagementForm from "@chief-police/pages/SC_015_SceneManagementForm";
-import SC_069_Upload from "@chief-police/pages/SC_069_Upload";
 import AddPatrolOfficer from "@chief-police/pages/SC_014_AddPatrol";
+import SC_069_ImagesAndVideos from "@chief-police/pages/SC_069_ImagesAndVideos";
 
 const ChiefPoliceRoutes = () => {
   return (
@@ -12,7 +12,7 @@ const ChiefPoliceRoutes = () => {
       <Route element={<MainLayout />}>
         <Route path="/" element={<ChiefDashboard />} />
         <Route path="/scene-management" element={<SceneManagementForm />} />
-         <Route path="/sc69" element={<SC_069_Upload />} />
+         <Route path="/sc69" element={<SC_069_ImagesAndVideos/>} />
         <Route path="/sc14" element={<AddPatrolOfficer />} />
       </Route>
     </Routes>
