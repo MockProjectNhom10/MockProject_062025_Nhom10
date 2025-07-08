@@ -23,11 +23,14 @@ const sections = [
   },
   {
     label: "Scene Information",
-    subItems: ["Initial Statements",
+    subItems: [
+      "Initial Statements",
       "Scene Description",
       "Images and Videos",
       "Preliminary Physical Evidence Information",
-      "Scene Sketch"],
+      "Scene Sketch"
+    ],
+
   },
   {
     label: "Initial Investigation Report",
@@ -37,15 +40,15 @@ const sections = [
 
 const MainLayout = () => {
   return (
-    <div className="max-tablet:pt-6 max-mobile:pt-0 flex min-h-screen flex-col bg-white pt-12">
+    <div className="flex flex-col min-h-screen pt-12 bg-white max-tablet:pt-6 max-mobile:pt-0">
       {/* Main area: sidebar + content */}
-      <div className="flex flex-1 flex-col md:flex-row">
+      <div className="flex flex-col flex-1 md:flex-row">
         {/* Sidebar: block above content on mobile, left on desktop */}
         <SideBar sections={sections} />
 
         {/* Main content */}
-        <div className="flex min-h-0 flex-1 flex-col">
-          <div className="mx-8 flex-1 overflow-auto">
+        <div className="flex flex-col flex-1 min-h-0">
+          <div className="flex-1 mx-8 overflow-auto">
             <Outlet />
           </div>
         </div>

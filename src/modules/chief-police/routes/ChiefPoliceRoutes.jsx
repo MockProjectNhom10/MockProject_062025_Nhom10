@@ -14,6 +14,7 @@ import SC_023 from "@chief-police/pages/SC_023";
 import SC_020_PreliminaryEvidence from "@chief-police/pages/SC_020_PreliminaryEvidence";
 
 import SceneManagementForm from "@chief-police/pages/SC_015_SceneManagementForm";
+import SceneInformation from "@chief-police/pages/SC_017_SceneInformation";
 
 
 
@@ -37,6 +38,7 @@ const ChiefPoliceRoutes = () => {
 
         <Route path="/scene-management" element={<SceneManagementForm />} />
 
+        <Route path="/scene-information" element={<SceneInformation/>} />
 
       </Route>
     </Routes>
@@ -46,7 +48,7 @@ const ChiefPoliceRoutes = () => {
 export default ChiefPoliceRoutes;
 
 /* <TimePicker />
-      <div className="h-1/3 w-1/3">a</div>
+      <div className="w-1/3 h-1/3">a</div>
       <DatePicker /> */
 /* <DragAndDropUpload /> */
 /* <FormSection /> */
