@@ -1,29 +1,29 @@
 import React from "react";
 
 const colorClasses = {
-    gray: "bg-gray-300 hover:bg-gray-400 text-black",
-    teal: "bg-teal-500 hover:bg-teal-600 text-white",
-    red: "bg-red-500 hover:bg-red-600 text-white",
+  gray: "bg-gray-300 hover:bg-gray-400 text-black",
+  teal: "bg-teal-500 hover:bg-teal-600 text-white",
+  red: "bg-red-500 hover:bg-red-600 text-white",
 };
 
 const ActionButtons = ({ actions = [] }) => {
-    return (
-        <div className="flex space-x-2">
-            {actions.map((action, index) => {
-                const colorClass = colorClasses[action.color] || colorClasses.gray;
+  return (
+    <div className="flex space-x-2">
+      {actions.map((action, index) => {
+        const colorClass = colorClasses[action.color] || colorClasses.gray;
 
-                return (
-                    <button
-                        key={index}
-                        onClick={action.onClick}
-                        className={`px-4 py-2 rounded text-sm font-medium focus:outline-none ${colorClass} cursor-pointer`}
-                    >
-                        {action.label}
-                    </button>
-                );
-            })}
-        </div>
-    );
+        return (
+          <button
+            key={index}
+            onClick={action.onClick}
+            className={`rounded-full px-4 py-2 text-xs font-medium focus:outline-none ${colorClass} cursor-pointer`}
+          >
+            {action.label}
+          </button>
+        );
+      })}
+    </div>
+  );
 };
 
 export default ActionButtons;

@@ -33,7 +33,7 @@ const sections = [
 
 const MainLayout = () => {
   return (
-    <div className="max-tablet:pt-6 flex min-h-screen flex-col bg-white pt-12">
+    <div className="max-tablet:pt-6 max-mobile:pt-0 flex min-h-screen flex-col bg-white pt-12">
       {/* Main area: sidebar + content */}
       <div className="flex flex-1 flex-col md:flex-row">
         {/* Sidebar: block above content on mobile, left on desktop */}
