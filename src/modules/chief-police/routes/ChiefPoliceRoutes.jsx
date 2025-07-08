@@ -4,16 +4,13 @@ import MainLayout from "@chief-police/components/layout/MainLayout";
 import ChiefDashboard from "@chief-police/pages/ChiefDashboard";
 import SC_016_InitialResponse from "@chief-police/pages/SC_016_InitialResponse";
 import SC_018_InformationProtectionField from "@chief-police/pages/SC_018_InformationProtectionField";
+import SC_013_PreliminaryInvestigation from "@chief-police/pages/SC_013_PreliminaryInvestigation";
 
-const ChiefPoliceRoutes = () => {
-  return (
-    <Routes>
-      <Route element={<MainLayout />}>
-        <Route path="/" element={<SC_016_InitialResponse />} />
-      </Route>
-    </Routes>
-  );
-};
+const ChiefPoliceRoutes = () => (
+  <Routes>
+    <Route path="/" element={<SC_013_PreliminaryInvestigation />} />
+  </Routes>
+);
 
 export default ChiefPoliceRoutes;
 
