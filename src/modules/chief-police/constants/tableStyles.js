@@ -1,9 +1,9 @@
 export const tableStyles = {
   default: {
-    table: "min-w-full rounded-md border bg-gray-50",
+    table: "min-w-full rounded-md border bg-gray-50 border-gray-300",
     thead: "bg-gray-100",
-    tr: "border-b bg-gray-200 last:border-b-0",
-    th: "p-4 text-left text-sm font-medium text-gray-600",
+    tr: "border-b border-gray-300 bg-gray-200 last:border-b-0",
+    th: "p-4 text-left text-sm font-semibold text-gray-600 border-gray-300 border-b-1",
     td: "p-4 text-sm text-gray-700",
   },
   status: {
