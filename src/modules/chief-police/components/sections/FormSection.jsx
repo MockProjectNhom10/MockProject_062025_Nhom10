@@ -2,12 +2,14 @@ import React from "react";
 
 const FormSection = ({ title, children }) => {
   return (
-    <section className="mb-6 w-full rounded-xl border-1 border-gray-200 bg-white p-5 shadow-md">
-      <div className="mb-4 flex items-center justify-between border-b pb-3">
-        <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
+    <section className="mb-6 w-full rounded-xl border-1 border-gray-200 bg-white shadow-md">
+      <div className="bg-police mb-4 flex items-center justify-center rounded-t-xl py-3">
+        <h2 className="text-md font-semibold text-white">{title}</h2>
       </div>
 
-      <div className="space-y-6">{children}</div>
+      <div className="mobile:px-1 tablet:px-2 desktop:px-5 mb-4 space-y-6">
+        {children}
+      </div>
     </section>
   );
 };
