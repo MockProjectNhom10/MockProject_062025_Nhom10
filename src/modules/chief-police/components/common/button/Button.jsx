@@ -5,6 +5,7 @@ const Button = ({
   onClick,
   className = "",
   type = "button",
+  classNameChildren = "",
   variant = "primary",
   disabled = false,
 }) => {
@@ -12,7 +13,7 @@ const Button = ({
 
   switch (variant) {
     case "primary":
-      variantClass = "bg-blue-600 text-white hover:bg-blue-700";
+      variantClass = "bg-police text-white hover:bg-police-hover";
       break;
     case "secondary":
       variantClass = "bg-gray-200 text-gray-800 hover:bg-gray-300";
@@ -37,7 +38,7 @@ const Button = ({
   }
 
   const baseClass =
-    "cursor-pointer rounded-lg px-8 py-1 font-semibold transition duration-200";
+    "cursor-pointer rounded-lg px-4 py-2 font-semibold transition duration-200";
 
   const disabledClass = disabled ? "opacity-50 cursor-not-allowed" : "";
 
@@ -48,7 +49,7 @@ const Button = ({
       disabled={disabled}
       className={`${baseClass} ${variantClass} ${disabledClass} ${className}`}
     >
-      {children}
+      <div className={`text-xs ${classNameChildren}`}>{children}</div>
     </button>
   );
 };

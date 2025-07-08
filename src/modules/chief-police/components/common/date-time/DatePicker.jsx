@@ -12,10 +12,10 @@ export default function CustomDatePicker() {
       type="button"
       onClick={onClick}
       ref={ref}
-      className="flex items-center space-x-2 rounded-lg bg-emerald-400 px-6 py-2 text-black transition hover:bg-emerald-500"
+      className="bg-police hover:bg-police-hover flex items-center space-x-2 rounded-lg px-4 py-2 text-white transition"
     >
-      <span>Choose</span>
-      <Calendar className="h-5 w-5" />
+      <span className="text-sm font-semibold">Choose</span>
+      <Calendar className="h-4 w-4" />
     </button>
   ));
 
