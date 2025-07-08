@@ -1,4 +1,5 @@
-import DragAndDropUpload from "@chief-police/components/common/DragAndDropUpload";
+import ActionButtons from "@chief-police/components/common/button/ActionButtons";
+import DragAndDropUpload from "@chief-police/components/common/upload/DragAndDropUpload";
 import ConfigToaster from "@core/config/ConfigToaster";
 import AppRouter from "@core/router/AppRouter";
 import React from "react";

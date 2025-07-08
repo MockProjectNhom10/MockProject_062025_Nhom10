@@ -1,235 +1,122 @@
-import React, { useState } from "react";
-import LogoNYC from "@chief-police/assets/images/logoNYC.png";
-import {
-  Shield,
-  Camera,
-  ClipboardList,
-  LogOut,
-  LayoutDashboard,
-  X,
-  ChevronDown,
-} from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { ChevronDown, ChevronRight, X, Menu } from "lucide-react";
 
-function SideBar() {
-  const [collapsed, setCollapsed] = useState(false);
-  const [expandedItems, setExpandedItems] = useState({});
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const navigate = useNavigate();
+function SideBar({
+  sections,
+  onSectionChange,
+  onSubItemChange,
+  activeSection: controlledActiveSection,
+  activeSubItem: controlledActiveSubItem,
+}) {
+  // Responsive sidebar state
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
-  const navItems = [
-    {
-      icon: <Shield />,
-      label: "Initial Response",
-      active: true,
-      path: "/initial-response",
-      children: [
-        {
-          label: "Time of dispatching forces to the scene",
-          path: "/initial-response/dispatch-time",
-        },
-        {
-          label: "Time of arrival at the scene",
-          path: "/initial-response/arrival-time",
-        },
-        {
-          label: "List of officers assigned to the scene",
-          path: "/initial-response/officers-assigned",
-        },
-        {
-          label: "Preliminary assessment of the scene situation",
-          path: "/initial-response/preliminary-assessment",
-        },
-        {
-          label: "Scene preservation measures taken",
-          path: "/initial-response/preservation-measures",
-        },
-        {
-          label: "Information on medical/rescue support provided",
-          path: "/initial-response/medical-support",
-        },
-      ],
-    },
-    {
-      icon: <Camera />,
-      label: "Scene Information",
-      path: "/scene-information",
-      children: [
-        {
-          label: "Crime scene description",
-          path: "/scene-information/description",
-        },
-        {
-          label: "Scene photographs",
-          path: "/scene-information/photographs",
-        },
-        {
-          label: "Scene sketches and diagrams",
-          path: "/scene-information/sketches",
-        },
-        {
-          label: "Weather and environmental conditions",
-          path: "/scene-information/conditions",
-        },
-        {
-          label: "Evidence collection log",
-          path: "/scene-information/evidence-log",
-        },
-      ],
-    },
-    {
-      icon: <ClipboardList />,
-      label: "Initial Investigation Report",
-      path: "/investigation-report",
-      children: [
-        {
-          label: "Incident summary",
-          path: "/investigation-report/summary",
-        },
-        {
-          label: "Witness statements",
-          path: "/investigation-report/witnesses",
-        },
-        {
-          label: "Suspect information",
-          path: "/investigation-report/suspects",
-        },
-        {
-          label: "Victim information",
-          path: "/investigation-report/victims",
-        },
-        {
-          label: "Initial findings",
-          path: "/investigation-report/findings",
-        },
-        {
-          label: "Recommendations for further investigation",
-          path: "/investigation-report/recommendations",
-        },
-      ],
-    },
-  ];
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+      if (window.innerWidth >= 768) setSidebarOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-  const toggleExpanded = (index) => {
-    setExpandedItems((prev) => ({
-      ...prev,
-      [index]: !prev[index],
-    }));
+  // Fallback to empty array if no sections provided
+  const sidebarData = sections || [];
+
+  // Internal state if not controlled
+  const [openSections, setOpenSections] = useState(
+    sidebarData.map((_, i) => i === 0),
+  );
+  const [internalActiveSection, setInternalActiveSection] = useState(0);
+  const [internalActiveSubItem, setInternalActiveSubItem] = useState(0);
+
+  const activeSection =
+    controlledActiveSection !== undefined
+      ? controlledActiveSection
+      : internalActiveSection;
+  const activeSubItem =
+    controlledActiveSubItem !== undefined
+      ? controlledActiveSubItem
+      : internalActiveSubItem;
+
+  const handleSectionClick = (idx) => {
+    setOpenSections((prev) =>
+      prev.map((open, i) => (i === idx ? !open : open)),
+    );
+    if (onSectionChange) onSectionChange(idx);
+    if (controlledActiveSection === undefined) setInternalActiveSection(idx);
+    if (controlledActiveSubItem === undefined) setInternalActiveSubItem(0);
+  };
+
+  const handleSubItemClick = (sectionIdx, subIdx) => {
+    if (onSubItemChange) onSubItemChange(sectionIdx, subIdx);
+    if (controlledActiveSection === undefined)
+      setInternalActiveSection(sectionIdx);
+    if (controlledActiveSubItem === undefined) setInternalActiveSubItem(subIdx);
   };
 
   return (
     <>
-      <button
-        onClick={() => setMobileOpen(true)}
-        className="bg-police absolute top-2 left-25 z-50 rounded-full p-2 shadow md:hidden"
-      >
-        <LayoutDashboard className="h-3 w-3 cursor-pointer text-black" />
-      </button>
-
-      {mobileOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black/40 md:hidden"
-          onClick={() => setMobileOpen(false)}
-        ></div>
+      {/* Hamburger button: only on mobile */}
+      {!isDesktop && (
+        <div className="m-4 md:hidden">
+          <button
+            className="bg-police flex h-10 w-10 items-center justify-center rounded text-white"
+            onClick={() => setSidebarOpen((open) => !open)}
+          >
+            {sidebarOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
+        </div>
       )}
 
-      <div
-        className={`bg-police fixed top-0 left-0 z-50 flex h-full flex-col rounded-r-xl text-white transition-all duration-300 ease-in-out ${collapsed ? "w-20" : "w-96"} ${mobileOpen ? "translate-x-0" : "-translate-x-full"} md:static md:flex md:translate-x-0`}
-      >
-        {/* HEADER - Cố định trên cùng */}
-        <div className="flex-shrink-0 p-4">
-          <div className="flex items-center justify-between md:hidden">
-            <img src={LogoNYC} alt="logoNYC" className="w-20" />
-            <button
-              onClick={() => setMobileOpen(false)}
-              className="rounded-full bg-white/20 p-2 hover:bg-white/30"
-            >
-              <X />
-            </button>
-          </div>
-
-          <div className="hidden items-center justify-between md:flex">
-            {!collapsed && <img src={LogoNYC} alt="logoNYC" className="w-20" />}
-            <button
-              onClick={() => setCollapsed(!collapsed)}
-              className="rounded-full bg-white/20 p-2 hover:bg-white/30"
-            >
-              <LayoutDashboard className="cursor-pointer text-white" />
-            </button>
-          </div>
-        </div>
-
-        {/* NAVIGATION - Có scroll riêng */}
-        <nav className="scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent flex-1 overflow-y-auto px-4">
-          <div className="flex flex-col gap-2">
-            {navItems.map((item, idx) => (
-              <div key={idx}>
-                {/* Main menu item */}
-                <div
-                  className={`flex cursor-pointer items-center rounded-2xl p-4 transition-all duration-200 ease-in-out ${
-                    item.active ? "bg-white/30" : "text-white hover:bg-white/10"
-                  }`}
-                  onClick={() => {
-                    if (item.children) {
-                      toggleExpanded(idx);
-                    } else {
-                      navigate(item.path);
-                      // Đóng mobile menu khi navigate
-                      setMobileOpen(false);
-                    }
-                  }}
-                  title={collapsed ? item.label : ""}
-                >
-                  {item.icon}
-                  {!collapsed && (
-                    <>
-                      <p className="ml-2 flex-1 text-lg font-medium">
-                        {item.label}
-                      </p>
-                      {item.children && (
-                        <ChevronDown
-                          className={`transform transition-transform ${
-                            expandedItems[idx] ? "rotate-180" : ""
-                          }`}
-                        />
+      {/* Sidebar: always on desktop, toggled on mobile */}
+      {(isDesktop || sidebarOpen) && (
+        <aside className="max-desktop:max-w-xs max-tablet:mb-4 max-tablet:max-w-full max-tablet:mx-0 max-mobile:w-full relative ml-8 flex w-xs max-w-md flex-col rounded-lg border-1 border-gray-200 bg-white shadow-md">
+          <nav className="flex flex-col gap-3">
+            {sidebarData.map((section, idx) => {
+              const isActive = activeSection === idx;
+              return (
+                <div key={section.label} className="">
+                  <button
+                    className={`flex w-full items-center justify-between rounded-xl px-4 py-2 text-left font-semibold ${isActive ? "bg-police text-white" : "bg-gray-400 text-white"} transition-colors`}
+                    onClick={() => handleSectionClick(idx)}
+                  >
+                    <span className="text-md flex items-center gap-2">
+                      {isActive ? (
+                        <ChevronDown className="h-5 w-5" />
+                      ) : (
+                        <ChevronRight className="h-5 w-5" />
                       )}
-                    </>
-                  )}
+                      {section.label}
+                    </span>
+                  </button>
+                  {section.subItems &&
+                    section.subItems.length > 0 &&
+                    isActive && (
+                      <ul className="mt-1 ml-8 flex flex-col gap-1 rounded bg-white p-2 shadow">
+                        {section.subItems.map((sub, subIdx) => (
+                          <li key={sub}>
+                            <button
+                              className={`w-full rounded-xl px-3 py-2 text-left text-sm ${activeSubItem === subIdx ? "font-bold" : "font-normal"} text-gray-800 hover:bg-gray-100`}
+                              onClick={() => handleSubItemClick(idx, subIdx)}
+                            >
+                              {sub}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                 </div>
-
-                {/* Sub-menu items */}
-                {item.children && expandedItems[idx] && !collapsed && (
-                  <div className="mt-2 ml-6 space-y-1">
-                    {item.children.map((child, childIdx) => (
-                      <div
-                        key={childIdx}
-                        className="flex cursor-pointer items-center rounded-xl p-4 text-white/80 hover:bg-white/10 hover:text-white"
-                        onClick={() => {
-                          navigate(child.path);
-                          setMobileOpen(false);
-                        }}
-                      >
-                        <span className="text-md">{child.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </nav>
-
-        {/* FOOTER - Cố định dưới cùng */}
-        <div className="flex-shrink-0 p-4">
-          <div
-            className="flex cursor-pointer items-center rounded-2xl px-4 py-2 hover:bg-white/10"
-            title={collapsed ? "Logout" : ""}
-          >
-            <LogOut />
-            {!collapsed && <p className="ml-2 text-base font-medium">Logout</p>}
-          </div>
-        </div>
-      </div>
+              );
+            })}
+          </nav>
+        </aside>
+      )}
     </>
   );
 }

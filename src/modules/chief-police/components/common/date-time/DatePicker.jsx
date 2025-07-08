@@ -19,12 +19,12 @@ export default function CustomDatePicker({
       type="button"
       onClick={onClick}
       ref={ref}
-      className="flex min-w-[117px] items-center justify-between space-x-2 rounded-lg bg-emerald-400 px-6 py-2 text-black transition hover:bg-emerald-500"
+      className="flex min-w-[117px] items-center justify-between space-x-2 rounded-lg bg-[#00C9A7] px-6 py-2 text-black transition hover:bg-emerald-500"
     >
-      <span className="text-[16px] font-semibold text-gray-800">
+      <span className="text-[16px] font-semibold text-white">
         {selectedDate ? format(selectedDate, "PP") : placeholder}
       </span>
-      <Calendar className="h-5 w-5" />
+      <Calendar className="h-5 w-5 text-white" />
     </button>
   ));
 
