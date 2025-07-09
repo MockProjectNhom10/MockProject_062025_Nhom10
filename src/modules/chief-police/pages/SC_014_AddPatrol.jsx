@@ -1,13 +1,14 @@
-import TableBody from "@chief-police/components/addPatrol/TableBody";
-import TableHeader from "@chief-police/components/addPatrol/TableHeader";
 import Button from "@chief-police/components/common/button/Button";
 import FormCard from "@chief-police/components/sections/FormCard";
 import FormSection from "@chief-police/components/sections/FormSection";
+import GenericTable from "@chief-police/components/table/GenericTable";
 import PaginationControls from "@chief-police/components/table/PaginationControls";
-import { statusMap, users } from "@chief-police/utils/chief-police-constants";
+import { statusMap, tableHeaders, users } from "@chief-police/utils/chief-police-constants";
 import { Plus, PlusCircle, Search } from "lucide-react";
 import React, { useEffect, useState } from "react";
 let itemsPerpage = 10;
+
+
 export default function AddPatrolOfficer() {
   let [filter, setFilter] = useState({
     keyword: "",
@@ -64,7 +65,7 @@ export default function AddPatrolOfficer() {
         </div>
 
         {/* Inline Header Above Table */}
-       <div className="mt-4 flex items-center justify-between">
+        <div className="mt-4 flex items-center justify-between">
           <h1 className="font-bold uppercase">Add Patrol Offical to Sence</h1>
           <button className="flex items-center gap-1 rounded-md border border-gray-300 bg-blue-200 px-5 py-3 text-sm font-medium shadow-sm hover:bg-blue-100">
             ADD <PlusCircle size={16} />
@@ -74,7 +75,7 @@ export default function AddPatrolOfficer() {
         {/* Table */}
         <div className="overflow-x-auto">
           <table className="w-full min-w-[700px] border border-gray-300 text-sm">
-            <TableHeader />
+             <TableHeader/>
             <TableBody page={page} itemsPerpage={itemsPerpage} users={items} />
           </table>
         </div>
@@ -86,5 +87,60 @@ export default function AddPatrolOfficer() {
         />
       </div>
     </FormSection>
+  );
+}
+
+
+function TableHeader() {
+  return (
+    <thead className="bg-gray-100 text-gray-700">
+      <tr>
+        {tableHeaders.map((header, index) => (
+          <th
+            key={index}
+            className="border border-gray-300 px-2 py-2 text-left"
+          >
+            {header}
+          </th>
+        ))}
+      </tr>
+    </thead>
+  );
+}
+
+
+function TableBody({ users, page, itemsPerpage }) {
+  let start = (page - 1) * itemsPerpage;
+  return (
+    <tbody>
+      {users.map((user, i) => {
+        const bgColor =
+          user.status === 0
+            ? "bg-red-200"
+            : user.status === 1
+              ? "bg-green-200"
+              : "bg-blue-200";
+
+        return (
+          <tr key={i} className="text-gray-800">
+            <td className="border border-gray-300 px-2 py-1 text-center">
+              {start + i + 1}
+            </td>
+            <td className="border border-gray-300 px-2 py-1 text-center">
+              <input type="checkbox" className="h-5 w-5 accent-blue-500" />
+            </td>
+            <td className="border border-gray-300 px-2 py-1">
+              {user.fullName}
+            </td>
+            <td className={`border border-gray-300 px-2 py-1 ${bgColor}`}>
+              {statusMap[user.status]}
+            </td>
+            <td className="border border-gray-300 px-2 py-1">{user.role}</td>
+            <td className="border border-gray-300 px-2 py-1">{user.phone}</td>
+            <td className="border border-gray-300 px-2 py-1">{user.zone}</td>
+          </tr>
+        );
+      })}
+    </tbody>
   );
 }
