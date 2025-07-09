@@ -1,42 +1,35 @@
-import Pagination from "@chief-police/components/addPatrol/Pagination";
 import TableBody from "@chief-police/components/addPatrol/TableBody";
 import TableHeader from "@chief-police/components/addPatrol/TableHeader";
-import {
-  statusMap,
-  users,
-} from "@chief-police/utils/chief-police-constants";
-import { PlusCircle, Search } from "lucide-react";
+import Button from "@chief-police/components/common/button/Button";
+import FormCard from "@chief-police/components/sections/FormCard";
+import FormSection from "@chief-police/components/sections/FormSection";
+import PaginationControls from "@chief-police/components/table/PaginationControls";
+import { statusMap, users } from "@chief-police/utils/chief-police-constants";
+import { Plus, PlusCircle, Search } from "lucide-react";
 import React, { useEffect, useState } from "react";
-let itemsPerpage=10;
+let itemsPerpage = 10;
 export default function AddPatrolOfficer() {
   let [filter, setFilter] = useState({
     keyword: "",
     zone: "",
     status: "All",
   });
-  let [page,setPage]=useState(1);
-  let lists=users.filter(item=>{
-       let a=item.fullName.toLowerCase().includes(filter.keyword.toLowerCase());
-       let b=item.role.toLowerCase().includes(filter.keyword.toLowerCase());
-       let c=statusMap[item.status].toLowerCase()==filter.status.toLowerCase();
-       return (a || b) && (c || filter.status=="All");
-  })
-  let totalPage=Math.ceil(lists.length/itemsPerpage);
-  let startIndex=(page-1)*itemsPerpage;
-  let endIndex=startIndex+itemsPerpage;
-  let items=lists.slice(startIndex,endIndex);
-  useEffect(()=>{
-       setPage(1);
-  },[filter])
+  let [page, setPage] = useState(1);
+  let lists = users.filter((item) => {
+    let a = item.fullName.toLowerCase().includes(filter.keyword.toLowerCase());
+    let b = item.role.toLowerCase().includes(filter.keyword.toLowerCase());
+    let c = statusMap[item.status].toLowerCase() == filter.status.toLowerCase();
+    return (a || b) && (c || filter.status == "All");
+  });
+  let totalPage = Math.ceil(lists.length / itemsPerpage);
+  let startIndex = (page - 1) * itemsPerpage;
+  let endIndex = startIndex + itemsPerpage;
+  let items = lists.slice(startIndex, endIndex);
+  useEffect(() => {
+    setPage(1);
+  }, [filter]);
   return (
-    <div className="mx-auto w-full max-w-6xl overflow-hidden rounded-md border border-blue-300 shadow-md">
-      {/* Card Title Header */}
-      <div className="border-b border-gray-300 bg-chief px-4 py-3 text-center">
-        <h2 className="text-2xl font-bold uppercase">
-          Add Patrol Official to Sence
-        </h2>
-      </div>
-
+    <FormSection title="ADD PATROL TO SCENE">
       {/* Body */}
       <div className="space-y-4 bg-white p-4">
         {/* Search Bar */}
@@ -71,9 +64,9 @@ export default function AddPatrolOfficer() {
         </div>
 
         {/* Inline Header Above Table */}
-        <div className="mt-4 flex items-center justify-between">
+       <div className="mt-4 flex items-center justify-between">
           <h1 className="font-bold uppercase">Add Patrol Offical to Sence</h1>
-          <button className="flex items-center gap-1 rounded-md border border-gray-300 bg-blue-50 px-5 py-3 text-sm font-medium shadow-sm hover:bg-blue-100">
+          <button className="flex items-center gap-1 rounded-md border border-gray-300 bg-blue-200 px-5 py-3 text-sm font-medium shadow-sm hover:bg-blue-100">
             ADD <PlusCircle size={16} />
           </button>
         </div>
@@ -81,12 +74,17 @@ export default function AddPatrolOfficer() {
         {/* Table */}
         <div className="overflow-x-auto">
           <table className="w-full min-w-[700px] border border-gray-300 text-sm">
-            <TableHeader/>
-            <TableBody page={page} itemsPerpage={itemsPerpage} users={items}/>
+            <TableHeader />
+            <TableBody page={page} itemsPerpage={itemsPerpage} users={items} />
           </table>
         </div>
-        <Pagination itemsPerpage={itemsPerpage} totalPage={totalPage} page={page} setPage={setPage} />
+        {/* <Pagination itemsPerpage={itemsPerpage} totalPage={totalPage} page={page} setPage={setPage} /> */}
+        <PaginationControls
+          currentPage={page}
+          totalPages={totalPage}
+          onPageChange={setPage}
+        />
       </div>
-    </div>
+    </FormSection>
   );
 }
