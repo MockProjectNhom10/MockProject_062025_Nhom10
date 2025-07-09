@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "@chief-police/components/layout/MainLayout";
 import ChiefDashboard from "@chief-police/pages/ChiefDashboard";
+
 import ViewInitialStatement from "@chief-police/pages/SC_022_ViewIntinalStatement";
 
 import SC_016_InitialResponse from "@chief-police/pages/SC_016_InitialResponse";
@@ -17,6 +18,7 @@ import SceneManagementForm from "@chief-police/pages/SC_015_SceneManagementForm"
 import SceneInformation from "@chief-police/pages/SC_017_SceneInformation";
 
 import SC_015_CaseListByInvestigator from "@chief-police/pages/SC_015_CaseListByInvestigator";
+
 
 const ChiefPoliceRoutes = () => {
   return (
@@ -41,7 +43,9 @@ const ChiefPoliceRoutes = () => {
         <Route path="/scene-management" element={<SceneManagementForm />} />
 
 
+
         <Route path="/scene-information" element={<SceneInformation />} />
+
 
       </Route>
       <Route
