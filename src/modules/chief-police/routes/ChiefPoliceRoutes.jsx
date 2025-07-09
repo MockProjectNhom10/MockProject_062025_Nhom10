@@ -13,6 +13,7 @@ import SC_023 from "@chief-police/pages/SC_023";
 import SC_020_PreliminaryEvidence from "@chief-police/pages/SC_020_PreliminaryEvidence";
 
 import SceneManagementForm from "@chief-police/pages/SC_015_SceneManagementForm";
+
 import SceneInformation from "@chief-police/pages/SC_017_SceneInformation";
 
 import SC_015_CaseListByInvestigator from "@chief-police/pages/SC_015_CaseListByInvestigator";
@@ -39,7 +40,9 @@ const ChiefPoliceRoutes = () => {
 
         <Route path="/scene-management" element={<SceneManagementForm />} />
 
+
         <Route path="/scene-information" element={<SceneInformation />} />
+
       </Route>
       <Route
         path="/CaseListByInvestigator"
