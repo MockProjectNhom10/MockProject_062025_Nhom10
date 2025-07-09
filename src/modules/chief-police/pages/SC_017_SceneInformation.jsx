@@ -14,7 +14,7 @@ import {
   mediaData,
   evidenceColumns,
   evidenceData,
-} from "@chief-police/constants/tableStyles";
+} from "@chief-police/constants/tableStyles.jsx";
 
 function SceneInformation() {
   return (

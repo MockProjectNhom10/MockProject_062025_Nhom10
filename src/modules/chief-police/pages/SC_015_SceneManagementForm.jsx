@@ -10,7 +10,7 @@ import {
   medicalSupportColumns,
   officerColumns,
   preservationColumns,
-} from "@chief-police/constants/tableStyles";
+} from "@chief-police/constants/tableStyles.jsx";
 
 import { Plus } from "lucide-react";
 import React, { useState } from "react";
