@@ -1,11 +1,19 @@
 import { tableStyles } from "@chief-police/constants/tableStyles";
 import React from "react";
+import { ChevronsUpDown } from "lucide-react";
 
-const GenericTable = ({ title, columns, data, variant = "default" }) => {
+const GenericTable = ({
+  title,
+  columns,
+  data,
+  variant = "default",
+  sortConfig,
+  onSort,
+}) => {
   const styles = tableStyles[variant] || tableStyles.default;
 
   return (
-    <div className="mb-8">
+    <div className="mb-8 ">
       {title && (
         <h4 className="mb-3 text-sm font-bold text-gray-700">{title}</h4>
       )}
@@ -15,7 +23,18 @@ const GenericTable = ({ title, columns, data, variant = "default" }) => {
             <tr>
               {columns.map((column, index) => (
                 <th key={index} className={styles.th}>
-                  {column.header}
+                  {column.sortable ? (
+                    <span
+                      className="inline-flex cursor-pointer items-center select-none"
+                      onClick={() => onSort(column.accessor)}
+                      style={{ userSelect: "none" }}
+                    >
+                      {column.header}
+                      <ChevronsUpDown size={16} />
+                    </span>
+                  ) : (
+                    column.header
+                  )}
                 </th>
               ))}
             </tr>
@@ -39,7 +58,7 @@ const GenericTable = ({ title, columns, data, variant = "default" }) => {
               <tr>
                 <td
                   colSpan={columns.length}
-                  className="p-4 text-center text-sm text-gray-700"
+                  className="p-4 text-sm text-center text-gray-700"
                 >
                   No {title ? title.split("(")[0].trim().toLowerCase() : "data"}{" "}
                   information available.
