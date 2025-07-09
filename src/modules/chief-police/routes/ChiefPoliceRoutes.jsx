@@ -10,24 +10,25 @@ import SC_013_PreliminaryInvestigation from "@chief-police/pages/SC_013_Prelimin
 
 import SC_023 from "@chief-police/pages/SC_023";
 
-
 import SC_020_PreliminaryEvidence from "@chief-police/pages/SC_020_PreliminaryEvidence";
 
 import SceneManagementForm from "@chief-police/pages/SC_015_SceneManagementForm";
 import SceneInformation from "@chief-police/pages/SC_017_SceneInformation";
 
-
+import SC_015_CaseListByInvestigator from "@chief-police/pages/SC_015_CaseListByInvestigator";
 
 const ChiefPoliceRoutes = () => {
   return (
     <Routes>
       <Route element={<MainLayout />}>
-
         <Route path="/" element={<SC_023 />} />
 
         <Route path="/" element={<ChiefDashboard />} />
 
-        <Route path="/ViewInitialStatement" element={<ViewInitialStatement />} />
+        <Route
+          path="/ViewInitialStatement"
+          element={<ViewInitialStatement />}
+        />
 
         <Route path="/" element={<SC_013_PreliminaryInvestigation />} />
 
@@ -38,9 +39,12 @@ const ChiefPoliceRoutes = () => {
 
         <Route path="/scene-management" element={<SceneManagementForm />} />
 
-        <Route path="/scene-information" element={<SceneInformation/>} />
-
+        <Route path="/scene-information" element={<SceneInformation />} />
       </Route>
+      <Route
+        path="/CaseListByInvestigator"
+        element={<SC_015_CaseListByInvestigator />}
+      />
     </Routes>
   );
 };
