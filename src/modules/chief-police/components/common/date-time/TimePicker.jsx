@@ -20,7 +20,7 @@ export default function TimePicker() {
         <select
           value={hour}
           onChange={(e) => setHour(e.target.value)}
-          className="text-md appearance-none bg-transparent font-mono outline-none"
+          className="appearance-none bg-transparent font-mono text-sm outline-none"
         >
           {hours.map((h) => (
             <option key={h} value={h}>
@@ -35,7 +35,7 @@ export default function TimePicker() {
         <select
           value={minute}
           onChange={(e) => setMinute(e.target.value)}
-          className="text-md appearance-none rounded-2xl bg-transparent font-mono outline-none"
+          className="appearance-none rounded-2xl bg-transparent font-mono text-sm outline-none"
         >
           {minutes.map((m) => (
             <option key={m} value={m} className="rounded-2xl">

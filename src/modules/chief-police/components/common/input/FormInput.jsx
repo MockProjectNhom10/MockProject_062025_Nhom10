@@ -28,10 +28,8 @@ const FormInput = ({
         onChange={onChange}
         onBlur={onBlur}
         value={value}
-
         disabled={disabled}
-        className={`focus:ring-chief rounded-md bg-[#eee] p-2 focus:ring-1 focus:outline-none ${error ? "border border-red-500" : "border border-gray-300"} ${disabled ? "text-gray-400" : ""} ${className}`}
-
+        className={`focus:ring-chief rounded-md bg-[#eee] p-2 text-xs focus:ring-1 focus:outline-none ${error ? "border border-red-500" : "border border-gray-300"} ${disabled ? "text-gray-400" : ""} ${className}`}
       />
       {error && <span className="mt-1 text-sm text-red-500">{error}</span>}
     </div>
