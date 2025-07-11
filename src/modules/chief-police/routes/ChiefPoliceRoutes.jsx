@@ -13,11 +13,12 @@ import SC_023 from "@chief-police/pages/SC_023_PreliminaryEvidence";
 
 import SC_068_InformationProtectionField from "@chief-police/pages/SC_068_InformationProtectionField";
 import SC_014_AddPatrol from "@chief-police/pages/SC_014_AddPatrol";
+import MainLayoutPhase3 from "@chief-police/components/layout/MainLayoutPhase3";
 const ChiefPoliceRoutes = () => {
   return (
     <Routes>
-      <Route element={<MainLayout />}>
-        <Route path="/" element={<SC_014_AddPatrol />} />
+      <Route element={<MainLayoutPhase3 />}>
+        <Route path="/" element={<SC_016_InitialResponse />} />
       </Route>
     </Routes>
   );
