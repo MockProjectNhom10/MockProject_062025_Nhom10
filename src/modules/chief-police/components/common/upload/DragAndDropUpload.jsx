@@ -116,25 +116,25 @@ const DragAndDropUpload = ({
   };
 
   return (
-    <div className="mx-auto mt-10 min-h-[300px] w-full max-w-2xl rounded-xl border-2 border-dashed border-gray-400 p-4">
+    <div className="mx-auto mt-10 mb-4 min-h-[260px] w-full max-w-xl rounded-xl border-2 border-dashed border-gray-400 p-2">
       <div
         className="mt-6 flex h-48 cursor-pointer flex-col items-center justify-center"
         onDragOver={(e) => e.preventDefault()}
         onDrop={handleDrop}
         onClick={() => document.getElementById("fileInput").click()}
       >
-        <UploadCloud className="h-16 w-16 text-indigo-500" strokeWidth={0.8} />
-        <div className="mt-6 flex flex-row space-x-1 text-lg">
+        <UploadCloud className="h-12 w-12 text-indigo-500" strokeWidth={0.8} />
+        <div className="mt-4 flex flex-row space-x-1 text-sm">
           <p className="font-semibold text-black">Drag & drop files or </p>
 
           <p className="font-semibold text-purple-800 underline">
             {""} {browseText}
           </p>
         </div>
-        <p className="mt-2 text-gray-500">
+        <p className="mt-2 text-xs text-gray-500">
           Supported formates: JPEG, PNG, GIF, MP4, PDF, PSD, AI, Word, PPT
         </p>
-        <p className="mt-2 text-gray-500">
+        <p className="mt-2 text-xs text-gray-500">
           Max file size: {maxFileSizeByMB} MB, Max files: {files.length}/
           {maxFiles}
         </p>

@@ -9,49 +9,17 @@ import SC_016_InitialResponse from "@chief-police/pages/SC_016_InitialResponse";
 import SC_018_InformationProtectionField from "@chief-police/pages/SC_018_InformationProtectionField";
 import SC_013_PreliminaryInvestigation from "@chief-police/pages/SC_013_PreliminaryInvestigation";
 
-import SC_023 from "@chief-police/pages/SC_023";
+import SC_023 from "@chief-police/pages/SC_023_PreliminaryEvidence";
 
-import SC_020_PreliminaryEvidence from "@chief-police/pages/SC_020_PreliminaryEvidence";
-
-import SceneManagementForm from "@chief-police/pages/SC_015_SceneManagementForm";
-
-import SceneInformation from "@chief-police/pages/SC_017_SceneInformation";
-
-import SC_015_CaseListByInvestigator from "@chief-police/pages/SC_015_CaseListByInvestigator";
-
-
+import SC_068_InformationProtectionField from "@chief-police/pages/SC_068_InformationProtectionField";
 const ChiefPoliceRoutes = () => {
   return (
     <Routes>
       <Route element={<MainLayout />}>
-        <Route path="/" element={<SC_023 />} />
+        <Route path="/" element={<SC_068_InformationProtectionField />} />
 
-        <Route path="/" element={<ChiefDashboard />} />
-
-        <Route
-          path="/ViewInitialStatement"
-          element={<ViewInitialStatement />}
-        />
-
-        <Route path="/" element={<SC_013_PreliminaryInvestigation />} />
-
-        <Route
-          path="/preliminary-evidence"
-          element={<SC_020_PreliminaryEvidence />}
-        />
-
-        <Route path="/scene-management" element={<SceneManagementForm />} />
-
-
-
-        <Route path="/scene-information" element={<SceneInformation />} />
-
-
+        <Route path="/" element={<SC_068_InformationProtectionField />} />
       </Route>
-      <Route
-        path="/CaseListByInvestigator"
-        element={<SC_015_CaseListByInvestigator />}
-      />
     </Routes>
   );
 };
