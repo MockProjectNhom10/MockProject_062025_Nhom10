@@ -1,5 +1,5 @@
-import TableBody from "@chief-police/components/addPatrol/TableBody";
-import TableHeader from "@chief-police/components/addPatrol/TableHeader";
+import TableBody from "@chief-police/components/add-patrol/TableBody";
+import TableHeader from "@chief-police/components/add-patrol/TableHeader";
 import Button from "@chief-police/components/common/button/Button";
 import FormCard from "@chief-police/components/sections/FormCard";
 import FormSection from "@chief-police/components/sections/FormSection";
@@ -64,9 +64,9 @@ export default function AddPatrolOfficer() {
         </div>
 
         {/* Inline Header Above Table */}
-       <div className="mt-4 flex items-center justify-between">
+        <div className="mt-4 flex items-center justify-between">
           <h1 className="font-bold uppercase">Add Patrol Offical to Sence</h1>
-          <button className="flex items-center gap-1 rounded-md border border-gray-300 bg-blue-200 px-5 py-3 text-sm font-medium shadow-sm hover:bg-blue-100">
+          <button className="flex items-center gap-1 rounded-md border border-gray-300 bg-blue-200 px-3 py-2 text-xs font-medium shadow-sm hover:bg-blue-100">
             ADD <PlusCircle size={16} />
           </button>
         </div>
