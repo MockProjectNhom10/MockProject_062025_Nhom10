@@ -4,7 +4,7 @@ import Login from "@core/auth/pages/Login";
 
 //Lazy loading of routes
 const FinancialAnalystRoutes = lazy(
-  () => import("@financial-analyst/routes/FinancialAnalystRoutes"),
+  () => import("@expert/financial-analyst/routes/FinancialAnalystRoutes"),
 );
 const ChiefPoliceRoutes = lazy(
   () => import("@chief-police/routes/ChiefPoliceRoutes"),
@@ -12,9 +12,8 @@ const ChiefPoliceRoutes = lazy(
 const InvestigatorRoutes = lazy(
   () => import("@investigator/routes/InvestigatorRoutes"),
 );
-const ForensicRoutes = lazy(() => import("@forensic/routes/ForensicRoutes"));
-const PatrolPoliceRoutes = lazy(
-  () => import("@patrol-police/routes/PatrolPoliceRoutes"),
+const ForensicRoutes = lazy(
+  () => import("@expert/forensic/routes/ForensicRoutes"),
 );
 const PublicReporterRoutes = lazy(
   () => import("@public-reporter/routes/PublicReporterRoutes"),
@@ -22,7 +21,6 @@ const PublicReporterRoutes = lazy(
 const ReviewPoliceRoutes = lazy(
   () => import("@review-police/routes/ReviewPoliceRoutes"),
 );
-const AdminRoutes = lazy(() => import("@admin/routes/AdminRoutes"));
 
 //Loading fallback
 const Loading = () => (
@@ -40,7 +38,6 @@ const AppRouter = () => {
         <Route path="/public-reporter/*" element={<PublicReporterRoutes />} />
 
         {/* Protected routes - Haven't yet auth */}
-        <Route path="/patrol-police/*" element={<PatrolPoliceRoutes />} />
         <Route path="/review-police/*" element={<ReviewPoliceRoutes />} />
         <Route path="/investigator/*" element={<InvestigatorRoutes />} />
         <Route path="/chief-police/*" element={<ChiefPoliceRoutes />} />
@@ -49,7 +46,6 @@ const AppRouter = () => {
           path="/financial-analyst/*"
           element={<FinancialAnalystRoutes />}
         />
-        <Route path="/admin/*" element={<AdminRoutes />} />
 
         {/* Default redirect */}
         <Route path="/" element={<Navigate to="/public-reporter" replace />} />

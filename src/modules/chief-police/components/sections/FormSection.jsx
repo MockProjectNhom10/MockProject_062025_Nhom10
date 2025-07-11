@@ -1,26 +1,16 @@
 import React from "react";
-import { PlusCircle } from "lucide-react";
-import FormCard from "./FormCard";
 
-const officers = [
-  { name: "Brandie", role: "Patrol Officer", phone: "(225) 555-0118" },
-  { name: "Brandie", role: "Patrol Officer", phone: "(225) 555-0118" },
-  { name: "Brandie", role: "Detective", phone: "(225) 555-0118" },
-];
-
-const FormSection = () => {
+const FormSection = ({ title, children }) => {
   return (
-    <div className="mt-4 min-w-full rounded-md border border-blue-300 p-2 sm:max-w-2xl md:max-w-3xl md:p-4 lg:p-8">
-      <div className="mb-2 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-        <h2 className="text-base font-semibold sm:text-lg lg:text-xl">
-          LIST OF OFFICERS ASSIGNED TO THE SCENE
-        </h2>
-        <button className="flex items-center gap-1 rounded bg-gray-100 px-3 py-1 text-gray-700 shadow hover:bg-gray-200 sm:px-4 sm:py-1.5 lg:px-6 lg:py-2">
-          ADD <PlusCircle size={18} />
-        </button>
+    <section className="mb-6 w-full rounded-xl border-1 border-gray-200 bg-white shadow-md">
+      <div className="bg-police mb-2 flex items-center justify-center rounded-t-xl py-2">
+        <h2 className="text-md font-semibold text-white">{title}</h2>
       </div>
-      <FormCard officers={officers} />
-    </div>
+
+      <div className="mobile:px-1 tablet:px-2 desktop:px-5 mb-4 space-y-2">
+        {children}
+      </div>
+    </section>
   );
 };
 

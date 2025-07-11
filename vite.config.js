@@ -15,18 +15,12 @@ export default defineConfig({
     alias: {
       "@core": path.resolve(__dirname, "src/core"),
 
-      "@admin": path.resolve(__dirname, "src/modules/admin"),
       "@chief-police": path.resolve(__dirname, "src/modules/chief-police"),
       "@investigator": path.resolve(__dirname, "src/modules/investigator"),
-      "@forensic": path.resolve(__dirname, "src/modules/forensic"),
-      "@financial-analyst": path.resolve(
-        __dirname,
-        "src/modules/financial-analyst"
-      ),
-      "@patrol-police": path.resolve(__dirname, "src/modules/patrol-police"),
+      "@expert": path.resolve(__dirname, "src/modules/expert"),
       "@public-reporter": path.resolve(
         __dirname,
-        "src/modules/public-reporter"
+        "src/modules/public-reporter",
       ),
       "@review-police": path.resolve(__dirname, "src/modules/review-police"),
     },
