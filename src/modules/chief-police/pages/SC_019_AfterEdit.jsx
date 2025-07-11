@@ -1,13 +1,27 @@
+import ActionButtons from "@chief-police/components/common/button/ActionButtons";
 import FormSection from "@chief-police/components/sections/FormSection";
 
 const SC_019_AfterEdit = () => {
     const dataEdit = () => {
-        // call API
+        // call API Data
+    };
+    const handleCancel = () => {
+        console.log("Cancel API called");
+        // gọi API Cancel
     };
 
+    const handleEdit = () => {
+        console.log("Edit API called");
+        // gọi API Edit
+    };
+
+    const handleDelete = () => {
+        console.log("Delete API called");
+        // gọi API Delete
+    };
     return (
         <div className="bg-[#E7E7E7] pb-[30px]">
-            
+
             <div className="bg-teal-500 px-4 sm:px-6 py-4 rounded-t-lg mb-6">
                 <h1 className="text-white text-center font-bold uppercase text-base sm:text-lg">
                     Preliminary Physical Evidence Information: PE-01
@@ -59,15 +73,13 @@ const SC_019_AfterEdit = () => {
 
                 {/* Buttons */}
                 <div className="flex sm:flex-row justify-end gap-4 pt-2">
-                    <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded w-[100px] sm:w-auto">
-                        Edit
-                    </button>
-                    <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded w-[100px] sm:w-auto">
-                        Delete
-                    </button>
-                    <button className="bg-gray-300 hover:bg-gray-400 text-black px-4 py-2 rounded w-[100px] sm:w-auto">
-                        Cancel
-                    </button>
+                    <ActionButtons
+                        actions={[
+                            { label: "Cancel", onClick: handleCancel, color: "gray" },
+                            { label: "Edit", onClick: handleEdit, color: "teal" },
+                            { label: "Delete", onClick: handleDelete, color: "red" },
+                        ]}
+                    />
                 </div>
             </div>
         </div>
