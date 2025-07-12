@@ -9,9 +9,11 @@ import { CircleArrowRight, CircleChevronRight } from "lucide-react";
 import React from "react";
 import { Form } from "react-router-dom";
 import { useToast } from "@core/hooks/useToast";
+import { useNavigate } from "react-router-dom";
 
 const SC_018_InformationProtectionField = () => {
   const { showSuccess, showLoading } = useToast();
+  const navigate = useNavigate();
 
   const handleClickSave = () => {
     showLoading("Saving information...");
@@ -38,12 +40,21 @@ const SC_018_InformationProtectionField = () => {
         <FormCard
           title="INITIAL RESPONE"
           classNameHeader="mt-2"
-          button={<Button>Detail</Button>}
+          button={
+            <Button onClick={() => navigate("/chief-police/initial-response")}>
+              Detail
+            </Button>
+          }
         ></FormCard>
         <FormCard
           title="SCENE INFORMATION  / INITIAL INVESTIGATION REPORT"
           classNameHeader="mt-2"
-          button={<Button>Detail</Button>}
+          button={
+            <Button onClick={() => navigate("/chief-police/scene-information")}>
+              {" "}
+              Detail
+            </Button>
+          }
         ></FormCard>
         <FormCard classNameHeader="mb-4 mt-2" title="REPORT DETAIL">
           <TextArea />
