@@ -1,10 +1,9 @@
-// src/layouts/MainLayout.jsx
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import SideBar from "@chief-police/components/layout/SideBar";
 import Footer from "@chief-police/components/layout/Footer";
+import WarningModal from "@chief-police/components/common/popup/WarningModal";
 
-// Define the sections data outside the component
 const sections = [
   {
     label: "Preliminary Investigation",

@@ -11,6 +11,7 @@ import SC_013_PreliminaryInvestigation from "@chief-police/pages/SC_013_Prelimin
 
 import SC_023 from "@chief-police/pages/SC_023_PreliminaryEvidence";
 
+import SC_067_MedicalRescueSupport from "@chief-police/pages/SC_067_MedicalRescueSupport";
 import SC_068_InformationProtectionField from "@chief-police/pages/SC_068_InformationProtectionField";
 import SC_014_AddPatrol from "@chief-police/pages/SC_014_AddPatrol";
 const ChiefPoliceRoutes = () => {
@@ -18,6 +19,7 @@ const ChiefPoliceRoutes = () => {
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<SC_014_AddPatrol />} />
+        <Route path="/medical-rescue-support" element={<SC_067_MedicalRescueSupport />} />
       </Route>
     </Routes>
   );
