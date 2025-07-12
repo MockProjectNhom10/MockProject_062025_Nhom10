@@ -10,8 +10,12 @@ import TextArea from "@chief-police/components/common/input/TextArea";
 import ActionButtons from "@chief-police/components/common/button/ActionButtons";
 import FormInput from "@chief-police/components/common/input/FormInput";
 import DragAndDropUpload from "@chief-police/components/common/upload/DragAndDropUpload";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@core/hooks/useToast";
 
 const SC_018_InformationProtectionField = () => {
+  const navigate = useNavigate();
+  const { showSuccess, showLoading } = useToast();
   const allowedTypes = [
     "image/jpeg",
     "image/png",
@@ -25,9 +29,27 @@ const SC_018_InformationProtectionField = () => {
     "application/vnd.ms-powerpoint",
     "application/vnd.openxmlformats-officedocument.presentationml.presentation",
   ];
+
+  const handleClickCancel = () => {
+    navigate("/chief-police/initial-response");
+  };
+
+  const handleClickSave = () => {
+    showLoading("Saving information...");
+    setTimeout(() => {
+      showSuccess("Information saved successfully!");
+      navigate("/chief-police/initial-response");
+    }, 1000);
+  };
   return (
     <>
-      <FormSection title="INFORMATION PROTECTION FIELD">
+      <FormSection
+        title="INFORMATION PROTECTION FIELD"
+        footerCancel
+        footerSave
+        onClickCancel={handleClickCancel}
+        onClickSave={handleClickSave}
+      >
         <FormCard title="RESPONSIBLE UNIT/OFFICER" classNameHeader="mb-4">
           <FormInput />
         </FormCard>
@@ -53,15 +75,7 @@ const SC_018_InformationProtectionField = () => {
         <FormCard title="NOTES / SPECIAL INSTRUCTIONS" classNameHeader="mb-4">
           <FormInput />
         </FormCard>
-        <FormCard
-          title="ATTACHMENT"
-          button={
-            <Button classNameChildren="flex flex-nowrap gap-2">
-              Upload {<PlusCircle className="h-4 w-4" />}
-            </Button>
-          }
-          classNameHeader="mb-4"
-        >
+        <FormCard title="ATTACHMENT" classNameHeader="mb-4">
           <DragAndDropUpload
             acceptedTypes={allowedTypes}
             maxFileSizeByMB={20} // MB

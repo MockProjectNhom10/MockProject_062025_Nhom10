@@ -2,7 +2,7 @@ import React from "react";
 
 const colorClasses = {
   gray: "bg-gray-300 hover:bg-gray-400 text-black",
-  teal: "bg-teal-500 hover:bg-teal-600 text-white",
+  green: "bg-police hover:bg-police-hover text-white",
   red: "bg-red-500 hover:bg-red-600 text-white",
 };
 

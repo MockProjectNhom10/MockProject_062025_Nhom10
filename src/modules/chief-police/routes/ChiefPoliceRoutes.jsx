@@ -1,47 +1,44 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "@chief-police/components/layout/MainLayout";
-import ChiefDashboard from "@chief-police/pages/ChiefDashboard";
-
-import ViewInitialStatement from "@chief-police/pages/SC_022_ViewIntinalStatement";
-
 import SC_016_InitialResponse from "@chief-police/pages/SC_016_InitialResponse";
+import SC_014_AddPartrol from "@chief-police/pages/SC_014_AddPatrol";
 import SC_018_InformationProtectionField from "@chief-police/pages/SC_018_InformationProtectionField";
-import SC_013_PreliminaryInvestigation from "@chief-police/pages/SC_013_PreliminaryInvestigation";
+import SC_017_SceneInformation from "@chief-police/pages/SC_017_SceneInformation";
+import SC_046_FiedlReportSummary from "@chief-police/pages/SC_046_FieldReportSummary";
 
-import SC_023 from "@chief-police/pages/SC_023_PreliminaryEvidence";
-
-import SC_068_InformationProtectionField from "@chief-police/pages/SC_068_InformationProtectionField";
-import SC_014_AddPatrol from "@chief-police/pages/SC_014_AddPatrol";
 const ChiefPoliceRoutes = () => {
   return (
     <Routes>
       <Route element={<MainLayout />}>
-        <Route path="/" element={<SC_014_AddPatrol />} />
+        <Route path="/" element={<SC_016_InitialResponse />} />
+        {/*Step 1 */}
+        <Route path="/initial-response" element={<SC_016_InitialResponse />} />
+        <Route
+          path="/initial-response/add-patrol"
+          element={<SC_014_AddPartrol />}
+        />
+        <Route
+          path="/initial-response/information-protection-field"
+          element={<SC_018_InformationProtectionField />}
+        />
+        <Route
+          path="/initial-response/medical-rescue-support"
+          element={<SC_018_InformationProtectionField />}
+        />
+        {/*Step 2*/}
+        <Route
+          path="/scene-information"
+          element={<SC_017_SceneInformation />}
+        />
+        {/*Step 3*/}
+        <Route
+          path="/initial-investigation-report"
+          element={<SC_046_FiedlReportSummary />}
+        />
       </Route>
     </Routes>
   );
 };
 
 export default ChiefPoliceRoutes;
-
-/* <TimePicker />
-      <div className="w-1/3 h-1/3">a</div>
-      <DatePicker /> */
-/* <DragAndDropUpload /> */
-/* <FormSection /> */
-/* <GenericTable
-        title="Danh sách người dùng (Users)"
-        columns={[
-          { header: "Họ tên", accessor: "name" },
-          { header: "Email", accessor: "email" },
-          { header: "Vai trò", accessor: "role" },
-          {
-            header: "Chi tiết",
-          },
-        ]}
-        data={[
-          { id: 1, name: "Nguyễn Văn A", email: "a@gmail.com", role: "Admin" },
-          { id: 2, name: "Trần Thị B", email: "b@gmail.com", role: "User" },
-        ]}
-      /> */

@@ -10,7 +10,7 @@ const FormCard = ({
 }) => {
   return (
     <div
-      className={`rounded-lg border border-gray-200 bg-gray-50 p-4 ${className}`}
+      className={`rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 ${className}`}
     >
       {(title || button) && (
         <div
