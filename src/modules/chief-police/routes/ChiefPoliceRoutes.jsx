@@ -7,10 +7,12 @@ import SC_018_InformationProtectionField from "@chief-police/pages/SC_018_Inform
 import SC_017_SceneInformation from "@chief-police/pages/SC_017_SceneInformation";
 import SC_046_FiedlReportSummary from "@chief-police/pages/SC_046_FieldReportSummary";
 
+
 const ChiefPoliceRoutes = () => {
   return (
     <Routes>
       <Route element={<MainLayout />}>
+
         <Route path="/" element={<SC_016_InitialResponse />} />
         {/*Step 1 */}
         <Route path="/initial-response" element={<SC_016_InitialResponse />} />
@@ -36,6 +38,7 @@ const ChiefPoliceRoutes = () => {
           path="/initial-investigation-report"
           element={<SC_046_FiedlReportSummary />}
         />
+
       </Route>
     </Routes>
   );
