@@ -4,38 +4,42 @@ import { Calendar } from "lucide-react";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 
-function CustomDatePicker() {
-  const [selectedDate, setSelectedDate] = useState(null);
+function CustomDatePicker({
+  value,
+  onChange,
+  label = "Datetime of occurrence",
+  error,
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div>
-      <label className="mb-1 block font-medium text-gray-800">
-        Datetime of occurrence <span className="text-red-500">*</span>
+    <div className="flex w-full flex-col">
+      <label className="mb-1 font-medium text-[#141522]">
+        {label} <span className="text-red-500">*</span>
       </label>
 
-      <div className="tablet:max-w-md relative flex w-full items-center rounded-md border border-gray-300 bg-[#f5f7fa] p-2 gap-3 shadow-sm">
-        <button
-          type="button"
-          onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 rounded-md border border-[#9E9E9E] bg-[#E7EDF6] px-4 py-1.5 text-gray-800 font-medium hover:bg-[#d7e5f0] transition"
+      <div className="relative w-full">
+        <div
+          className={`focus-within:ring-reporter flex w-full items-center justify-between rounded-md bg-[#eee] px-3 py-1 text-sm ${
+            error ? "border border-red-500" : "border border-gray-300"
+          } focus-within:ring-1 focus-within:outline-none`}
         >
-          Choose
-          <Calendar className="h-4 w-4 text-gray-600" />
-        </button>
-
-        {selectedDate && (
-          <span className="text-sm text-gray-700">
-            {format(selectedDate, "PPpp")}
-          </span>
-        )}
+          <button
+            type="button"
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex items-center gap-2 rounded-lg border bg-[#e7edf6] px-4 py-1 text-sm text-gray-800"
+          >
+            <span>{value ? format(value, "PPpp") : "Choose"}</span>
+            <Calendar className="h-4 w-4" />
+          </button>
+        </div>
 
         {isOpen && (
-          <div className="absolute left-0 top-full z-20 mt-2 rounded-md shadow-lg border border-gray-200 overflow-hidden bg-white">
+          <div className="absolute z-20 mt-2 rounded-md border border-gray-200 bg-white shadow-lg">
             <DatePicker
-              selected={selectedDate}
+              selected={value}
               onChange={(date) => {
-                setSelectedDate(date);
+                onChange(date);
                 setIsOpen(false);
               }}
               showTimeSelect
@@ -45,6 +49,8 @@ function CustomDatePicker() {
           </div>
         )}
       </div>
+
+      {error && <span className="mt-1 text-sm text-red-500">{error}</span>}
     </div>
   );
 }
