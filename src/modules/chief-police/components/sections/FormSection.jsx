@@ -13,6 +13,8 @@ const FormSection = ({
   onClickSave,
   footerNext,
   onClickNext,
+  footerExcalate,
+  onClickExcalate,
 }) => {
   return (
     <section className="mb-6 w-full rounded-xl border-1 border-gray-200 bg-white shadow-md">
@@ -43,6 +45,11 @@ const FormSection = ({
         {footerNext && (
           <Button onClick={onClickNext} variant="secondary">
             Next page
+          </Button>
+        )}
+        {footerExcalate && (
+          <Button onClick={onClickExcalate} variant="warning">
+            Excalate
           </Button>
         )}
       </Footer>

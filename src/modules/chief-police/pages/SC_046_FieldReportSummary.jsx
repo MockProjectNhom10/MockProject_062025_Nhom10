@@ -1,16 +1,40 @@
 import ActionButtons from "@chief-police/components/common/button/ActionButtons";
 import Button from "@chief-police/components/common/button/Button";
+import Dropdown from "@chief-police/components/common/dropdown/DropDown";
 import TextArea from "@chief-police/components/common/input/TextArea";
 import FormCard from "@chief-police/components/sections/FormCard";
 import FormSection from "@chief-police/components/sections/FormSection";
 import GenericTable from "@chief-police/components/table/GenericTable";
 import { CircleArrowRight, CircleChevronRight } from "lucide-react";
 import React from "react";
+import { Form } from "react-router-dom";
+import { useToast } from "@core/hooks/useToast";
 
 const SC_018_InformationProtectionField = () => {
+  const { showSuccess, showLoading } = useToast();
+
+  const handleClickSave = () => {
+    showLoading("Saving information...");
+    setTimeout(() => {
+      showSuccess("Information saved successfully!");
+    }, 1000);
+  };
+
+  const handleClickExcalate = () => {
+    showLoading("Excalating information...");
+    setTimeout(() => {
+      showSuccess("Information excalated successfully!");
+    }, 1000);
+  };
   return (
     <>
-      <FormSection title="INFORMATION PROTECTION FIELD">
+      <FormSection
+        title="FIELD REPORT SUMMARY"
+        footerSave
+        footerExcalate
+        onClickSave={handleClickSave}
+        onClickExcalate={handleClickExcalate}
+      >
         <FormCard
           title="INITIAL RESPONE"
           classNameHeader="mt-2"
@@ -70,6 +94,18 @@ const SC_018_InformationProtectionField = () => {
               },
             ]}
           />
+        </FormCard>
+        <FormCard
+          classNameHeader="mb-4"
+          button={
+            <div className="flex items-center justify-between space-x-2">
+              <span className="text-sm text-gray-500">Level Assessment </span>
+              <Dropdown></Dropdown>
+            </div>
+          }
+          title="LEVEL ASSESSMENT"
+        >
+          <TextArea></TextArea>
         </FormCard>
       </FormSection>
     </>
