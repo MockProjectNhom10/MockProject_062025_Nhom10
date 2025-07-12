@@ -9,46 +9,55 @@ const Help = () => {
     navigate("report/step1");
   };
 
+  const helpItems = [
+    {
+      icon: MessageSquareText,
+      text: "Tell us what happened.",
+    },
+    {
+      icon: Users,
+      text: "Your contribution & our mission.",
+    },
+    {
+      icon: Shield,
+      text: "Protect yourself and others.",
+    },
+  ];
+
   return (
-    <div className="tablet:max-w-tablet max-w-mobile tablet:my-4 tablet:p-8 desktop:max-w-lg desktop:p-10 mx-auto flex flex-col items-center justify-center border-b-1 p-4">
-      <h2 className="tablet:text-3xl desktop:text-4xl my-6 text-center text-2xl font-bold">
-        How You Can Help?
-      </h2>
-      <div className="tablet:flex tablet:gap-12">
-        <div className="tablet:flex-col tablet:text-center tablet:gap-4 mb-6 flex w-full items-center">
-          <MessageSquareText
-            size={40}
-            className="tablet:h-14 tablet:w-14 desktop:h-16 desktop:w-16 text-reporter mr-4"
-          />
-          <span className="tablet:text-lg desktop:text-xl text-base font-medium">
-            Tell us what happened.
-          </span>
+    <div className="bg-gray-50 py-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 className="tablet:text-3xl desktop:text-4xl mb-12 text-center text-2xl font-bold text-gray-800">
+          How You Can Help?
+        </h2>
+
+        <div className="tablet:grid-cols-2 desktop:grid-cols-3 mb-12 grid grid-cols-1 gap-6">
+          {helpItems.map((item, index) => (
+            <div
+              key={index}
+              className="flex h-[280px] flex-col items-center justify-center rounded-xl bg-white p-6 text-center shadow-lg transition-shadow duration-300 hover:shadow-xl"
+            >
+              <div className="mb-6 flex h-[120px] flex-shrink-0 items-center justify-center">
+                <item.icon size={80} className="text-reporter" />
+              </div>
+              <div className="flex flex-grow items-center justify-center">
+                <span className="tablet:text-sm desktop:text-base text-xs leading-relaxed font-medium text-gray-700">
+                  {item.text}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
-        <div className="tablet:flex-col tablet:justify-center tablet:text-center tablet:gap-4 mb-6 flex w-full items-center">
-          <Users
-            size={40}
-            className="tablet:h-14 tablet:w-14 desktop:h-16 desktop:w-16 text-reporter mr-4"
-          />
-          <span className="tablet:text-lg desktop:text-xl text-base font-medium">
-            Your contribution & our mission.
-          </span>
-        </div>
-        <div className="tablet:flex-col tablet:justify-center tablet:text-center tablet:gap-4 mb-6 flex w-full items-center">
-          <Shield
-            size={40}
-            className="tablet:h-14 tablet:w-14 desktop:h-16 desktop:w-16 text-reporter mr-4"
-          />
-          <span className="tablet:text-lg desktop:text-xl text-base font-medium">
-            Protect yourself and others.
-          </span>
+
+        <div className="flex justify-center">
+          <button
+            className="tablet:text-xl desktop:text-2xl bg-reporter hover:bg-reporter/90 cursor-pointer rounded-lg px-8 py-4 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:shadow-xl"
+            onClick={handleNavigateReport}
+          >
+            File A Report
+          </button>
         </div>
       </div>
-      <button
-        className="tablet:text-xl tablet:my-4 tablet:w-sm desktop:text-2xl bg-reporter w-full cursor-pointer rounded-lg py-3 text-lg font-bold text-white"
-        onClick={handleNavigateReport}
-      >
-        File A Report
-      </button>
     </div>
   );
 };

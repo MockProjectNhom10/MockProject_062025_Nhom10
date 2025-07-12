@@ -16,20 +16,22 @@ const Sliders = ({
   breakpoints = null,
 }) => {
   return (
-    <Swiper
-      className={className}
-      modules={[Pagination, Navigation]}
-      spaceBetween={spaceBetween}
-      slidesPerView={slidesPerView}
-      loop={loop}
-      pagination={pagination}
-      navigation={navigation}
-      breakpoints={breakpoints}
-    >
-      {slides.map((slideContent, index) => (
-        <SwiperSlide key={index}>{slideContent}</SwiperSlide>
-      ))}
-    </Swiper>
+    <div className="mobile:px-6 desktop:px-8 mx-auto w-full max-w-7xl px-4">
+      <Swiper
+        className={className}
+        modules={[Pagination, Navigation]}
+        spaceBetween={spaceBetween}
+        slidesPerView={slidesPerView}
+        loop={loop}
+        pagination={pagination}
+        navigation={navigation}
+        breakpoints={breakpoints}
+      >
+        {slides.map((slideContent, index) => (
+          <SwiperSlide key={index}>{slideContent}</SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
   );
 };
 

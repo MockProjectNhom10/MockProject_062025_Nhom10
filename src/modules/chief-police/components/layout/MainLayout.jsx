@@ -5,69 +5,57 @@ import Footer from "@chief-police/components/layout/Footer";
 import WarningModal from "@chief-police/components/common/popup/WarningModal";
 
 const sections = [
-    {
-        label: "Initial Response",
-        subItems: [
-            "Time of dispatching forces to the scene",
-            "Time of arrival at the scene",
-            "List of officers assigned to the scene",
-            "Preliminary assessment of the scene situation",
-            "Scene preservation measures taken",
-            "Information on medical/rescue support provided",
-        ],
-    },
-    {
-        label: "Scene Information",
-        subItems: [
-            "Initial Statements",
-            "Scene Description",
-            "Images and Videos",
-            "Preliminary Physical Evidence Information",
-            "Scene Sketch"
-        ],
-    },
-    {
-        label: "Initial Investigation Report",
-        subItems: [],
-    },
+  {
+    label: "Preliminary Investigation",
+    subItems: [],
+  },
+  {
+    label: "Initial Response",
+    subItems: [
+      "Time of dispatching forces to the scene",
+      "Time of arrival at the scene",
+      "List of officers assigned to the scene",
+      "Preliminary assessment of the scene situation",
+      "Scene preservation measures taken",
+      "Information on medical/rescue support provided",
+    ],
+  },
+  {
+    label: "Scene Information",
+    subItems: [
+      "Initial Statements",
+      "Scene Description",
+      "Images and Videos",
+      "Preliminary Physical Evidence Information",
+      "Scene Sketch"
+    ],
+
+  },
+  {
+    label: "Initial Investigation Report",
+    subItems: [],
+  },
 ];
 
 const MainLayout = () => {
-    const [showPopup, setShowPopup] = useState(false);
+  return (
+    <div className="flex flex-col min-h-screen pt-12 bg-white max-tablet:pt-6 max-mobile:pt-0">
+      {/* Main area: sidebar + content */}
+      <div className="flex flex-col flex-1 md:flex-row">
+        {/* Sidebar: block above content on mobile, left on desktop */}
+        <SideBar sections={sections} />
 
-    const handleCancelClick = () => {
-        setShowPopup(true);
-    };
-
-    const handlePopupCancel = () => {
-        setShowPopup(false);
-    };
-
-    const handlePopupConfirm = () => {
-        setShowPopup(false);
-        console.log("Confirmed cancel.");
-    };
-
-    return (
-        <div className="max-tablet:pt-6 flex min-h-screen flex-col bg-white pt-12">
-            <div className="flex flex-1 flex-col md:flex-row gap-8 px-4">
-                <SideBar sections={sections} />
-                <main className="flex-1">
-                    <Outlet />
-                </main>
-            </div>
-
-            <Footer onCancelClick={handleCancelClick} />
-
-            {showPopup && (
-                <WarningModal
-                    message="Are you sure you want to cancel? All changes will be lost."
-                    onCancel={handlePopupCancel}
-                    onConfirm={handlePopupConfirm}
-                />
-            )}
+        {/* Main content */}
+        <div className="flex flex-col flex-1 min-h-0">
+          <div className="flex-1 mx-8 overflow-auto">
+            <Outlet />
+          </div>
         </div>
-    );
+      </div>
+      {/* Footer always at the very bottom, full width */}
+      <Footer />
+    </div>
+  );
 };
 
 export default MainLayout;
