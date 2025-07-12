@@ -6,10 +6,6 @@ import WarningModal from "@chief-police/components/common/popup/WarningModal";
 
 const sections = [
   {
-    label: "Preliminary Investigation",
-    subItems: [],
-  },
-  {
     label: "Initial Response",
     subItems: [
       "Time of dispatching forces to the scene",
@@ -19,6 +15,7 @@ const sections = [
       "Scene preservation measures taken",
       "Information on medical/rescue support provided",
     ],
+    nav: "/initial-response",
   },
   {
     label: "Scene Information",
@@ -27,33 +24,32 @@ const sections = [
       "Scene Description",
       "Images and Videos",
       "Preliminary Physical Evidence Information",
-      "Scene Sketch"
+      "Scene Sketch",
     ],
-
+    nav: "/scene-information",
   },
   {
     label: "Initial Investigation Report",
     subItems: [],
+    nav: "/initial-investigation-report",
   },
 ];
 
 const MainLayout = () => {
   return (
-    <div className="flex flex-col min-h-screen pt-12 bg-white max-tablet:pt-6 max-mobile:pt-0">
+    <div className="max-tablet:pt-6 max-mobile:pt-0 flex min-h-screen flex-col bg-white pt-4">
       {/* Main area: sidebar + content */}
-      <div className="flex flex-col flex-1 md:flex-row">
+      <div className="flex flex-1 flex-col md:flex-row">
         {/* Sidebar: block above content on mobile, left on desktop */}
         <SideBar sections={sections} />
 
         {/* Main content */}
-        <div className="flex flex-col flex-1 min-h-0">
-          <div className="flex-1 mx-8 overflow-auto">
+        <div className="flex min-h-0 flex-1 flex-col">
+          <div className="mx-8 flex-1 overflow-auto">
             <Outlet />
           </div>
         </div>
       </div>
-      {/* Footer always at the very bottom, full width */}
-      <Footer />
     </div>
   );
 };

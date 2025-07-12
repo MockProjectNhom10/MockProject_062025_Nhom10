@@ -8,8 +8,10 @@ import React from "react";
 import { CircleArrowRight, Pen, Plus, PlusCircle, Trash } from "lucide-react";
 import TextArea from "@chief-police/components/common/input/TextArea";
 import ActionButtons from "@chief-police/components/common/button/ActionButtons";
+import { useNavigate } from "react-router-dom";
 
 const SC_016_InitialResponse = () => {
+  const navigate = useNavigate();
   const actionButtonsTwoOptions = [
     {
       label: "Delete",
@@ -17,7 +19,7 @@ const SC_016_InitialResponse = () => {
     },
     {
       label: "Edit",
-      color: "teal",
+      color: "green",
     },
   ];
   const actionButtonsThreeOptions = [
@@ -27,16 +29,26 @@ const SC_016_InitialResponse = () => {
     },
     {
       label: "Edit",
-      color: "teal",
+      color: "green",
     },
     {
       label: "View",
       color: "gray",
     },
   ];
+
+  const onClickNext = () => {
+    navigate("/chief-police/scene-information");
+  };
   return (
     <>
-      <FormSection title="INITIAL RESPONSE">
+      <FormSection
+        title="INITIAL RESPONSE"
+        footerCancel
+        footerSave
+        footerNext
+        onClickNext={onClickNext}
+      >
         <FormCard
           title="TIME OF DISPATCHING FORCES TO THE SCENE"
           button={<CustomDatePicker />}
@@ -50,7 +62,10 @@ const SC_016_InitialResponse = () => {
           classNameHeader="mb-4"
           title="LIST OF OFFICERS ASSIGNED TO THE SCENE"
           button={
-            <Button classNameChildren="flex flex-nowrap gap-2">
+            <Button
+              classNameChildren="flex flex-nowrap gap-2"
+              onClick={() => navigate("add-patrol")}
+            >
               Add {<PlusCircle className="h-4 w-4" />}
             </Button>
           }
@@ -78,11 +93,6 @@ const SC_016_InitialResponse = () => {
         <FormCard
           classNameHeader="mb-4"
           title="PRELIMINARY ASSESSMENT OF THE SCENE SITUATION"
-          button={
-            <Button classNameChildren="flex flex-nowrap gap-2">
-              Add {<PlusCircle className="h-4 w-4" />}
-            </Button>
-          }
         >
           <TextArea />
         </FormCard>
@@ -90,7 +100,10 @@ const SC_016_InitialResponse = () => {
           classNameHeader="mb-4"
           title="SCENE PRESERVATION MEASURES TAKEN"
           button={
-            <Button classNameChildren="flex flex-nowrap gap-2">
+            <Button
+              onClick={() => navigate("information-protection-field")}
+              classNameChildren="flex flex-nowrap gap-2"
+            >
               Add {<PlusCircle className="h-4 w-4" />}
             </Button>
           }
@@ -132,7 +145,10 @@ const SC_016_InitialResponse = () => {
           classNameHeader="mb-4"
           title="INFORMATION ON MEDICAL/RESCUE SUPPORT PROVIDED"
           button={
-            <Button classNameChildren="flex flex-nowrap gap-2">
+            <Button
+              classNameChildren="flex flex-nowrap gap-2"
+              onClick={() => navigate("medical-rescue-support")}
+            >
               Add {<PlusCircle className="h-4 w-4" />}
             </Button>
           }

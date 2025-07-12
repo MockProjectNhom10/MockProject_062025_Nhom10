@@ -66,7 +66,7 @@ const HightLight = () => {
   return (
     <div className="bg-gray-50 py-8">
       <div className="container mx-auto px-4">
-        <h2 className="tablet:text-3xl desktop:text-4xl my-8 mb-12 text-center text-2xl font-bold text-gray-800">
+        <h2 className="tablet:text-3xl desktop:text-2xl my-4 text-center text-2xl font-bold text-gray-800">
           Programs and resources
         </h2>
         <Sliders

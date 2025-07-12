@@ -15,7 +15,7 @@ const PageSizeDropDown = ({
         <select
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="w-full cursor-pointer appearance-none rounded-[8px] border-2 border-solid border-black bg-[#E0E0E0] py-[4px] ps-[6px]"
+          className="w-full cursor-pointer rounded-[8px] bg-[#E0E0E0] py-2 ps-[6px]"
         >
           {options.map((item) => (
             <option key={item} value={item}>
@@ -35,17 +35,3 @@ const PageSizeDropDown = ({
 };
 
 export default PageSizeDropDown;
-
-// const ParentComponent = () => {
-//     const [pageSize, setPageSize] = useState(10);
-//     return (
-//         <PageSizeDropDown
-//             options={[1, 2, 5, 10, 25]}
-//             value={pageSize}
-//             onChange={(newValue) => setPageSize(newValue)}
-//             labelBefore="Show"
-//             labelAfter="entries"
-//         />
-//     )
-
-// }
