@@ -8,6 +8,12 @@ import SC_004 from "./SC_004_RelevantParties";
 import SC_005 from "./SC_005_InitialEvidence";
 import Modal from "@public-reporter/components/common/Modal";
 import Button from "@public-reporter/components/common/Button";
+import { Controller, useForm } from "react-hook-form";
+import FormSection from "@chief-police/components/sections/FormSection";
+import FormSelect from "@public-reporter/components/common/FormSelect";
+import { MESSAGES } from "@public-reporter/constants";
+import RelevantInformationTable from "@public-reporter/components/table/RelevantInformationTable";
+import { Pencil, Trash2 } from "lucide-react";
 
 function SC_003_Step2IncidentInformation() {
   const navigate = useNavigate();
@@ -21,6 +27,16 @@ function SC_003_Step2IncidentInformation() {
     navigate("/public-reporter/report/step3");
   };
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm();
+
+  const [relevantParties, setRelevantParties] = useState([]);
+  const [initialEvidences, setInitialEvidences] = useState([]);
+
   return (
     <section className="tablet:w-full mx-auto w-[95%]">
       {/* Section Heading */}
@@ -33,44 +49,81 @@ function SC_003_Step2IncidentInformation() {
       </div>
 
       {/* Form */}
-      <form className="tablet:grid-cols-2 grid grid-cols-1 gap-6">
-        {/* Type of Crime */}
-        <div className="">
-          <label className="mb-1 block font-medium">
-            Type of crime <span className="text-red-500">*</span>
-          </label>
-          <select className="w-full rounded border border-gray-300 bg-[#eee] px-3 py-2">
-            <option>Select an option</option>
-          </select>
-        </div>
+      <form
+        className="grid grid-cols-1"
+        onSubmit={handleSubmit((data) => {
+          console.log(data);
+          handleNavigateStep3();
+        })}
+      >
+        <div className="tablet:grid-cols-2 desktop:grid-cols-2 tablet:gap-6 desktop:gap-6 grid grid-cols-1">
+          {/* Type of Crime */}
+          <div className="w-full">
+            <FormSelect
+              label="Type of crime"
+              name="typeOfCrime"
+              required
+              options={[
+                { label: "Theft", value: "theft" },
+                { label: "Assault", value: "assault" },
+                { label: "Vandalism", value: "vandalism" },
+                { label: "Fraud", value: "fraud" },
+                { label: "Harassment", value: "harassment" },
+              ]}
+              error={errors?.typeOfCrime?.message}
+              {...register("typeOfCrime", {
+                required: MESSAGES.REQUIRED,
+              })}
+            />
+          </div>
 
-        {/* Severity */}
-        <div>
-          <label className="mb-1 block font-medium">
-            Type of crime <span className="text-red-500">*</span>
-          </label>
-          <select className="w-full rounded border border-gray-300 bg-[#eee] px-3 py-2">
-            <option>Select an option</option>
-          </select>
+          {/* Severity */}
+          <div className="w-full">
+            <FormSelect
+              label="Severity"
+              name="severity"
+              required
+              options={[
+                { label: "Low", value: "low" },
+                { label: "Medium", value: "medium" },
+                { label: "High", value: "high" },
+                { label: "Critical", value: "critical" },
+              ]}
+              error={errors?.severity?.message}
+              {...register("severity", {
+                required: MESSAGES.REQUIRED,
+              })}
+            />
+          </div>
         </div>
 
         {/* Datetime of Occurrence */}
-        <DatePicker />
-        <br />
+        <Controller
+          name="dateOfOccurrence"
+          control={control}
+          rules={{ required: MESSAGES.REQUIRED }}
+          render={({ field, fieldState }) => (
+            <DatePicker
+              value={field.value}
+              onChange={field.onChange}
+              error={fieldState?.error?.message}
+            />
+          )}
+        />
 
         {/* Detailed Address */}
-        <FormInput label="Detailed address" name="detailedAddress" required />
-        {/* State */}
         <div>
-          <label className="mb-1 block font-medium">
-            Type of crime <span className="text-red-500">*</span>
-          </label>
-          <select className="w-full rounded border border-gray-300 bg-[#eee] px-3 py-2">
-            <option>Select an option</option>
-          </select>
+          <FormInput
+            label="Detailed address"
+            name="detailedAddress"
+            required
+            error={errors?.detailedAddress?.message}
+            {...register("detailedAddress", { required: MESSAGES.REQUIRED })}
+          />
         </div>
+
         {/* Description */}
-        <div className="md:col-span-2">
+        <div className="">
           <TextArea
             label="Description of the incident"
             name="description"
@@ -78,36 +131,113 @@ function SC_003_Step2IncidentInformation() {
             className="min-h-30 w-full outline-0"
           />
         </div>
+
+        <div>
+          <div>
+            <div className="my-6 flex items-center">
+              <div className="flex-grow border-t border-gray-300"></div>
+              <span className="mx-4 text-center text-xl font-semibold text-gray-900">
+                Relevant Parties
+              </span>
+              <div className="flex-grow border-t border-gray-300"></div>
+            </div>
+            <RelevantInformationTable
+              header={["Relevant Role", "Name", "Statement"]}
+              data={relevantParties.map((party) => [
+                party.relationshipToTheIncident || "-",
+                party.fullname || "-",
+                party.description || "-",
+              ])}
+              isAction={true}
+            />
+            <div className="mt-2 flex justify-end">
+              <Button
+                variant="secondary"
+                onClick={() => setOpenModal("SC_004")}
+              >
+                ADD
+              </Button>
+            </div>
+          </div>
+
+          <div>
+            <div className="my-6 flex items-center">
+              <div className="flex-grow border-t border-gray-300"></div>
+              <span className="mx-4 text-center text-xl font-semibold text-gray-900">
+                Initial Evidence
+              </span>
+              <div className="flex-grow border-t border-gray-300"></div>
+            </div>
+            <RelevantInformationTable
+              header={[
+                "Types of evidence",
+                "Location",
+                "Description",
+                "Attachments",
+              ]}
+              data={initialEvidences.map((item) => [
+                item.typesOfEvidence || "-",
+                item.evidenceLocation || "-",
+                item.evidenceDescription || "-",
+                Array.isArray(item.evidenceFiles) &&
+                item.evidenceFiles.length > 0 ? (
+                  <div className="flex max-w-[200px] flex-col gap-1 truncate break-all">
+                    {item.evidenceFiles.map((f, idx) => (
+                      <a
+                        key={idx}
+                        href={f.url || "#"}
+                        download={f.name}
+                        rel="noopener noreferrer"
+                        className="break-all text-blue-600 underline"
+                      >
+                        {f.name}
+                      </a>
+                    ))}
+                  </div>
+                ) : (
+                  "-"
+                ),
+              ])}
+              isAction={true}
+            />
+            <div className="mt-2 flex justify-end">
+              <Button
+                variant="secondary"
+                onClick={() => setOpenModal("SC_005")}
+              >
+                ADD
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <div className="my-10 flex items-center justify-end gap-5">
+          <Button variant="secondary" onClick={handleNavigateStep1}>
+            Back
+          </Button>
+          <Button variant="reporter" type="submit">
+            Submit
+          </Button>
+        </div>
       </form>
-      <div className="mb-4">
-        <RelevantPartiesTable label={"Relevant Parties"} />
-        <div className="mt-2 flex justify-end">
-          <Button variant="secondary" onClick={() => setOpenModal("SC_004")}>
-            ADD
-          </Button>
-        </div>
-      </div>
-      <div className="mb-4">
-        <RelevantPartiesTable label={"Initial Evidence"} />
-        <div className="mt-2 flex justify-end">
-          <Button variant="secondary" onClick={() => setOpenModal("SC_005")}>
-            ADD
-          </Button>
-        </div>
-      </div>
-      <div className="my-10 flex items-center justify-end gap-5">
-        <Button variant="secondary" onClick={handleNavigateStep1}>
-          Back
-        </Button>
-        <Button variant="reporter" onClick={handleNavigateStep3}>
-          Submit
-        </Button>
-      </div>
       <Modal isOpen={openModal === "SC_004"} onClose={() => setOpenModal(null)}>
-        <SC_004 onClose={() => setOpenModal(null)} />
+        <SC_004
+          onClose={() => setOpenModal(null)}
+          onSubmit={(data) => {
+            setRelevantParties((prev) => [...prev, data]);
+            setOpenModal(null);
+          }}
+        />
       </Modal>
+
       <Modal isOpen={openModal === "SC_005"} onClose={() => setOpenModal(null)}>
-        <SC_005 onClose={() => setOpenModal(null)} />
+        <SC_005
+          onClose={() => setOpenModal(null)}
+          onSubmit={(data) => {
+            setInitialEvidences((prev) => [...prev, data]);
+            setOpenModal(null);
+          }}
+        />
       </Modal>
     </section>
   );
