@@ -6,6 +6,7 @@ import DragAndDropUpload from "@chief-police/components/common/upload/DragAndDro
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@core/hooks/useToast";
+import TimePicker from "@chief-police/components/common/date-time/TimePicker";
 
 const SC_067_MedicalRescueSupport = () => {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ const SC_067_MedicalRescueSupport = () => {
       onClickCancel={handleClickCancel}
       onClickSave={handleClickSave}
     >
+      <FormCard title="TIME OF ARRIVAL" button={<TimePicker />}></FormCard>
       {formData.map(({ title }, index) => (
         <FormCard key={index} title={title}>
           <TextArea

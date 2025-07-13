@@ -1,7 +1,7 @@
 // ================= IMPORT ICONS =================
 import { CircleChevronRight, Edit, Trash2 } from "lucide-react";
 import Button from "@chief-police/components/common/button/Button";
-
+import { useNavigate } from "react-router-dom";
 // ================= TABLE STYLE VARIANTS =================
 export const tableStyles = {
   default: {
@@ -175,7 +175,11 @@ export const evidenceColumns = [
   {
     header: "",
     render: () => (
-      <Button variant="link" className="text-sm text-blue-600">
+      <Button
+        variant="link"
+        onClick={() => useNavigate("preliminary-evidence/edit")}
+        className="text-sm text-blue-600"
+      >
         View details
       </Button>
     ),

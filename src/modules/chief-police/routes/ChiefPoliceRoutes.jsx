@@ -7,6 +7,9 @@ import SC_018_InformationProtectionField from "@chief-police/pages/SC_018_Inform
 import SC_017_SceneInformation from "@chief-police/pages/SC_017_SceneInformation";
 import SC_046_FiedlReportSummary from "@chief-police/pages/SC_046_FieldReportSummary";
 import SC_067_MedicalRescueSupport from "@chief-police/pages/SC_067_MedicalRescueSupport";
+import SC_022_ViewIntinalStatement from "@chief-police/pages/SC_022_ViewIntinalStatement";
+import SC_069_ImagesAndVideos from "@chief-police/pages/SC_069_ImagesAndVideos";
+import SC_023_PreliminaryEvidence from "@chief-police/pages/SC_023_PreliminaryEvidence";
 
 const ChiefPoliceRoutes = () => {
   return (
@@ -32,6 +35,23 @@ const ChiefPoliceRoutes = () => {
           path="/scene-information"
           element={<SC_017_SceneInformation />}
         />
+        <Route
+          path="/scene-information/view-initial-statement"
+          element={<SC_022_ViewIntinalStatement />}
+        />
+        <Route
+          path="/scene-information/images-and-videos"
+          element={<SC_069_ImagesAndVideos />}
+        />
+        <Route
+          path="/scene-information/preliminary-evidence"
+          element={<SC_023_PreliminaryEvidence isBlank />}
+        />
+        <Route
+          path="/scene-information/preliminary-evidence/edit"
+          element={<SC_023_PreliminaryEvidence isBlank />}
+        />
+
         {/*Step 3*/}
         <Route
           path="/initial-investigation-report"

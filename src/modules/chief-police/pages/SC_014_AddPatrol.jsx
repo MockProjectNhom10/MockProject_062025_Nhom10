@@ -13,7 +13,7 @@ import { useToast } from "@core/hooks/useToast";
 let itemsPerpage = 10;
 export default function AddPatrolOfficer() {
   const navigate = useNavigate();
-  const { showSuccess, showError, showLoading } = useToast();
+  const { showSuccess, showLoading } = useToast();
   let [filter, setFilter] = useState({
     keyword: "",
     zone: "",

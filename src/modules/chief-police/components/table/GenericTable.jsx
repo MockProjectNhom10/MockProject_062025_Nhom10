@@ -7,7 +7,6 @@ const GenericTable = ({
   columns,
   data,
   variant = "default",
-  sortConfig,
   onSort,
 }) => {
   const styles = tableStyles[variant] || tableStyles.default;

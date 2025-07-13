@@ -72,21 +72,21 @@ const SC_016_InitialResponse = () => {
         >
           <GenericTable
             columns={[
-              { header: "Họ tên", accessor: "name" },
-              { header: "Email", accessor: "email" },
-              { header: "Vai trò", accessor: "role" },
+              { header: "Fullname", accessor: "name" },
+              { header: "Phone number", accessor: "phone" },
+              { header: "Role", accessor: "role" },
               {
-                header: "Chi tiết",
+                header: "Details",
               },
             ]}
             data={[
               {
                 id: 1,
                 name: "Nguyễn Văn A",
-                email: "a@gmail.com",
+                phone: "0123456789",
                 role: "Admin",
               },
-              { id: 2, name: "Trần Thị B", email: "b@gmail.com", role: "User" },
+              { id: 2, name: "Trần Thị B", phone: "0377736789", role: "User" },
             ]}
           />
         </FormCard>
