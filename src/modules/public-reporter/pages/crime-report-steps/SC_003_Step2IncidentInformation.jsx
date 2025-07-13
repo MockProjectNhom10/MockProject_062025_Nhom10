@@ -12,6 +12,8 @@ import { Controller, useForm } from "react-hook-form";
 import FormSection from "@chief-police/components/sections/FormSection";
 import FormSelect from "@public-reporter/components/common/FormSelect";
 import { MESSAGES } from "@public-reporter/constants";
+import RelevantInformationTable from "@public-reporter/components/table/RelevantInformationTable";
+import { Pencil, Trash2 } from "lucide-react";
 
 function SC_003_Step2IncidentInformation() {
   const navigate = useNavigate();
@@ -31,6 +33,9 @@ function SC_003_Step2IncidentInformation() {
     formState: { errors },
     control,
   } = useForm();
+
+  const [relevantParties, setRelevantParties] = useState([]);
+  const [initialEvidences, setInitialEvidences] = useState([]);
 
   return (
     <section className="tablet:w-full mx-auto w-[95%]">
@@ -129,7 +134,22 @@ function SC_003_Step2IncidentInformation() {
 
         <div>
           <div>
-            <RelevantPartiesTable label={"Relevant Parties"} />
+            <div className="my-6 flex items-center">
+              <div className="flex-grow border-t border-gray-300"></div>
+              <span className="mx-4 text-center text-xl font-semibold text-gray-900">
+                Relevant Parties
+              </span>
+              <div className="flex-grow border-t border-gray-300"></div>
+            </div>
+            <RelevantInformationTable
+              header={["Relevant Role", "Name", "Statement"]}
+              data={relevantParties.map((party) => [
+                party.relationshipToTheIncident || "-",
+                party.fullname || "-",
+                party.description || "-",
+              ])}
+              isAction={true}
+            />
             <div className="mt-2 flex justify-end">
               <Button
                 variant="secondary"
@@ -139,8 +159,47 @@ function SC_003_Step2IncidentInformation() {
               </Button>
             </div>
           </div>
+
           <div>
-            <RelevantPartiesTable label={"Initial Evidence"} />
+            <div className="my-6 flex items-center">
+              <div className="flex-grow border-t border-gray-300"></div>
+              <span className="mx-4 text-center text-xl font-semibold text-gray-900">
+                Initial Evidence
+              </span>
+              <div className="flex-grow border-t border-gray-300"></div>
+            </div>
+            <RelevantInformationTable
+              header={[
+                "Types of evidence",
+                "Location",
+                "Description",
+                "Attachments",
+              ]}
+              data={initialEvidences.map((item) => [
+                item.typesOfEvidence || "-",
+                item.evidenceLocation || "-",
+                item.evidenceDescription || "-",
+                Array.isArray(item.evidenceFiles) &&
+                item.evidenceFiles.length > 0 ? (
+                  <div className="flex max-w-[200px] flex-col gap-1 truncate break-all">
+                    {item.evidenceFiles.map((f, idx) => (
+                      <a
+                        key={idx}
+                        href={f.url || "#"}
+                        download={f.name}
+                        rel="noopener noreferrer"
+                        className="break-all text-blue-600 underline"
+                      >
+                        {f.name}
+                      </a>
+                    ))}
+                  </div>
+                ) : (
+                  "-"
+                ),
+              ])}
+              isAction={true}
+            />
             <div className="mt-2 flex justify-end">
               <Button
                 variant="secondary"
@@ -160,19 +219,26 @@ function SC_003_Step2IncidentInformation() {
             Submit
           </Button>
         </div>
-        <Modal
-          isOpen={openModal === "SC_004"}
-          onClose={() => setOpenModal(null)}
-        >
-          <SC_004 onClose={() => setOpenModal(null)} />
-        </Modal>
-        <Modal
-          isOpen={openModal === "SC_005"}
-          onClose={() => setOpenModal(null)}
-        >
-          <SC_005 onClose={() => setOpenModal(null)} />
-        </Modal>
       </form>
+      <Modal isOpen={openModal === "SC_004"} onClose={() => setOpenModal(null)}>
+        <SC_004
+          onClose={() => setOpenModal(null)}
+          onSubmit={(data) => {
+            setRelevantParties((prev) => [...prev, data]);
+            setOpenModal(null);
+          }}
+        />
+      </Modal>
+
+      <Modal isOpen={openModal === "SC_005"} onClose={() => setOpenModal(null)}>
+        <SC_005
+          onClose={() => setOpenModal(null)}
+          onSubmit={(data) => {
+            setInitialEvidences((prev) => [...prev, data]);
+            setOpenModal(null);
+          }}
+        />
+      </Modal>
     </section>
   );
 }

@@ -1,6 +1,7 @@
+import { Pencil, Trash2 } from "lucide-react";
 import React from "react";
 
-const RelevantInformationTable = ({ header, data }) => {
+const RelevantInformationTable = ({ header, data, isAction }) => {
   return (
     <div className="rounded border">
       <div className="block divide-y md:hidden">
@@ -12,6 +13,21 @@ const RelevantInformationTable = ({ header, data }) => {
                 <span className="font-semibold">{col}:</span> {row[j]}
               </div>
             ))}
+            {isAction && (
+              <div className="text-sm text-gray-700">
+                <span className="font-semibold">Action</span>
+                <div className="py-2">
+                  <div className="flex flex-wrap gap-3">
+                    <button className="cursor-pointer text-indigo-600 hover:text-indigo-800">
+                      <Pencil size={18} />
+                    </button>
+                    <button className="cursor-pointer text-red-600 hover:text-red-800">
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -26,6 +42,9 @@ const RelevantInformationTable = ({ header, data }) => {
                   {col}
                 </th>
               ))}
+              {isAction && (
+                <th className="w-40 p-2 whitespace-nowrap">Action</th>
+              )}
             </tr>
           </thead>
           <tbody>
@@ -37,6 +56,20 @@ const RelevantInformationTable = ({ header, data }) => {
                     {cell}
                   </td>
                 ))}
+                {isAction && (
+                  <td className="p-2 font-medium whitespace-nowrap">
+                    <div className="py-2">
+                      <div className="flex flex-wrap gap-3">
+                        <button className="cursor-pointer text-indigo-600 hover:text-indigo-800">
+                          <Pencil size={18} />
+                        </button>
+                        <button className="cursor-pointer text-red-600 hover:text-red-800">
+                          <Trash2 size={18} />
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>

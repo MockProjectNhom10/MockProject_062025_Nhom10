@@ -30,7 +30,7 @@ const FormSelect = forwardRef(
           onChange={onChange}
           onBlur={onBlur}
           value={value}
-          className={`focus:ring-reporter rounded-md bg-[#eee] p-2 focus:ring-1 focus:outline-none ${
+          className={`focus:ring-reporter rounded-md bg-[#eee] p-2 py-[10px] focus:ring-1 focus:outline-none ${
             error ? "border border-red-500" : "border border-gray-300"
           } ${className}`}
         >
