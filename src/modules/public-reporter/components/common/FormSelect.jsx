@@ -17,7 +17,7 @@ const FormSelect = forwardRef(
     ref,
   ) => {
     return (
-      <div className="flex w-full flex-col">
+      <div className="mb-4 flex w-full flex-col">
         <label htmlFor={name} className="mb-1 text-[#141522]">
           {label}
           {required && <span className="ml-1 text-red-500">*</span>}

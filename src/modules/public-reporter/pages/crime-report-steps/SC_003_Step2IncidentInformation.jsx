@@ -45,13 +45,13 @@ function SC_003_Step2IncidentInformation() {
 
       {/* Form */}
       <form
-        className="grid grid-cols-1 gap-6"
+        className="grid grid-cols-1"
         onSubmit={handleSubmit((data) => {
           console.log(data);
           handleNavigateStep3();
         })}
       >
-        <div className="tablet:grid-cols-2 desktop:grid-cols-2 grid grid-cols-1 gap-6">
+        <div className="tablet:grid-cols-2 desktop:grid-cols-2 tablet:gap-6 desktop:gap-6 grid grid-cols-1">
           {/* Type of Crime */}
           <div className="w-full">
             <FormSelect
@@ -128,7 +128,7 @@ function SC_003_Step2IncidentInformation() {
         </div>
 
         <div>
-          <div className="">
+          <div>
             <RelevantPartiesTable label={"Relevant Parties"} />
             <div className="mt-2 flex justify-end">
               <Button
@@ -139,7 +139,7 @@ function SC_003_Step2IncidentInformation() {
               </Button>
             </div>
           </div>
-          <div className="">
+          <div>
             <RelevantPartiesTable label={"Initial Evidence"} />
             <div className="mt-2 flex justify-end">
               <Button

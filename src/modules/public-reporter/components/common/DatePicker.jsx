@@ -13,7 +13,7 @@ function CustomDatePicker({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex w-full flex-col">
+    <div className="mb-4 flex w-full flex-col">
       <label className="mb-1 font-medium text-[#141522]">
         {label} <span className="text-red-500">*</span>
       </label>
