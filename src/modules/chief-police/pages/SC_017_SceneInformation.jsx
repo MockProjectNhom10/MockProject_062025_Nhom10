@@ -54,9 +54,11 @@ function SceneInformation() {
   const handleEditClick = (item, idx) => {};
   const handleDeleteConfirm = () => {
     if (deleteTarget) {
-      setStatementData((prev) =>
-        prev.filter((_, idx) => idx !== deleteTarget.idx),
-      );
+      setStatementData((prev) => {
+        const updated = prev.filter((_, idx) => idx !== deleteTarget.idx);
+        localStorage.setItem("initialStatements", JSON.stringify(updated));
+        return updated;
+      });
       setDeleteModalOpen(false);
       setDeleteTarget(null);
     }
