@@ -21,6 +21,7 @@ import { useState } from "react";
 function SceneInformation() {
   const navigate = useNavigate();
   const { showSuccess, showLoading } = useToast();
+  const columns = evidenceColumns(navigate);
   const onClickNext = () => {
     navigate("/chief-police/initial-investigation-report");
   };
@@ -141,7 +142,7 @@ function SceneInformation() {
           </Button>
         }
       >
-        <GenericTable columns={evidenceColumns} data={evidenceData} />
+        <GenericTable columns={columns} data={evidenceData} />
       </FormCard>
     </FormSection>
   );

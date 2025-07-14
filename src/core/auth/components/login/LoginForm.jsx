@@ -3,7 +3,7 @@ import React from "react";
 import Link from "@core/auth/components/common/Link";
 import Button from "@core/auth/components/common/Button";
 import Input from "@core/auth/components/common/Input";
-import Checkbox from "@core/auth/components/common/CheckBox";
+import Checkbox from "@core/auth/components/common/Checkbox";
 
 const LoginForm = () => {
   const handleLogin = (e) => {
