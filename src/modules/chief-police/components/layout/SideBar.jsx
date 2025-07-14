@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ChevronDown, ChevronRight, X, Menu } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function SideBar({
   sections,
@@ -11,6 +12,7 @@ function SideBar({
   // Responsive sidebar state
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -44,17 +46,18 @@ function SideBar({
     setOpenSections((prev) =>
       prev.map((open, i) => (i === idx ? !open : open)),
     );
+    navigate(`/chief-police${sidebarData[idx].nav}`);
     if (onSectionChange) onSectionChange(idx);
     if (controlledActiveSection === undefined) setInternalActiveSection(idx);
     if (controlledActiveSubItem === undefined) setInternalActiveSubItem(0);
   };
 
-  const handleSubItemClick = (sectionIdx, subIdx) => {
-    if (onSubItemChange) onSubItemChange(sectionIdx, subIdx);
-    if (controlledActiveSection === undefined)
-      setInternalActiveSection(sectionIdx);
-    if (controlledActiveSubItem === undefined) setInternalActiveSubItem(subIdx);
-  };
+  // const handleSubItemClick = (sectionIdx, subIdx) => {
+  //   if (onSubItemChange) onSubItemChange(sectionIdx, subIdx);
+  //   if (controlledActiveSection === undefined)
+  //     setInternalActiveSection(sectionIdx);
+  //   if (controlledActiveSubItem === undefined) setInternalActiveSubItem(subIdx);
+  // };
 
   return (
     <>
@@ -102,8 +105,8 @@ function SideBar({
                         {section.subItems.map((sub, subIdx) => (
                           <li key={sub}>
                             <button
-                              className={`w-full rounded-xl px-3 py-2 text-left text-sm ${activeSubItem === subIdx ? "font-bold" : "font-normal"} text-gray-800 hover:bg-gray-100`}
-                              onClick={() => handleSubItemClick(idx, subIdx)}
+                              className={`w-full cursor-no-drop rounded-xl px-3 py-2 text-left text-sm text-gray-800 hover:bg-gray-100`}
+                              // onClick={() => handleSubItemClick(idx, subIdx)}
                             >
                               {sub}
                             </button>

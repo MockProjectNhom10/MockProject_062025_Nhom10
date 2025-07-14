@@ -8,8 +8,11 @@ import React from "react";
 import { CircleArrowRight, Pen, Plus, PlusCircle, Trash } from "lucide-react";
 import TextArea from "@chief-police/components/common/input/TextArea";
 import ActionButtons from "@chief-police/components/common/button/ActionButtons";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 const SC_016_InitialResponse = () => {
+  const navigate = useNavigate();
+  const { setActiveSection } = useOutletContext();
   const actionButtonsTwoOptions = [
     {
       label: "Delete",
@@ -17,7 +20,7 @@ const SC_016_InitialResponse = () => {
     },
     {
       label: "Edit",
-      color: "teal",
+      color: "green",
     },
   ];
   const actionButtonsThreeOptions = [
@@ -27,16 +30,28 @@ const SC_016_InitialResponse = () => {
     },
     {
       label: "Edit",
-      color: "teal",
+      color: "green",
     },
     {
       label: "View",
       color: "gray",
     },
   ];
+
+  const onClickNext = () => {
+    setActiveSection(1);
+    navigate("/chief-police/scene-information");
+  };
+
   return (
     <>
-      <FormSection title="INITIAL RESPONSE">
+      <FormSection
+        title="INITIAL RESPONSE"
+        footerCancel
+        footerSave
+        footerNext
+        onClickNext={onClickNext}
+      >
         <FormCard
           title="TIME OF DISPATCHING FORCES TO THE SCENE"
           button={<CustomDatePicker />}
@@ -50,39 +65,37 @@ const SC_016_InitialResponse = () => {
           classNameHeader="mb-4"
           title="LIST OF OFFICERS ASSIGNED TO THE SCENE"
           button={
-            <Button classNameChildren="flex flex-nowrap gap-2">
+            <Button
+              classNameChildren="flex flex-nowrap gap-2"
+              onClick={() => navigate("add-patrol")}
+            >
               Add {<PlusCircle className="h-4 w-4" />}
             </Button>
           }
         >
           <GenericTable
             columns={[
-              { header: "Họ tên", accessor: "name" },
-              { header: "Email", accessor: "email" },
-              { header: "Vai trò", accessor: "role" },
+              { header: "Fullname", accessor: "name" },
+              { header: "Phone number", accessor: "phone" },
+              { header: "Role", accessor: "role" },
               {
-                header: "Chi tiết",
+                header: "Details",
               },
             ]}
             data={[
               {
                 id: 1,
                 name: "Nguyễn Văn A",
-                email: "a@gmail.com",
+                phone: "0123456789",
                 role: "Admin",
               },
-              { id: 2, name: "Trần Thị B", email: "b@gmail.com", role: "User" },
+              { id: 2, name: "Trần Thị B", phone: "0377736789", role: "User" },
             ]}
           />
         </FormCard>
         <FormCard
           classNameHeader="mb-4"
           title="PRELIMINARY ASSESSMENT OF THE SCENE SITUATION"
-          button={
-            <Button classNameChildren="flex flex-nowrap gap-2">
-              Add {<PlusCircle className="h-4 w-4" />}
-            </Button>
-          }
         >
           <TextArea />
         </FormCard>
@@ -90,7 +103,10 @@ const SC_016_InitialResponse = () => {
           classNameHeader="mb-4"
           title="SCENE PRESERVATION MEASURES TAKEN"
           button={
-            <Button classNameChildren="flex flex-nowrap gap-2">
+            <Button
+              onClick={() => navigate("information-protection-field")}
+              classNameChildren="flex flex-nowrap gap-2"
+            >
               Add {<PlusCircle className="h-4 w-4" />}
             </Button>
           }
@@ -132,7 +148,10 @@ const SC_016_InitialResponse = () => {
           classNameHeader="mb-4"
           title="INFORMATION ON MEDICAL/RESCUE SUPPORT PROVIDED"
           button={
-            <Button classNameChildren="flex flex-nowrap gap-2">
+            <Button
+              classNameChildren="flex flex-nowrap gap-2"
+              onClick={() => navigate("medical-rescue-support")}
+            >
               Add {<PlusCircle className="h-4 w-4" />}
             </Button>
           }

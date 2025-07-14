@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "@chief-police/components/common/modal/Modal";
 
-const ConfirmationModal = ({
+const DeleteModal = ({
   isOpen,
   onClose,
   onConfirm,
@@ -38,4 +38,4 @@ const ConfirmationModal = ({
   );
 };
 
-export default ConfirmationModal;
+export default DeleteModal;
