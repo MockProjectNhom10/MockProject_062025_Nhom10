@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FormCard from "@chief-police/components/sections/FormCard";
 import FormSection from "@chief-police/components/sections/FormSection";
 import Button from "@chief-police/components/common/button/Button";
@@ -6,7 +6,7 @@ import { PlusCircle } from "lucide-react";
 import GenericTable from "@chief-police/components/table/GenericTable";
 
 import {
-  initialStatementsColumns,
+  getInitialStatementsColumns,
   initialStatementsData,
   mediaColumns,
   mediaData,
@@ -32,6 +32,17 @@ function SceneInformation() {
       navigate("/chief-police/initial-investigation-report");
     }, 1000);
   };
+
+  const [statementData, setStatementData] = useState([]);
+
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("initialStatements")) || [];
+    setStatementData(stored);
+  }, []);
+
+  const handleViewDetail = (item) => {
+    navigate("view-initial-statement", { state: item });
+  };
   return (
     <FormSection
       title="SCENE INFORMATION"
@@ -45,14 +56,17 @@ function SceneInformation() {
       <FormCard
         title="INITIAL STATEMENTS"
         button={
-          <Button onClick={() => navigate("view-initial-statement")}>
-            View Details
+          <Button
+            onClick={() => navigate("add-initial-statement")}
+            classNameChildren="flex gap-2"
+          >
+            <PlusCircle size={16} /> ADD
           </Button>
         }
       >
         <GenericTable
-          columns={initialStatementsColumns}
-          data={initialStatementsData}
+          columns={getInitialStatementsColumns(handleViewDetail)}
+          data={statementData}
         />
       </FormCard>
 

@@ -38,7 +38,7 @@ const FormSection = ({
           </Button>
         )}
         {footerSave && (
-          <Button onClick={onClickSave} variant="primary">
+          <Button onClick={onClickSave} variant="primary" type="submit">
             Save
           </Button>
         )}

@@ -10,6 +10,7 @@ import SC_067_MedicalRescueSupport from "@chief-police/pages/SC_067_MedicalRescu
 import SC_022_ViewIntinalStatement from "@chief-police/pages/SC_022_ViewIntinalStatement";
 import SC_069_ImagesAndVideos from "@chief-police/pages/SC_069_ImagesAndVideos";
 import SC_023_PreliminaryEvidence from "@chief-police/pages/SC_023_PreliminaryEvidence";
+import SC_070_AddInitialStatement from "@chief-police/pages/SC_070_AddIntinalStatement";
 
 const ChiefPoliceRoutes = () => {
   return (
@@ -34,6 +35,10 @@ const ChiefPoliceRoutes = () => {
         <Route
           path="/scene-information"
           element={<SC_017_SceneInformation />}
+        />
+        <Route
+          path="/scene-information/add-initial-statement"
+          element={<SC_070_AddInitialStatement />}
         />
         <Route
           path="/scene-information/view-initial-statement"

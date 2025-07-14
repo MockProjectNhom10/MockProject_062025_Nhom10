@@ -24,7 +24,7 @@ const Dropdown = ({
           value={value}
           onChange={onChange}
           disabled={disabled}
-          className="w-full appearance-none rounded border border-gray-300 px-4 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          className="focus:border-chief w-full appearance-none rounded border border-gray-300 bg-[#eee] px-4 py-2 text-sm focus:outline-none"
         >
           <option value="" disabled>
             {placeholder}

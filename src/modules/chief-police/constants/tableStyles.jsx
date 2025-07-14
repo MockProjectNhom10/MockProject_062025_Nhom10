@@ -91,22 +91,25 @@ export const medicalSupportColumns = [
 ];
 
 // ==== INITIAL STATEMENTS TABLE ====
-export const initialStatementsColumns = [
+export const getInitialStatementsColumns = (onView) => [
   { header: "#", render: (_item, index) => Number(index) + 1 || "-" },
-  { header: "Statement Type", accessor: "type" },
-  { header: "Provider", accessor: "provider" },
+  { header: "Statement Type", accessor: "role" },
+  { header: "Provider", accessor: "initialName" },
   { header: "Date", accessor: "date" },
   {
     header: "",
-    render: () => (
+    render: (item) => (
       <div className="flex space-x-2">
-        <button className="text-red-500 hover:text-red-700">
+        <button className="cursor-pointer text-red-500 hover:text-red-700">
           <Trash2 className="h-4 w-4" />
         </button>
-        <button className="text-blue-500 hover:text-blue-700">
+        <button className="cursor-pointer text-blue-500 hover:text-blue-700">
           <Edit className="h-4 w-4" />
         </button>
-        <button className="text-gray-700 hover:text-black">
+        <button
+          className="cursor-pointer text-gray-700 hover:text-black"
+          onClick={() => onView(item)}
+        >
           <CircleChevronRight className="h-4 w-4" />
         </button>
       </div>
