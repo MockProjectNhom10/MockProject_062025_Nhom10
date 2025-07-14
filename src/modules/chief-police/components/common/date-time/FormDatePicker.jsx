@@ -32,7 +32,7 @@ function FormDatePicker({
             onClick={() => setIsOpen(!isOpen)}
             className="flex items-center gap-2 rounded-lg border bg-[#e7edf6] px-4 py-1 text-sm text-gray-800"
           >
-            <span>{value ? format(value, "PPpp") : "Choose"}</span>
+            <span>{value ? format(value, "PP") : "Choose"}</span>
             <Calendar className="h-4 w-4" />
           </button>
         </div>
@@ -45,8 +45,6 @@ function FormDatePicker({
                 onChange(date);
                 setIsOpen(false);
               }}
-              showTimeSelect
-              dateFormat="Pp"
               inline
             />
           </div>
