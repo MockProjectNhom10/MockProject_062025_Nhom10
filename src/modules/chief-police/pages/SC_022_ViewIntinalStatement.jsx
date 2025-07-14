@@ -6,7 +6,7 @@ import Button from "../components/common/button/Button";
 import FormSection from "@chief-police/components/sections/FormSection";
 import FormCard from "@chief-police/components/sections/FormCard";
 import DragAndDropUpload from "@chief-police/components/common/upload/DragAndDropUpload";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const roleOptions = [
   { label: "Witness", value: "witness" },
@@ -14,11 +14,15 @@ const roleOptions = [
 ];
 
 const SC_022_ViewIntinalStatement = () => {
-  const [witnessName, setWitnessName] = useState("");
-  const [date, setDate] = useState("");
-  const [contact, setContact] = useState("");
-  const [role, setRole] = useState("");
-  const [statement, setStatement] = useState("");
+  const location = useLocation();
+  const data = location.state;
+
+  const [witnessName, setWitnessName] = useState(data?.initialName || "");
+  const [date, setDate] = useState(data?.date || "");
+  const [contact, setContact] = useState(data?.contactInformation || "");
+  const [role, setRole] = useState(data?.role || "");
+  const [statement, setStatement] = useState(data?.statementContent || "");
+
   const navigate = useNavigate();
 
   const handleSave = () => navigate("/chief-police/scene-information");

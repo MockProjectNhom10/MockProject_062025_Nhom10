@@ -1,8 +1,6 @@
 // ================= IMPORT ICONS =================
 import { CircleChevronRight, Edit, Trash2 } from "lucide-react";
 import Button from "@chief-police/components/common/button/Button";
-import { useNavigate } from "react-router-dom";
-import { use } from "react";
 // ================= TABLE STYLE VARIANTS =================
 export const tableStyles = {
   default: {
@@ -53,17 +51,26 @@ export const officerColumns = [
 ];
 
 // ==== PRESERVATION MEASURES TABLE ====
-export const getPreservationColumns = ({ onDelete = () => {}, onEdit = () => {} } = {}) => [
+export const getPreservationColumns = ({
+  onDelete = () => {},
+  onEdit = () => {},
+} = {}) => [
   { header: "#", accessor: "id", render: (item, index) => index + 1 },
   { header: "Preservation Measures", accessor: "measure" },
   {
     header: "",
     render: (item, idx) => (
       <div className="flex space-x-2">
-        <button className="text-red-500 hover:text-red-700" onClick={() => onDelete(item, idx)}>
+        <button
+          className="text-red-500 hover:text-red-700"
+          onClick={() => onDelete(item, idx)}
+        >
           <Trash2 className="h-4 w-4" />
         </button>
-        <button className="text-blue-500 hover:text-blue-700" onClick={() => onEdit(item, idx)}>
+        <button
+          className="text-blue-500 hover:text-blue-700"
+          onClick={() => onEdit(item, idx)}
+        >
           <Edit className="h-4 w-4" />
         </button>
       </div>
@@ -72,7 +79,11 @@ export const getPreservationColumns = ({ onDelete = () => {}, onEdit = () => {} 
 ];
 
 // ==== MEDICAL/RESCUE SUPPORT TABLE ====
-export const getMedicalSupportColumns = ({ onDelete = () => {}, onEdit = () => {}, onView = () => {} }) => [
+export const getMedicalSupportColumns = ({
+  onDelete = () => {},
+  onEdit = () => {},
+  onView = () => {},
+}) => [
   { header: "Medical/Rescue Unit ID", accessor: "unitId" },
   { header: "Type of Support Provided", accessor: "type" },
   { header: "Time of Arrival", accessor: "time" },
@@ -80,13 +91,22 @@ export const getMedicalSupportColumns = ({ onDelete = () => {}, onEdit = () => {
     header: "",
     render: (item, idx) => (
       <div className="flex space-x-2">
-        <button className="text-red-500 hover:text-red-700" onClick={() => onDelete(item, idx)}>
+        <button
+          className="text-red-500 hover:text-red-700"
+          onClick={() => onDelete(item, idx)}
+        >
           <Trash2 className="h-4 w-4" />
         </button>
-        <button className="text-blue-500 hover:text-blue-700" onClick={() => onEdit(item, idx)}>
+        <button
+          className="text-blue-500 hover:text-blue-700"
+          onClick={() => onEdit(item, idx)}
+        >
           <Edit className="h-4 w-4" />
         </button>
-        <button className="text-gray-700 hover:text-black" onClick={() => onView(item, idx)}>
+        <button
+          className="text-gray-700 hover:text-black"
+          onClick={() => onView(item, idx)}
+        >
           <CircleChevronRight className="h-4 w-4" />
         </button>
       </div>
@@ -95,22 +115,34 @@ export const getMedicalSupportColumns = ({ onDelete = () => {}, onEdit = () => {
 ];
 
 // ==== INITIAL STATEMENTS TABLE ====
-export const getInitialStatementsColumns = ({ onDelete = () => {}, onEdit = () => {}, onView = () => {} } = {}) => [
+export const getInitialStatementsColumns = ({
+  onDelete = () => {},
+  onEdit = () => {},
+  onView = () => {},
+} = {}) => [
   { header: "#", render: (_item, index) => Number(index) + 1 || "-" },
-  { header: "Statement Type", accessor: "type" },
-  { header: "Provider", accessor: "provider" },
+  { header: "Statement Type", accessor: "role" },
+  { header: "Provider", accessor: "initialName" },
   { header: "Date", accessor: "date" },
   {
-    header: "",
     render: (item, idx) => (
       <div className="flex space-x-2">
-        <button className="text-red-500 hover:text-red-700" onClick={() => onDelete(item, idx)}>
+        <button
+          className="text-red-500 hover:text-red-700"
+          onClick={() => onDelete(item, idx)}
+        >
           <Trash2 className="h-4 w-4" />
         </button>
-        <button className="text-blue-500 hover:text-blue-700" onClick={() => onEdit(item, idx)}>
+        <button
+          className="text-blue-500 hover:text-blue-700"
+          onClick={() => onEdit(item, idx)}
+        >
           <Edit className="h-4 w-4" />
         </button>
-        <button className="text-gray-700 hover:text-black" onClick={() => onView(item, idx)}>
+        <button
+          className="text-gray-700 hover:text-black"
+          onClick={() => onView(item, idx)}
+        >
           <CircleChevronRight className="h-4 w-4" />
         </button>
       </div>
@@ -125,7 +157,11 @@ export const initialStatementsData = [
 ];
 
 // ==== SCENE DESCRIPTION TABLE ====
-export const getSceneDescriptionColumns = ({ onDelete = () => {}, onEdit = () => {}, onView = () => {} } = {}) => [
+export const getSceneDescriptionColumns = ({
+  onDelete = () => {},
+  onEdit = () => {},
+  onView = () => {},
+} = {}) => [
   { header: "#", render: (_item, index) => Number(index) + 1 || "-" },
   { header: "Title", accessor: "title" },
   { header: "Provider", accessor: "provider" },
@@ -134,13 +170,22 @@ export const getSceneDescriptionColumns = ({ onDelete = () => {}, onEdit = () =>
     header: "",
     render: (item, idx) => (
       <div className="flex space-x-2">
-        <button className="text-red-500 hover:text-red-700" onClick={() => onDelete(item, idx)}>
+        <button
+          className="text-red-500 hover:text-red-700"
+          onClick={() => onDelete(item, idx)}
+        >
           <Trash2 className="h-4 w-4 text-red-500" />
         </button>
-        <button className="text-blue-500 hover:text-blue-700" onClick={() => onEdit(item, idx)}>
+        <button
+          className="text-blue-500 hover:text-blue-700"
+          onClick={() => onEdit(item, idx)}
+        >
           <Edit className="h-4 w-4 text-blue-500" />
         </button>
-        <button className="text-gray-700 hover:text-black" onClick={() => onView(item, idx)}>
+        <button
+          className="text-gray-700 hover:text-black"
+          onClick={() => onView(item, idx)}
+        >
           <CircleChevronRight className="h-4 w-4 text-gray-600" />
         </button>
       </div>
@@ -154,7 +199,11 @@ export const sceneDescriptionData = [
 ];
 
 // ==== IMAGES AND VIDEO TABLE ====
-export const getMediaColumns = ({ onDelete = () => {}, onEdit = () => {}, onView = () => {} } = {}) => [
+export const getMediaColumns = ({
+  onDelete = () => {},
+  onEdit = () => {},
+  onView = () => {},
+} = {}) => [
   { header: "#", render: (_item, index) => Number(index) + 1 || "-" },
   { header: "Media Type", accessor: "mediaType" },
   { header: "Description", accessor: "description" },
@@ -163,13 +212,22 @@ export const getMediaColumns = ({ onDelete = () => {}, onEdit = () => {}, onView
     header: "",
     render: (item, idx) => (
       <div className="flex space-x-2">
-        <button className="text-red-500 hover:text-red-700" onClick={() => onDelete(item, idx)}>
+        <button
+          className="text-red-500 hover:text-red-700"
+          onClick={() => onDelete(item, idx)}
+        >
           <Trash2 className="h-4 w-4 text-red-500" />
         </button>
-        <button className="text-blue-500 hover:text-blue-700" onClick={() => onEdit(item, idx)}>
+        <button
+          className="text-blue-500 hover:text-blue-700"
+          onClick={() => onEdit(item, idx)}
+        >
           <Edit className="h-4 w-4 text-blue-500" />
         </button>
-        <button className="text-gray-700 hover:text-black" onClick={() => onView(item, idx)}>
+        <button
+          className="text-gray-700 hover:text-black"
+          onClick={() => onView(item, idx)}
+        >
           <CircleChevronRight className="h-4 w-4 text-gray-600" />
         </button>
       </div>

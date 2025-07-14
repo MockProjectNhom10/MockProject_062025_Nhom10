@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FormCard from "@chief-police/components/sections/FormCard";
 import FormSection from "@chief-police/components/sections/FormSection";
 import Button from "@chief-police/components/common/button/Button";
@@ -7,16 +7,14 @@ import GenericTable from "@chief-police/components/table/GenericTable";
 import DeleteModal from "@chief-police/components/modal/DeleteModal";
 
 import {
-  initialStatementsData,
+  getInitialStatementsColumns,
   mediaData,
   evidenceColumns,
   evidenceData,
-  getInitialStatementsColumns,
   getMediaColumns,
 } from "@chief-police/constants/tableStyles";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@core/hooks/useToast";
-import { useState } from "react";
 
 function SceneInformation() {
   const navigate = useNavigate();
@@ -35,7 +33,18 @@ function SceneInformation() {
       navigate("/chief-police/initial-investigation-report");
     }, 1000);
   };
-  const [statements, setStatements] = useState(initialStatementsData);
+
+  const [statementData, setStatementData] = useState([]);
+
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("initialStatements")) || [];
+    setStatementData(stored);
+  }, []);
+
+  const handleViewDetail = (item) => {
+    navigate("view-initial-statement", { state: item });
+  };
+
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState(null);
   const handleDeleteClick = (item, idx) => {
@@ -43,10 +52,11 @@ function SceneInformation() {
     setDeleteModalOpen(true);
   };
   const handleEditClick = (item, idx) => {};
-  const handleViewClick = (item, idx) => {};
   const handleDeleteConfirm = () => {
     if (deleteTarget) {
-      setStatements((prev) => prev.filter((_, idx) => idx !== deleteTarget.idx));
+      setStatementData((prev) =>
+        prev.filter((_, idx) => idx !== deleteTarget.idx),
+      );
       setDeleteModalOpen(false);
       setDeleteTarget(null);
     }
@@ -65,7 +75,9 @@ function SceneInformation() {
   };
   const handleDeleteMediaConfirm = () => {
     if (deleteMediaTarget) {
-      setMedia((prev) => prev.filter((_, idx) => idx !== deleteMediaTarget.idx));
+      setMedia((prev) =>
+        prev.filter((_, idx) => idx !== deleteMediaTarget.idx),
+      );
       setDeleteMediaModalOpen(false);
       setDeleteMediaTarget(null);
     }
@@ -87,8 +99,11 @@ function SceneInformation() {
       <FormCard
         title="INITIAL STATEMENTS"
         button={
-          <Button onClick={() => navigate("view-initial-statement")}>
-            View Details
+          <Button
+            onClick={() => navigate("add-initial-statement")}
+            classNameChildren="flex gap-2"
+          >
+            <PlusCircle size={16} /> ADD
           </Button>
         }
       >
@@ -96,9 +111,9 @@ function SceneInformation() {
           columns={getInitialStatementsColumns({
             onDelete: handleDeleteClick,
             onEdit: handleEditClick,
-            onView: handleViewClick,
+            onView: handleViewDetail,
           })}
-          data={statements}
+          data={statementData}
         />
         <DeleteModal
           isOpen={deleteModalOpen}

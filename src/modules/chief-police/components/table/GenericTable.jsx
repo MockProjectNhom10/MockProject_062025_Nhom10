@@ -50,7 +50,7 @@ const GenericTable = ({
                   {columns.map((column, colIndex) => (
                     <td className={styles.td} key={colIndex}>
                       {column.render ? (
-                        column.render(item)
+                        column.render(item, rowIndex)
                       ) : (
                         <span>{item[column.accessor] || "-"}</span>
                       )}

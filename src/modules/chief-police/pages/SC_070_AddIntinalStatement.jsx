@@ -1,142 +1,142 @@
-import TimePicker from "@chief-police/components/common/date-time/TimePicker";
+import { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import Dropdown from "@chief-police/components/common/dropdown/DropDown";
 import FormInput from "@chief-police/components/common/input/FormInput";
 import TextArea from "@chief-police/components/common/input/TextArea";
-import FilePreviewItem from "@chief-police/components/common/upload/FilePreviewItem";
 import FormSection from "@chief-police/components/sections/FormSection";
-import { useState, useRef } from "react";
-import DatePicker from "react-datepicker";
-
-const FILE_TYPE_LABELS = {
-    pdf: { label: "PDF", color: "bg-red-100 text-red-500" },
-    png: { label: "PNG", color: "bg-blue-100 text-blue-500" },
-    jpg: { label: "JPG", color: "bg-yellow-100 text-yellow-600" },
-    jpeg: { label: "JPG", color: "bg-yellow-100 text-yellow-600" },
-    gif: { label: "GIF", color: "bg-pink-100 text-pink-500" },
-    mp4: { label: "MP4", color: "bg-purple-100 text-purple-500" },
-    doc: { label: "DOC", color: "bg-blue-100 text-blue-700" },
-    docx: { label: "DOCX", color: "bg-blue-100 text-blue-700" },
-    ppt: { label: "PPT", color: "bg-orange-100 text-orange-500" },
-    pptx: { label: "PPTX", color: "bg-orange-100 text-orange-500" },
-    xls: { label: "XLS", color: "bg-green-100 text-green-600" },
-    xlsx: { label: "XLSX", color: "bg-green-100 text-green-600" },
-    ai: { label: "AI", color: "bg-gray-200 text-gray-700" },
-    psd: { label: "PSD", color: "bg-indigo-100 text-indigo-500" },
-    default: { label: "FILE", color: "bg-gray-200 text-gray-700" },
-};
-
-function getFileTypeLabel(filename) {
-    if (!filename) return FILE_TYPE_LABELS.default;
-    const ext = filename.split(".").pop().toLowerCase();
-    return FILE_TYPE_LABELS[ext] || FILE_TYPE_LABELS.default;
-}
+import FileUpload from "@chief-police/components/common/upload/FileUpload";
+import FormDatePicker from "@chief-police/components/common/date-time/FormDatePicker";
 
 const SC_070_AddInitialStatement = () => {
-    const [files, setFiles] = useState([]);
-    const fileInputRef = useRef();
+  const navigate = useNavigate();
 
-    const handleRemove = (idx) => {
-        setFiles(files.filter((_, i) => i !== idx));
+  const { register, handleSubmit, control, setValue } = useForm();
+
+  const [files, setFiles] = useState([]);
+
+  useEffect(() => {
+    setValue("evidenceFiles", files);
+  }, [files, setValue]);
+
+  const handleSave = (data) => {
+    console.log("Form submitted:", data);
+
+    const newStatement = {
+      ...data,
+      evidenceFiles: files,
+      id: Date.now(),
     };
 
-    const handleFileChange = (e) => {
-        const file = e.target.files && e.target.files[0];
-        if (file && file.name) {
-            const newFile = {
-                name: file.name,
-                size: `${Math.round(file.size / 1024)} KB`,
-                date: new Date().toLocaleDateString("en-GB", {
-                    day: "2-digit",
-                    month: "short",
-                    year: "numeric",
-                }),
-            };
-            setFiles((prev) => [...prev, newFile]);
-        }
-    };
+    const existing =
+      JSON.parse(localStorage.getItem("initialStatements")) || [];
+    const updated = [...existing, newStatement];
 
-    const handleUploadClick = () => {
-        fileInputRef.current.value = null;
-        fileInputRef.current.click();
-    };
+    localStorage.setItem("initialStatements", JSON.stringify(updated));
 
-    return (
-        <div className="min-h-screen bg-[#E7E7E7] pb-8">
-            <div className="bg-teal-500 px-4 py-4 sm:px-6 rounded-t-lg mb-6">
-                <h1 className="text-white text-center font-bold uppercase text-base sm:text-lg">
-                    Add Initial Statement
-                </h1>
-            </div>
+    navigate(-1);
+  };
 
-            <div className="px-4 sm:px-6 md:px-12 lg:px-20 xl:px-[50px] space-y-6">
-                <FormSection title="Initial information">
-                    <div className="border rounded-[8px] border-solid-[1px] p-[20px] mb-[20px]">
-                        <FormInput className="w-[50%]" label="Initial name" />
-                        <FormInput className="w-[50%]" label="Date" value='20/7/2025' />
-                        <FormInput className="w-[50%]" label="Contact information"/>
-                        <FormInput className="w-[50%]" label="Role" />
-                    </div>
-                </FormSection>
+  const roleOptions = [
+    { label: "Witness", value: "witness" },
+    { label: "Suspect", value: "suspect" },
+  ];
 
-                <FormSection title="Detailed statement">
-                    <div className="border p-4 rounded-[10px] bg-gray-50 text-sm text-gray-700">
-                        <TextArea label="Content of the statement" />
-                    </div>
-                    <div className="mt-2 flex justify-end gap-2">
-                        <button className="px-4 py-2 text-sm text-gray-700 bg-gray-200 rounded-md cursor-pointer">Cancel</button>
-                        <button className="px-4 py-2 text-sm text-white bg-teal-500 rounded-md cursor-pointer">Add</button>
-                    </div>
-                </FormSection>
+  const handleCancel = () => {
+    navigate(-1);
+  };
 
-                <section className="w-full rounded-xl border border-gray-200 bg-white p-5 shadow-md">
-                    <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between border-b pb-3">
-                        <h2 className="text-xl font-semibold text-gray-800">Evidence Link</h2>
-                        <button
-                            type="button"
-                            onClick={handleUploadClick}
-                            className="mt-2 sm:mt-0 rounded-md bg-gray-200 px-4 py-2 text-sm text-gray-700"
-                        >
-                            Upload file
-                        </button>
-                        <input
-                            type="file"
-                            ref={fileInputRef}
-                            onChange={handleFileChange}
-                            className="hidden"
-                        />
-                    </div>
+  return (
+    <FormSection
+      title="ADD INITIAL STATEMENT"
+      footerCancel
+      footerSave
+      onClickCancel={handleCancel}
+      onClickSave={handleSubmit(handleSave)}
+    >
+      <form
+        onSubmit={handleSubmit(handleSave)}
+        className="space-y-6 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-[50px]"
+      >
+        <FormSection title="Initial information">
+          <div className="border-solid-[1px] mb-[20px] rounded-[8px] border p-[20px]">
+            <FormInput
+              className="desktop:w-[50%] w-full"
+              label="Initial name"
+              name="initialName"
+              {...register("initialName")}
+            />
+            <Controller
+              name="date"
+              control={control}
+              render={({ field, fieldState }) => (
+                <FormDatePicker
+                  label="Date"
+                  value={field.value}
+                  onChange={field.onChange}
+                  error={fieldState?.error?.message}
+                  className="desktop:w-[50%] w-full"
+                />
+              )}
+            />
+            <FormInput
+              className="desktop:w-[50%] w-full"
+              label="Contact information"
+              name="contactInformation"
+              {...register("contactInformation")}
+            />
+            <Controller
+              name="role"
+              control={control}
+              render={({ field }) => (
+                <Dropdown
+                  label="Role"
+                  className="desktop:w-[50%] w-full"
+                  options={roleOptions}
+                  value={field.value}
+                  onChange={field.onChange}
+                />
+              )}
+            />
+          </div>
+        </FormSection>
 
-                    <div className="mt-4 flex flex-wrap gap-3 sm:gap-4">
-                        {files.map((file, idx) => (
-                            <FileCard key={idx} file={file} onRemove={() => handleRemove(idx)} />
-                        ))}
-                    </div>
-                </section>
-            </div>
-        </div>
-    );
-};
-
-const FileCard = ({ file, onRemove }) => {
-    const { label, color } = getFileTypeLabel(file.name);
-    if (!file || !file.name) return null;
-    return (
-        <div className="flex w-full max-w-[180px] items-center gap-3 truncate rounded-lg bg-[#F6F6F6] px-4 py-3 text-sm">
-            <div className={`rounded px-2 py-1 text-xs font-bold ${color}`}>{label}</div>
-            <div className="min-w-0 flex-1">
-                <div className="truncate font-medium text-gray-700">{file.name}</div>
-                <div className="truncate text-xs text-gray-400">{file.size} • {file.date}</div>
-            </div>
-            <button
-                type="button"
-                onClick={onRemove}
-                className="text-gray-400 hover:text-red-500"
-            >
-                <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                </svg>
+        <FormSection title="Detailed statement">
+          <div className="rounded-[10px] border bg-gray-50 p-4 text-sm text-gray-700">
+            <TextArea
+              label="Content of the statement"
+              name="statementContent"
+              {...register("statementContent")}
+            />
+          </div>
+          {/* <div className="mt-2 flex justify-end gap-2">
+            <button className="cursor-pointer rounded-md bg-gray-200 px-4 py-2 text-sm text-gray-700">
+              Cancel
             </button>
-        </div>
-    );
+            <button className="cursor-pointer rounded-md bg-teal-500 px-4 py-2 text-sm text-white">
+              Add
+            </button>
+          </div> */}
+        </FormSection>
+
+        <section className="w-full rounded-xl border border-gray-200 bg-white p-5 shadow-md">
+          <div className="mb-4 flex flex-col border-b pb-3 sm:flex-row sm:items-center sm:justify-between">
+            <h2 className="text-xl font-semibold text-gray-800">
+              Evidence Link
+            </h2>
+          </div>
+          <Controller
+            name="evidenceFiles"
+            control={control}
+            defaultValue={[]}
+            render={({ field }) => (
+              <FileUpload files={files} setFiles={setFiles} />
+            )}
+          />
+        </section>
+      </form>
+    </FormSection>
+  );
 };
 
 export default SC_070_AddInitialStatement;
