@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 
-const Input = ({ label, type = "text", error, register, ...props }) => {
+const Input = forwardRef(({ label, type = "text", error, ...props }, ref) => {
   const [showPassword, setShowPassword] = useState(false);
   const [focused, setFocused] = useState(false);
 
@@ -15,6 +15,7 @@ const Input = ({ label, type = "text", error, register, ...props }) => {
       <div className="relative">
         <input
           type={inputType}
+          ref={ref}
           className={`text-md w-full rounded-2xl border bg-gray-800/50 px-4 py-2.5 text-white placeholder-gray-400 backdrop-blur-sm transition-all duration-300 ${
             focused
               ? "border-blue-500 bg-gray-800/70 shadow-lg shadow-blue-500/20"
@@ -24,7 +25,6 @@ const Input = ({ label, type = "text", error, register, ...props }) => {
           } focus:outline-none`}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
-          {...register}
           {...props}
         />
         {type === "password" && (
@@ -44,6 +44,6 @@ const Input = ({ label, type = "text", error, register, ...props }) => {
       )}
     </div>
   );
-};
+});
 
 export default Input;

@@ -4,10 +4,18 @@ import Link from "@core/auth/components/common/Link";
 import Button from "@core/auth/components/common/Button";
 import Input from "@core/auth/components/common/Input";
 import Checkbox from "@core/auth/components/common/Checkbox";
+import { useForm } from "react-hook-form";
+import { MESSAGES } from "@core/auth/constants";
 
 const LoginForm = () => {
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const handleLogin = (data) => {
+    console.log(data); // hoặc gọi API login ở đây
   };
 
   return (
@@ -45,13 +53,21 @@ const LoginForm = () => {
                   {/* Login Form */}
                   <form
                     className="mobile:max-w-[360px] tablet:mx-0 mx-auto w-full max-w-[320px]"
-                    onSubmit={handleLogin}
+                    onSubmit={handleSubmit(handleLogin)}
                   >
                     <Input
                       label="Username"
                       type="text"
                       name="username"
                       placeholder="Enter your username"
+                      error={errors.username}
+                      {...register("username", {
+                        required: MESSAGES.REQUIRED,
+                        maxLength: {
+                          value: 20,
+                          message: MESSAGES.MAX_USERNAME,
+                        },
+                      })}
                     />
 
                     <Input
@@ -59,6 +75,14 @@ const LoginForm = () => {
                       type="password"
                       name="password"
                       placeholder="Enter your password"
+                      error={errors.password}
+                      {...register("password", {
+                        required: MESSAGES.REQUIRED,
+                        minLength: {
+                          value: 6,
+                          message: MESSAGES.MIN_PASSWORD,
+                        },
+                      })}
                     />
 
                     {/* Remember & Forgot */}
