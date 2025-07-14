@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "@chief-police/components/layout/MainLayout";
+import SC_013_PreliminaryInvestigation from "@chief-police/pages/SC_013_PreliminaryInvestigation";
 import SC_016_InitialResponse from "@chief-police/pages/SC_016_InitialResponse";
 import SC_014_AddPartrol from "@chief-police/pages/SC_014_AddPatrol";
 import SC_018_InformationProtectionField from "@chief-police/pages/SC_018_InformationProtectionField";
@@ -14,8 +15,9 @@ import SC_023_PreliminaryEvidence from "@chief-police/pages/SC_023_PreliminaryEv
 const ChiefPoliceRoutes = () => {
   return (
     <Routes>
+      <Route path="/" element={<SC_013_PreliminaryInvestigation />} />
+
       <Route element={<MainLayout />}>
-        <Route path="/" element={<SC_016_InitialResponse />} />
         {/*Step 1 */}
         <Route path="/initial-response" element={<SC_016_InitialResponse />} />
         <Route

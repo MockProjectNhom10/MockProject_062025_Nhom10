@@ -2,6 +2,7 @@
 import { CircleChevronRight, Edit, Trash2 } from "lucide-react";
 import Button from "@chief-police/components/common/button/Button";
 import { useNavigate } from "react-router-dom";
+import { use } from "react";
 // ================= TABLE STYLE VARIANTS =================
 export const tableStyles = {
   default: {
@@ -167,7 +168,7 @@ export const mediaData = [
 ];
 
 // ==== PRELIMINARY PHYSICAL EVIDENCE TABLE ====
-export const evidenceColumns = [
+export const evidenceColumns = (navigate) => [
   { header: "ID", accessor: "id" },
   { header: "Location", accessor: "location" },
   { header: "Collector", accessor: "collector" },
@@ -177,7 +178,9 @@ export const evidenceColumns = [
     render: () => (
       <Button
         variant="link"
-        onClick={() => useNavigate("preliminary-evidence/edit")}
+        onClick={() =>
+          navigate("/chief-police/scene-information/preliminary-evidence/edit")
+        }
         className="text-sm text-blue-600"
       >
         View details

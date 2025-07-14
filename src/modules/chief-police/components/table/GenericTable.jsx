@@ -8,6 +8,7 @@ const GenericTable = ({
   data,
   variant = "default",
   onSort,
+  onClick,
 }) => {
   const styles = tableStyles[variant] || tableStyles.default;
 
@@ -41,7 +42,11 @@ const GenericTable = ({
           <tbody>
             {data?.length > 0 ? (
               data.map((item, rowIndex) => (
-                <tr className={styles.tr} key={item.id || rowIndex}>
+                <tr
+                  className={styles.tr}
+                  key={item.id || rowIndex}
+                  onClick={onClick}
+                >
                   {columns.map((column, colIndex) => (
                     <td className={styles.td} key={colIndex}>
                       {column.render ? (
