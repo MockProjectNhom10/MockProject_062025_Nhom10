@@ -36,17 +36,36 @@ const sections = [
 ];
 
 const MainLayout = () => {
+  const [activeSection, setActiveSection] = useState(0);
+  const [activeSubItem, setActiveSubItem] = useState(0);
+
+  const handleSectionChange = (sectionIdx) => {
+    setActiveSection(sectionIdx);
+    setActiveSubItem(0); // Reset sub-item when section changes
+  };
+
+  const handleSubItemChange = (sectionIdx, subIdx) => {
+    setActiveSection(sectionIdx);
+    setActiveSubItem(subIdx);
+  };
+
   return (
     <div className="max-tablet:pt-6 max-mobile:pt-0 flex min-h-screen flex-col bg-white pt-4">
       {/* Main area: sidebar + content */}
       <div className="flex flex-1 flex-col md:flex-row">
         {/* Sidebar: block above content on mobile, left on desktop */}
-        <SideBar sections={sections} />
+        <SideBar
+          sections={sections}
+          onSectionChange={handleSectionChange}
+          onSubItemChange={handleSubItemChange}
+          activeSection={activeSection}
+          activeSubItem={activeSubItem}
+        />
 
         {/* Main content */}
         <div className="flex min-h-0 flex-1 flex-col">
           <div className="mx-8 flex-1 overflow-auto">
-            <Outlet />
+            <Outlet context={{ setActiveSection, setActiveSubItem }} />
           </div>
         </div>
       </div>

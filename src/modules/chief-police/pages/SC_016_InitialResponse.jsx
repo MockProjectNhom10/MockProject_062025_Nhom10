@@ -8,10 +8,11 @@ import React from "react";
 import { CircleArrowRight, Pen, Plus, PlusCircle, Trash } from "lucide-react";
 import TextArea from "@chief-police/components/common/input/TextArea";
 import ActionButtons from "@chief-police/components/common/button/ActionButtons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 const SC_016_InitialResponse = () => {
   const navigate = useNavigate();
+  const { setActiveSection } = useOutletContext();
   const actionButtonsTwoOptions = [
     {
       label: "Delete",
@@ -38,8 +39,10 @@ const SC_016_InitialResponse = () => {
   ];
 
   const onClickNext = () => {
+    setActiveSection(1);
     navigate("/chief-police/scene-information");
   };
+
   return (
     <>
       <FormSection

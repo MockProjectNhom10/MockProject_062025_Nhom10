@@ -4,7 +4,6 @@ import FormSection from "@chief-police/components/sections/FormSection";
 import Button from "@chief-police/components/common/button/Button";
 import { PlusCircle } from "lucide-react";
 import GenericTable from "@chief-police/components/table/GenericTable";
-
 import {
   initialStatementsColumns,
   initialStatementsData,
@@ -13,25 +12,33 @@ import {
   evidenceColumns,
   evidenceData,
 } from "@chief-police/constants/tableStyles";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { useToast } from "@core/hooks/useToast";
 
 function SceneInformation() {
   const navigate = useNavigate();
+  const { setActiveSection } = useOutletContext();
   const { showSuccess, showLoading } = useToast();
+
   const onClickNext = () => {
+    setActiveSection(2);
     navigate("/chief-police/initial-investigation-report");
   };
+
   const onClickBack = () => {
+    setActiveSection(0);
     navigate("/chief-police/initial-response");
   };
+
   const onClickSave = () => {
     showLoading("Saving information...");
     setTimeout(() => {
       showSuccess("Information saved successfully!");
+      setActiveSection(2);
       navigate("/chief-police/initial-investigation-report");
     }, 1000);
   };
+
   return (
     <FormSection
       title="SCENE INFORMATION"
