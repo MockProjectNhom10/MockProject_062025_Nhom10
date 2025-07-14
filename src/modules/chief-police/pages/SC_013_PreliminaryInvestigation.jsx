@@ -6,6 +6,7 @@ import { cases } from "../constants/preliminary-investigation-data";
 import PageSizeDropDown from "../components/common/dropdown/PageSizeDropDown";
 import SearchInput from "../components/common/input/SearchInput";
 import { LogOut, ChevronsUpDown } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 // Custom hook for sorting
 function useSort(data, defaultKey = null) {
@@ -44,6 +45,7 @@ export default function SC_013_PreliminaryInvestigation() {
   const [filter, setFilter] = useState({ keyword: "" });
   const [page, setPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10); // default 10
+  const navigate = useNavigate();
 
   // Filtering logic
   const filteredCases = useMemo(() => {
@@ -101,6 +103,8 @@ export default function SC_013_PreliminaryInvestigation() {
     setPage(1);
   }, [filter.keyword, itemsPerPage]);
 
+  const handleClickTable = () => navigate("/chief-police/initial-response");
+
   return (
     <div className="flex min-h-screen flex-col bg-gray-100">
       {/* Header */}
@@ -154,6 +158,7 @@ export default function SC_013_PreliminaryInvestigation() {
               )}
               sortConfig={sortConfig}
               onSort={handleSort}
+              onClick={handleClickTable}
             />
           </div>
         </div>

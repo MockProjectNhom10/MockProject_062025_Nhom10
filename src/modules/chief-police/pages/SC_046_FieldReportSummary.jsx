@@ -26,6 +26,7 @@ const SC_018_InformationProtectionField = () => {
     showLoading("Excalating information...");
     setTimeout(() => {
       showSuccess("Information excalated successfully!");
+      navigate("/chief-police");
     }, 1000);
   };
   return (
