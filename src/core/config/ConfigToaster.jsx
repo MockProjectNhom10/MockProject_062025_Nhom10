@@ -12,7 +12,7 @@ const ConfigToaster = () => {
       containerStyle={{}}
       toastOptions={{
         className: "",
-        duration: 4000,
+        duration: 1000,
         style: {
           background: "#363636",
           color: "#fff",

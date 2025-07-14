@@ -15,12 +15,12 @@ export default function TimePicker() {
   return (
     <div className="flex items-center space-x-3">
       {/* Time Select */}
-      <div className="flex items-center space-x-2 rounded-lg border-1 border-gray-200 bg-gray-100 px-2 py-1 shadow-sm">
+      <div className="flex items-center space-x-2 rounded-lg border-1 border-gray-200 bg-gray-100 px-2 shadow-sm">
         {/* Hour */}
         <select
           value={hour}
           onChange={(e) => setHour(e.target.value)}
-          className="text-md appearance-none bg-transparent font-mono outline-none"
+          className="appearance-none bg-transparent font-mono text-sm outline-none"
         >
           {hours.map((h) => (
             <option key={h} value={h}>
@@ -35,7 +35,7 @@ export default function TimePicker() {
         <select
           value={minute}
           onChange={(e) => setMinute(e.target.value)}
-          className="text-md appearance-none rounded-2xl bg-transparent font-mono outline-none"
+          className="appearance-none rounded-2xl bg-transparent font-mono text-sm outline-none"
         >
           {minutes.map((m) => (
             <option key={m} value={m} className="rounded-2xl">
@@ -46,9 +46,9 @@ export default function TimePicker() {
       </div>
 
       {/* AM/PM Toggle */}
-      <div className="flex overflow-hidden rounded-lg border-1 border-gray-200 bg-gray-100 shadow-sm">
+      <div className="flex overflow-hidden rounded-lg border-1 border-gray-200 bg-gray-100 py-1 shadow-sm">
         <button
-          className={`rounded-lg px-3 py-2 text-xs font-medium ${
+          className={`rounded-lg px-3 py-1 text-xs font-medium ${
             period === "AM"
               ? "bg-white text-gray-900 shadow-inner"
               : "bg-gray-100 text-gray-500"
@@ -58,7 +58,7 @@ export default function TimePicker() {
           AM
         </button>
         <button
-          className={`rounded-lg px-3 py-2 text-xs font-medium ${
+          className={`rounded-lg px-3 py-1 text-xs font-medium ${
             period === "PM"
               ? "bg-white text-gray-900 shadow-inner"
               : "bg-gray-100 text-gray-500"

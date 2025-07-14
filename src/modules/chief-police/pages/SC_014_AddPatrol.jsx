@@ -1,3 +1,4 @@
+
 import Button from "@chief-police/components/common/button/Button";
 import FormCard from "@chief-police/components/sections/FormCard";
 import FormSection from "@chief-police/components/sections/FormSection";
@@ -6,10 +7,15 @@ import PaginationControls from "@chief-police/components/table/PaginationControl
 import { statusMap, tableHeaders, users } from "@chief-police/utils/chief-police-constants";
 import { Plus, PlusCircle, Search } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@core/hooks/useToast";
+
 let itemsPerpage = 10;
 
 
 export default function AddPatrolOfficer() {
+  const navigate = useNavigate();
+  const { showSuccess, showLoading } = useToast();
   let [filter, setFilter] = useState({
     keyword: "",
     zone: "",
@@ -29,6 +35,16 @@ export default function AddPatrolOfficer() {
   useEffect(() => {
     setPage(1);
   }, [filter]);
+
+  const handleAddOfficer = () => {
+    showLoading("Adding officer to scene...");
+
+    setTimeout(() => {
+      navigate("/chief-police/initial-response");
+
+      showSuccess("Add successfully");
+    }, 1000);
+  };
   return (
     <FormSection title="ADD PATROL TO SCENE">
       {/* Body */}
@@ -67,7 +83,11 @@ export default function AddPatrolOfficer() {
         {/* Inline Header Above Table */}
         <div className="mt-4 flex items-center justify-between">
           <h1 className="font-bold uppercase">Add Patrol Offical to Sence</h1>
-          <button className="flex items-center gap-1 rounded-md border border-gray-300 bg-blue-200 px-5 py-3 text-sm font-medium shadow-sm hover:bg-blue-100">
+
+          <button
+            onClick={handleAddOfficer}
+            className="flex items-center gap-1 rounded-md border border-gray-300 bg-blue-200 px-3 py-2 text-xs font-medium shadow-sm hover:bg-blue-100"
+          >
             ADD <PlusCircle size={16} />
           </button>
         </div>
@@ -127,7 +147,7 @@ function TableBody({ users, page, itemsPerpage }) {
               {start + i + 1}
             </td>
             <td className="border border-gray-300 px-2 py-1 text-center">
-              <input type="checkbox" className="h-5 w-5 accent-blue-500" />
+              <input disabled={user.status==0} type="checkbox" className="h-5 w-5 accent-blue-500" />
             </td>
             <td className="border border-gray-300 px-2 py-1">
               {user.fullName}

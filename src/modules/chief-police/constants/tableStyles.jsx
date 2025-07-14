@@ -1,16 +1,16 @@
-
 // ================= IMPORT ICONS =================
 import { CircleChevronRight, Edit, Trash2 } from "lucide-react";
 import Button from "@chief-police/components/common/button/Button";
-
+import { useNavigate } from "react-router-dom";
 // ================= TABLE STYLE VARIANTS =================
 export const tableStyles = {
   default: {
-    table: "min-w-full  border bg-gray-50 ",
-    thead: "bg-gray-100",
-    tr: "border-b bg-gray-200 last:border-b-0",
-    th: "p-4 text-left text-sm font-medium text-gray-600",
-    td: "p-4 text-sm text-gray-700",
+    table:
+      "min-w-full  border border-gray-300 bg-gray-50 rounded-lg overflow-hidden",
+    thead: "bg-police  border-b border-gray-300 ",
+    tr: "border-b border-gray-300 bg-gray-100 last:border-b-0 ",
+    th: "p-3 text-left text-xs font-semibold text-white ",
+    td: "p-3 text-xs text-gray-700",
   },
   status: {
     table: "min-w-full border border-gray-300  ",
@@ -60,10 +60,10 @@ export const preservationColumns = [
     render: () => (
       <div className="flex space-x-2">
         <button className="text-red-500 hover:text-red-700">
-          <Trash2 className="w-4 h-4" />
+          <Trash2 className="h-4 w-4" />
         </button>
         <button className="text-blue-500 hover:text-blue-700">
-          <Edit className="w-4 h-4" />
+          <Edit className="h-4 w-4" />
         </button>
       </div>
     ),
@@ -80,10 +80,10 @@ export const medicalSupportColumns = [
     render: () => (
       <div className="flex space-x-2">
         <button className="text-red-500 hover:text-red-700">
-          <Trash2 className="w-4 h-4" />
+          <Trash2 className="h-4 w-4" />
         </button>
         <button className="text-blue-500 hover:text-blue-700">
-          <CircleChevronRight className="w-4 h-4" />
+          <CircleChevronRight className="h-4 w-4" />
         </button>
       </div>
     ),
@@ -101,13 +101,13 @@ export const initialStatementsColumns = [
     render: () => (
       <div className="flex space-x-2">
         <button className="text-red-500 hover:text-red-700">
-          <Trash2 className="w-4 h-4" />
+          <Trash2 className="h-4 w-4" />
         </button>
         <button className="text-blue-500 hover:text-blue-700">
-          <Edit className="w-4 h-4" />
+          <Edit className="h-4 w-4" />
         </button>
         <button className="text-gray-700 hover:text-black">
-          <CircleChevronRight className="w-4 h-4" />
+          <CircleChevronRight className="h-4 w-4" />
         </button>
       </div>
     ),
@@ -130,9 +130,9 @@ export const sceneDescriptionColumns = [
     header: "",
     render: () => (
       <div className="flex space-x-2">
-        <Trash2 className="w-4 h-4 text-red-500" />
-        <Edit className="w-4 h-4 text-blue-500" />
-        <CircleChevronRight className="w-4 h-4 text-gray-600" />
+        <Trash2 className="h-4 w-4 text-red-500" />
+        <Edit className="h-4 w-4 text-blue-500" />
+        <CircleChevronRight className="h-4 w-4 text-gray-600" />
       </div>
     ),
   },
@@ -153,9 +153,9 @@ export const mediaColumns = [
     header: "",
     render: () => (
       <div className="flex space-x-2">
-        <Trash2 className="w-4 h-4 text-red-500" />
-        <Edit className="w-4 h-4 text-blue-500" />
-        <CircleChevronRight className="w-4 h-4 text-gray-600" />
+        <Trash2 className="h-4 w-4 text-red-500" />
+        <Edit className="h-4 w-4 text-blue-500" />
+        <CircleChevronRight className="h-4 w-4 text-gray-600" />
       </div>
     ),
   },
@@ -175,7 +175,11 @@ export const evidenceColumns = [
   {
     header: "",
     render: () => (
-      <Button variant="link" className="text-sm text-blue-600">
+      <Button
+        variant="link"
+        onClick={() => useNavigate("preliminary-evidence/edit")}
+        className="text-sm text-blue-600"
+      >
         View details
       </Button>
     ),

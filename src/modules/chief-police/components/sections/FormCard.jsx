@@ -10,13 +10,11 @@ const FormCard = ({
 }) => {
   return (
     <div
-      className={`rounded-lg border border-gray-200 bg-gray-50 p-4 ${className}`}
+      className={`rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 ${className}`}
     >
       {(title || button) && (
         <div
-
           className={`mb-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between ${classNameHeader}`}
-
         >
           {title && (
             <h3 className="text-xs font-semibold text-gray-600">{title}</h3>

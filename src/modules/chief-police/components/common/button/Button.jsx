@@ -19,7 +19,7 @@ const Button = ({
       variantClass = "bg-gray-200 text-gray-800 hover:bg-gray-300";
       break;
     case "danger":
-      variantClass = "bg-red-600 text-white hover:bg-red-700";
+      variantClass = "bg-red-500 text-white hover:bg-red-700";
       break;
     case "outline":
       variantClass = "border border-gray-500 text-gray-800 hover:bg-gray-100";
