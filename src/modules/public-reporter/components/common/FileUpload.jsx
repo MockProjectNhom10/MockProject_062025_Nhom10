@@ -83,6 +83,7 @@ const FileUpload = ({
     const file = e.target.files && e.target.files[0];
     if (file && file.name) {
       const newFile = {
+        file,
         name: file.name,
         size: `${Math.round(file.size / 1024)} KB`,
         date: new Date().toLocaleDateString("en-GB", {
@@ -90,6 +91,7 @@ const FileUpload = ({
           month: "short",
           year: "numeric",
         }),
+        url: URL.createObjectURL(file),
       };
       setFiles((prev) => [...prev, newFile]);
     }
