@@ -9,6 +9,12 @@ import Button from "@chief-police/components/common/button/Button";
 import TextArea from "@chief-police/components/common/input/TextArea";
 import ActionButtons from "@chief-police/components/common/button/ActionButtons";
 import { PlusCircle } from "lucide-react";
+import DeleteModal from "@chief-police/components/modal/DeleteModal";
+import {
+  officerColumns,
+  getPreservationColumns,
+  getMedicalSupportColumns,
+} from "@chief-police/constants/tableStyles";
 
 const ASSIGNED_OFFICERS_STORAGE_KEY = "assignedOfficersList";
 
@@ -29,6 +35,12 @@ const SC_016_InitialResponse = () => {
       return []; 
     }
   });
+
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState(null);
+
+  const [deletePreservationModalOpen, setDeletePreservationModalOpen] = useState(false);
+  const [deletePreservationTarget, setDeletePreservationTarget] = useState(null);
 
   useEffect(() => {
     const selectedUsers = location.state?.selectedUsers;
@@ -73,9 +85,16 @@ const SC_016_InitialResponse = () => {
       const stored = localStorage.getItem("scenePreservationMeasures");
       if (stored) {
         setScenePreservationMeasures(JSON.parse(stored));
+      } else {
+        setScenePreservationMeasures([
+          { id: 1, measure: "Đặt rào chắn quanh hiện trường" },
+        ]);
       }
     } catch (error) {
       console.error("Failed to load preservation measures:", error);
+      setScenePreservationMeasures([
+        { id: 1, measure: "Đặt rào chắn quanh hiện trường" },
+      ]);
     }
   }, []);
 
@@ -83,6 +102,14 @@ const SC_016_InitialResponse = () => {
     const stored = localStorage.getItem("medicalRescueSupport");
     if (stored) {
       setMedicalRescueData(JSON.parse(stored));
+    } else {
+      setMedicalRescueData([
+        {
+          unitId: "MR-01",
+          type: "Cấp cứu nạn nhân",
+          time: "08:30 25/06/2025",
+        },
+      ]);
     }
   }, []);
   
@@ -91,16 +118,43 @@ const SC_016_InitialResponse = () => {
     navigate("/chief-police/scene-information");
   };
 
-  const actionButtonsTwoOptions = [
-    { label: "Delete", color: "red" },
-    { label: "Edit", color: "teal" },
-  ];
+  const handleDeleteClick = (item, idx) => {
+    setDeleteTarget({ item, idx });
+    setDeleteModalOpen(true);
+  };
+  const handleEditClick = (item, idx) => {
+    // TODO: Implement edit logic
+  };
+  const handleViewClick = (item, idx) => {
+    // TODO: Implement view logic
+  };
+  const handleDeleteConfirm = () => {
+    if (deleteTarget) {
+      setMedicalRescueData((prev) => prev.filter((_, idx) => idx !== deleteTarget.idx));
+      setDeleteModalOpen(false);
+      setDeleteTarget(null);
+    }
+  };
+  const handleDeleteClose = () => {
+    setDeleteModalOpen(false);
+    setDeleteTarget(null);
+  };
 
-  const actionButtonsThreeOptions = [
-    { label: "Delete", color: "red" },
-    { label: "Edit", color: "teal" },
-    { label: "View", color: "gray" },
-  ];
+  const handleDeletePreservationClick = (item, idx) => {
+    setDeletePreservationTarget({ item, idx });
+    setDeletePreservationModalOpen(true);
+  };
+  const handleDeletePreservationConfirm = () => {
+    if (deletePreservationTarget) {
+      setScenePreservationMeasures((prev) => prev.filter((_, idx) => idx !== deletePreservationTarget.idx));
+      setDeletePreservationModalOpen(false);
+      setDeletePreservationTarget(null);
+    }
+  };
+  const handleDeletePreservationClose = () => {
+    setDeletePreservationModalOpen(false);
+    setDeletePreservationTarget(null);
+  };
 
   return (
     <FormSection
@@ -133,14 +187,7 @@ const SC_016_InitialResponse = () => {
         }
       >
         <GenericTable
-          columns={[
-            { header: "Fullname", accessor: "name" },
-            { header: "Phone number", accessor: "phone" },
-            { header: "Role", accessor: "role" },
-            {
-              header: "Details",
-            },
-          ]}
+          columns={officerColumns}
           data={assignedOfficers}
         />
       </FormCard>
@@ -170,23 +217,16 @@ const SC_016_InitialResponse = () => {
         }
       >
         <GenericTable
-  columns={[
-    { header: "#", accessor: "index" },
-    {
-      header: "Preservation Measures",
-      accessor: "preservationMeasures",
-    },
-    {
-      accessor: "actions",
-    },
-  ]}
-  data={scenePreservationMeasures.map((item, idx) => ({
-    index: idx + 1,
-    preservationMeasures: item.preservationMeasures,
-    actions: <ActionButtons actions={actionButtonsTwoOptions} />,
-  }))}
-/>
-
+          columns={getPreservationColumns({
+            onDelete: handleDeletePreservationClick,
+          })}
+          data={scenePreservationMeasures}
+        />
+        <DeleteModal
+          isOpen={deletePreservationModalOpen}
+          onClose={handleDeletePreservationClose}
+          onConfirm={handleDeletePreservationConfirm}
+        />
       </FormCard>
       <FormCard
         classNameHeader="mb-4"
@@ -201,20 +241,18 @@ const SC_016_InitialResponse = () => {
         }
       >
         <GenericTable
-  columns={[
-    { header: "Medical/Rescue Unit ID", accessor: "unitID" },
-    { header: "Type of Support Provided", accessor: "supportType" },
-    { header: "Time of Arrival", accessor: "arrivalTime" },
-    { accessor: "actions" },
-  ]}
-  data={medicalRescueData.map((item) => ({
-    unitID: item.unitID,
-    supportType: item.supportType,
-    arrivalTime: item.arrivalTime,
-    actions: <ActionButtons actions={actionButtonsThreeOptions} />,
-  }))}
-/>
-
+          columns={getMedicalSupportColumns({
+            onDelete: handleDeleteClick,
+            onEdit: handleEditClick,
+            onView: handleViewClick,
+          })}
+          data={medicalRescueData}
+        />
+        <DeleteModal
+          isOpen={deleteModalOpen}
+          onClose={handleDeleteClose}
+          onConfirm={handleDeleteConfirm}
+        />
       </FormCard>
     </FormSection>
   );

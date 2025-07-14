@@ -4,17 +4,19 @@ import FormSection from "@chief-police/components/sections/FormSection";
 import Button from "@chief-police/components/common/button/Button";
 import { PlusCircle } from "lucide-react";
 import GenericTable from "@chief-police/components/table/GenericTable";
+import DeleteModal from "@chief-police/components/modal/DeleteModal";
 
 import {
-  initialStatementsColumns,
   initialStatementsData,
-  mediaColumns,
   mediaData,
   evidenceColumns,
   evidenceData,
+  getInitialStatementsColumns,
+  getMediaColumns,
 } from "@chief-police/constants/tableStyles";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@core/hooks/useToast";
+import { useState } from "react";
 
 function SceneInformation() {
   const navigate = useNavigate();
@@ -31,6 +33,45 @@ function SceneInformation() {
       showSuccess("Information saved successfully!");
       navigate("/chief-police/initial-investigation-report");
     }, 1000);
+  };
+  const [statements, setStatements] = useState(initialStatementsData);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState(null);
+  const handleDeleteClick = (item, idx) => {
+    setDeleteTarget({ item, idx });
+    setDeleteModalOpen(true);
+  };
+  const handleEditClick = (item, idx) => {};
+  const handleViewClick = (item, idx) => {};
+  const handleDeleteConfirm = () => {
+    if (deleteTarget) {
+      setStatements((prev) => prev.filter((_, idx) => idx !== deleteTarget.idx));
+      setDeleteModalOpen(false);
+      setDeleteTarget(null);
+    }
+  };
+  const handleDeleteClose = () => {
+    setDeleteModalOpen(false);
+    setDeleteTarget(null);
+  };
+
+  const [media, setMedia] = useState(mediaData);
+  const [deleteMediaModalOpen, setDeleteMediaModalOpen] = useState(false);
+  const [deleteMediaTarget, setDeleteMediaTarget] = useState(null);
+  const handleDeleteMediaClick = (item, idx) => {
+    setDeleteMediaTarget({ item, idx });
+    setDeleteMediaModalOpen(true);
+  };
+  const handleDeleteMediaConfirm = () => {
+    if (deleteMediaTarget) {
+      setMedia((prev) => prev.filter((_, idx) => idx !== deleteMediaTarget.idx));
+      setDeleteMediaModalOpen(false);
+      setDeleteMediaTarget(null);
+    }
+  };
+  const handleDeleteMediaClose = () => {
+    setDeleteMediaModalOpen(false);
+    setDeleteMediaTarget(null);
   };
   return (
     <FormSection
@@ -51,8 +92,17 @@ function SceneInformation() {
         }
       >
         <GenericTable
-          columns={initialStatementsColumns}
-          data={initialStatementsData}
+          columns={getInitialStatementsColumns({
+            onDelete: handleDeleteClick,
+            onEdit: handleEditClick,
+            onView: handleViewClick,
+          })}
+          data={statements}
+        />
+        <DeleteModal
+          isOpen={deleteModalOpen}
+          onClose={handleDeleteClose}
+          onConfirm={handleDeleteConfirm}
         />
       </FormCard>
 
@@ -67,7 +117,17 @@ function SceneInformation() {
           </Button>
         }
       >
-        <GenericTable columns={mediaColumns} data={mediaData} />
+        <GenericTable
+          columns={getMediaColumns({
+            onDelete: handleDeleteMediaClick,
+          })}
+          data={media}
+        />
+        <DeleteModal
+          isOpen={deleteMediaModalOpen}
+          onClose={handleDeleteMediaClose}
+          onConfirm={handleDeleteMediaConfirm}
+        />
       </FormCard>
 
       <FormCard
