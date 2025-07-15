@@ -5,7 +5,6 @@ import Button from "@chief-police/components/common/button/Button";
 import { PlusCircle } from "lucide-react";
 import GenericTable from "@chief-police/components/table/GenericTable";
 import DeleteModal from "@chief-police/components/modal/DeleteModal";
-
 import {
   getInitialStatementsColumns,
   mediaData,
@@ -88,6 +87,7 @@ function SceneInformation() {
     setDeleteMediaModalOpen(false);
     setDeleteMediaTarget(null);
   };
+
   return (
     <FormSection
       title="SCENE INFORMATION"

@@ -19,28 +19,32 @@ import {
 const ASSIGNED_OFFICERS_STORAGE_KEY = "assignedOfficersList";
 
 const SC_016_InitialResponse = () => {
-  //
-  const [scenePreservationMeasures, setScenePreservationMeasures] = useState([]);
+  const [scenePreservationMeasures, setScenePreservationMeasures] = useState(
+    [],
+  );
   const [medicalRescueData, setMedicalRescueData] = useState([]);
-
   const navigate = useNavigate();
   const location = useLocation();
 
   const [assignedOfficers, setAssignedOfficers] = useState(() => {
     try {
-      const storedOfficers = localStorage.getItem(ASSIGNED_OFFICERS_STORAGE_KEY);
+      const storedOfficers = localStorage.getItem(
+        ASSIGNED_OFFICERS_STORAGE_KEY,
+      );
       return storedOfficers ? JSON.parse(storedOfficers) : [];
     } catch (error) {
       console.error("Failed to load officers from localStorage:", error);
-      return []; 
+      return [];
     }
   });
 
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState(null);
 
-  const [deletePreservationModalOpen, setDeletePreservationModalOpen] = useState(false);
-  const [deletePreservationTarget, setDeletePreservationTarget] = useState(null);
+  const [deletePreservationModalOpen, setDeletePreservationModalOpen] =
+    useState(false);
+  const [deletePreservationTarget, setDeletePreservationTarget] =
+    useState(null);
 
   useEffect(() => {
     const selectedUsers = location.state?.selectedUsers;
@@ -51,11 +55,11 @@ const SC_016_InitialResponse = () => {
     setAssignedOfficers((prevOfficers) => {
       const existingPhones = new Set(prevOfficers.map((o) => o.phone));
       const uniqueNewOfficers = selectedUsers.filter(
-        (newUser) => !existingPhones.has(newUser.phone)
+        (newUser) => !existingPhones.has(newUser.phone),
       );
 
       const transformed = uniqueNewOfficers.map((user) => ({
-        id: user.phone, 
+        id: user.phone,
         name: user.fullName,
         phone: user.phone,
         role: user.role,
@@ -68,18 +72,20 @@ const SC_016_InitialResponse = () => {
       replace: true,
       state: { ...location.state, selectedUsers: undefined },
     });
-  }, [location.state?.selectedUsers, navigate, location.pathname]); // Dependency on navigate and location.pathname for effect stability
+  }, [location.state?.selectedUsers, navigate, location.pathname]);
 
   useEffect(() => {
     try {
-      localStorage.setItem(ASSIGNED_OFFICERS_STORAGE_KEY, JSON.stringify(assignedOfficers));
+      localStorage.setItem(
+        ASSIGNED_OFFICERS_STORAGE_KEY,
+        JSON.stringify(assignedOfficers),
+      );
     } catch (error) {
       console.error("Failed to save officers to localStorage:", error);
     }
-  }, [assignedOfficers]); 
+  }, [assignedOfficers]);
 
-
-  //SCENE PRESERVATION MEASURES TAKEN
+  // SCENE PRESERVATION MEASURES TAKEN
   useEffect(() => {
     try {
       const stored = localStorage.getItem("scenePreservationMeasures");
@@ -112,7 +118,6 @@ const SC_016_InitialResponse = () => {
       ]);
     }
   }, []);
-  
 
   const onClickNext = () => {
     navigate("/chief-police/scene-information");
@@ -130,7 +135,9 @@ const SC_016_InitialResponse = () => {
   };
   const handleDeleteConfirm = () => {
     if (deleteTarget) {
-      setMedicalRescueData((prev) => prev.filter((_, idx) => idx !== deleteTarget.idx));
+      setMedicalRescueData((prev) =>
+        prev.filter((_, idx) => idx !== deleteTarget.idx),
+      );
       setDeleteModalOpen(false);
       setDeleteTarget(null);
     }
@@ -146,7 +153,9 @@ const SC_016_InitialResponse = () => {
   };
   const handleDeletePreservationConfirm = () => {
     if (deletePreservationTarget) {
-      setScenePreservationMeasures((prev) => prev.filter((_, idx) => idx !== deletePreservationTarget.idx));
+      setScenePreservationMeasures((prev) =>
+        prev.filter((_, idx) => idx !== deletePreservationTarget.idx),
+      );
       setDeletePreservationModalOpen(false);
       setDeletePreservationTarget(null);
     }
@@ -186,10 +195,7 @@ const SC_016_InitialResponse = () => {
           </Button>
         }
       >
-        <GenericTable
-          columns={officerColumns}
-          data={assignedOfficers}
-        />
+        <GenericTable columns={officerColumns} data={assignedOfficers} />
       </FormCard>
 
       {/* PRELIMINARY ASSESSMENT */}
