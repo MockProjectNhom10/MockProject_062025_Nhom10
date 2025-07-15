@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import SideBar from "@chief-police/components/layout/SideBar";
 import Footer from "@chief-police/components/layout/Footer";
 import WarningModal from "@chief-police/components/common/popup/WarningModal";
@@ -36,12 +36,28 @@ const sections = [
 ];
 
 const MainLayout = () => {
+  const location = useLocation();
+  const [activeSection, setActiveSection] = useState(0);
+
+  useEffect(() => {
+    const currentSection = sections.findIndex(
+      (section) => `/chief-police${section.nav}` === location.pathname,
+    );
+    if (currentSection !== -1) {
+      setActiveSection(currentSection);
+    }
+  }, [location.pathname]);
+
   return (
     <div className="max-tablet:pt-6 max-mobile:pt-0 flex min-h-screen flex-col bg-white pt-4">
       {/* Main area: sidebar + content */}
       <div className="flex flex-1 flex-col md:flex-row">
         {/* Sidebar: block above content on mobile, left on desktop */}
-        <SideBar sections={sections} />
+        <SideBar
+          sections={sections}
+          activeSection={activeSection}
+          onSectionChange={setActiveSection}
+        />
 
         {/* Main content */}
         <div className="flex min-h-0 flex-1 flex-col">

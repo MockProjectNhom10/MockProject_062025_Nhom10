@@ -52,12 +52,35 @@ function SideBar({
     if (controlledActiveSubItem === undefined) setInternalActiveSubItem(0);
   };
 
-  // const handleSubItemClick = (sectionIdx, subIdx) => {
-  //   if (onSubItemChange) onSubItemChange(sectionIdx, subIdx);
-  //   if (controlledActiveSection === undefined)
-  //     setInternalActiveSection(sectionIdx);
-  //   if (controlledActiveSubItem === undefined) setInternalActiveSubItem(subIdx);
-  // };
+  const handleSubItemClick = (sectionIdx, subIdx) => {
+    if (onSubItemChange) onSubItemChange(sectionIdx, subIdx);
+    if (controlledActiveSection === undefined)
+      setInternalActiveSection(sectionIdx);
+    if (controlledActiveSubItem === undefined) setInternalActiveSubItem(subIdx);
+    // Optional: Add navigation for sub-items if needed
+    const subItemRoutes = {
+      0: [
+        "add-dispatch-time",
+        "add-arrival-time",
+        "add-patrol",
+        "add-preliminary-assessment",
+        "information-protection-field",
+        "medical-rescue-support",
+      ],
+      1: [
+        "add-initial-statement",
+        "add-scene-description",
+        "images-and-videos",
+        "preliminary-evidence",
+        "add-scene-sketch",
+      ],
+    };
+    if (subItemRoutes[sectionIdx]?.[subIdx]) {
+      navigate(
+        `/chief-police${sidebarData[sectionIdx].nav}/${subItemRoutes[sectionIdx][subIdx]}`,
+      );
+    }
+  };
 
   return (
     <>
@@ -105,8 +128,8 @@ function SideBar({
                         {section.subItems.map((sub, subIdx) => (
                           <li key={sub}>
                             <button
-                              className={`w-full cursor-no-drop rounded-xl px-3 py-2 text-left text-sm text-gray-800 hover:bg-gray-100`}
-                              // onClick={() => handleSubItemClick(idx, subIdx)}
+                              className={`w-full rounded-xl px-3 py-2 text-left text-sm text-gray-800 hover:bg-gray-100 ${activeSubItem === subIdx ? "bg-gray-100" : ""}`}
+                              onClick={() => handleSubItemClick(idx, subIdx)}
                             >
                               {sub}
                             </button>
