@@ -81,10 +81,10 @@ const Step1ReporterInfo = () => {
           />
           <FormInput label="Address" name="address" />
         </div>
-        {/* relevence to the incident radio buttons */}
+        {/* Relationship to the incident radio buttons */}
         <div className="mb-2 flex flex-col">
           <label>
-            Relevence to the incident{" "}
+          Relationship to the incident{" "}
             <span className="text-red-600">
               *
               {errors?.relevance && (
