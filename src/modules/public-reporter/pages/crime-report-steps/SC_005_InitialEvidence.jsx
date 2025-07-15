@@ -62,8 +62,14 @@ const SC_005 = ({ onClose, onSubmit }) => {
           <FormInput
             label="Evidence Location"
             name="evidenceLocation"
+            error={errors?.evidenceLocation?.message} 
             placeholder="E.g., At the scene, in the car,..."
-            {...register("evidenceLocation")}
+            {...register("evidenceLocation", {
+              maxLength: {
+                value: 50,
+                message: "Maximum length is 50 characters",
+              },
+            })}
           />
         </div>
       </div>
@@ -72,8 +78,14 @@ const SC_005 = ({ onClose, onSubmit }) => {
         <FormInput
           label="Evidence Description"
           name="evidenceDescription"
+          error={errors?.evidenceDescription?.message} 
           placeholder="Provide a clear and detailed description of the evidence (shape, material, identifying features...)"
-          {...register("evidenceDescription")}
+          {...register("evidenceDescription", {
+            maxLength: {
+              value: 50,
+              message: "Maximum length is 50 characters",
+            }
+          })}
         />
       </div>
 

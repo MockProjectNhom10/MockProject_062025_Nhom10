@@ -101,7 +101,15 @@ function SC_003_Step2IncidentInformation() {
         <Controller
           name="dateOfOccurrence"
           control={control}
-          rules={{ required: MESSAGES.REQUIRED }}
+          rules={{ required: MESSAGES.REQUIRED,
+                  validate: (value) =>{
+                    if(!value) return MESSAGES.REQUIRED;
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    const selected = new Date(value);
+                    return selected <= today || "Future date not allowed"
+                  }
+          }}
           render={({ field, fieldState }) => (
             <DatePicker
               value={field.value}

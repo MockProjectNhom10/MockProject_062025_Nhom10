@@ -45,6 +45,7 @@ function CustomDatePicker({
               showTimeSelect
               dateFormat="Pp"
               inline
+              // maxDate= {new Date()} 
             />
           </div>
         )}
